@@ -10,6 +10,7 @@ import {
 
 const swoopBackground = require("./home_background.png");
 
+
 const HomeScreen = ({ navigation }) => {
   return (
       <View style={{ flex: 1, padding: 0 }}>
@@ -74,9 +75,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   welcomeText: {
-    fontFamily: "Inter",
+    fontFamily: "Avenir",
     fontWeight: "bold",
-    fontSize: "24px",
+    fontSize: 24,
     textAlign: "center",
     color: "#6F909C",
   },
@@ -89,36 +90,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   moodText: {
-    fontFamily: "Inter",
-    fontWeight: 500,
-    fontSize: "24px",
-    lineHeight: "29px",
+    fontFamily: "Avenir",
+    fontWeight: "bold",
+    fontSize: 24,
+    lineHeight: 29,
     textAlign: "center",
     color: "#6F909C",
   },
   module: {
     backgroundColor: "#85B0AE",
-    border: "2px solid #779391",
+    borderWidth: 2,
+    borderColor: "#779391",
     position: 'absolute',
     width: '90%',
     height: "20%",
     left: 20,
     right: 0,
     bottom: 0,
-    borderRadius: "30px",
+    borderRadius: 30,
   },
   countdownText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: "24px",
-    fontFamily: "Inter",
+    fontSize: 24,
+    fontFamily: "Avenir",
   },
   countdownNumber: {
     color: "#fff",
     textAlign: "center",
-    fontSize: "40px",
+    fontSize: 40,
     fontWeight: "bold",
-    fontFamily: "Inter",
+    fontFamily: "Avenir",
   },
   dropShadow:  {
     shadowColor: '#171717',

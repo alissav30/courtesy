@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './HomeScreen';
+import HomeScreen from './screens/HomeScreen';
 
 // function HomeScreen() {
 //   return (
