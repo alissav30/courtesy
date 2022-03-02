@@ -19,11 +19,11 @@ const HomeScreen = ({ navigation }) => {
   // *** eventually hardcoded variables with actual data ***
   const fakeDataCourtDate = new Date('04/26/22');
   const name = "Jane";
-  const mood = "default";
+  const mood = "productive";
 
   return (
       <View style={{ flex: 1, padding: 0 }}>
-        <ImageBackground source={swoopBackground} style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
           <View style={styles.welcomeTextContainer}>
             <Text style={styles.welcomeText}>
               Welcome back, {name}!
@@ -44,7 +44,10 @@ const HomeScreen = ({ navigation }) => {
               Today you're feeling
             </Text>
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.moodWordText}> {mood}</Text>
+              <Text
+                style={styles.moodWordText}
+                onPress={() => navigation.navigate("Moods")}
+              > {mood}</Text>
               <Text style={styles.moodText}> {homeScreenMoods[mood].headerText} </Text>
             </View>
           </View>
