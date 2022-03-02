@@ -161,33 +161,15 @@ export default function App() {
             tabBarStyle: { marginBottom: -30, borderTopWidth: 0, shadowColor: '#000', shadowOffset: {width: 0, height: -2}, shadowOpacity: 0.4, shadowRadius: 3, height: 90},
             })}
         >
-            <Tab.Screen 
-                name="Home" 
-                component={HomeScreen} 
-                mood={mood}
-                setIsMoodPicker={setIsMoodPicker}
-                firstName={firstName} 
-                courtDate={courtDate}
-                courtLocation={courtLocation}
-                courtTime={courtTime}
-                />
-            <Tab.Screen 
-                name="Tasks" 
-                component={TaskScreen} 
-                firstName={firstName} 
-                courtDate={courtDate}
-                courtLocation={courtLocation}
-                courtTime={courtTime}
-            />
-            <Tab.Screen 
-                name=" " 
-                component={MyPlanScreen} 
-                firstName={firstName} 
-                courtDate={courtDate}
-                courtLocation={courtLocation}
-                courtTime={courtTime}
-                childCare={childCare}
-            />
+            <Tab.Screen name="Home">
+              {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker } />}
+            </Tab.Screen>
+            <Tab.Screen name="Tasks" component={TaskScreen} />
+            <Tab.Screen name=" ">
+              {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
+                        courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
+                        childCare={childCare} />}
+            </Tab.Screen>
             <Tab.Screen 
                 name="Forum" 
                 component={MessageBoardScreen} 
