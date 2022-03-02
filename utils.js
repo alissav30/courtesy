@@ -27,24 +27,29 @@ export const homeScreenMoods = {
     taskText: "Check the tasks screen to see what needs to be done today.",
     taskRoute: "Tasks",
   },
-  productive: {
-    headerText: "- woohoo!",
-    taskText: "Use that productivity to get started on your task for the day!",
-    taskRoute: "Tasks",
+  confused: {
+    headerText: "- we hear you.",
+    taskText: "Have a question about court? Go to the message board to ask.",
+    taskRoute: "Forum",
   },
   stressed: {
     headerText: "- we hear you.",
     taskText: "Take some time today to read a few testimonials. You’ve got this!",
     taskRoute: "Forum",
   },
-  confused: {
-    headerText: "- we hear you.",
-    taskText: "Have a question about court? Go to the message board to ask.",
-    taskRoute: "Forum",
+  productive: {
+    headerText: "- woohoo!",
+    taskText: "Use that productivity to get started on your task for the day!",
+    taskRoute: "Tasks",
   },
   encouraged: {
     headerText: "- woohoo!",
     taskText: "Use that positivity to get started on your task for the day!",
+    taskRoute: "Tasks",
+  },
+  prepared: {
+    headerText: "- woohoo!",
+    taskText: "Check the tasks screen to make sure you're all caught up on things to do.",
     taskRoute: "Tasks",
   },
   overwhelmed: {
@@ -52,24 +57,19 @@ export const homeScreenMoods = {
     taskText: "Take some time today to read a few testimonials. You’ve got this!",
     taskRoute: "Forum",
   },
-  prepared: {
-    headerText: "- woohoo!",
-    taskText: "Check the tasks screen to make sure you're all caught up on things to do.",
-    taskRoute: "Tasks",
-  },
   frustrated: {
     headerText: "- we hear you.",
     taskText: "Have a question about court? Go to the message board to ask.",
     taskRoute: "Forum",
   },
-  content: {
-    headerText: "- woohoo!",
-    taskText: "Check the tasks screen to make sure you're all caught up on things to do.",
-    taskRoute: "Tasks",
-  },
   optimistic: {
     headerText: "- woohoo!",
     taskText: "Use that positivity to get started on your task for the day!",
+    taskRoute: "Tasks",
+  },
+  content: {
+    headerText: "- woohoo!",
+    taskText: "Check the tasks screen to make sure you're all caught up on things to do.",
     taskRoute: "Tasks",
   },
   nervous: {
