@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
-import SignUpFlow from './screens/SignUpFlow';
-//import SignUpFlow from './screens/SignUpFlowCopy';
+//import SignUpFlow from './screens/SignUpFlow';
+import SignUpFlow from './screens/MyPlanScreen';
 
 
 // function HomeScreen() {
