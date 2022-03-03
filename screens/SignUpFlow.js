@@ -1,4 +1,8 @@
 import * as React from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { TextInputMask } from 'react-native-masked-text'
+
+
 import {
   TouchableOpacity,
   StyleSheet,
@@ -6,80 +10,183 @@ import {
   Text,
   SafeAreaView,
   ImageBackground,
+  TextInput
 } from 'react-native';
 
 const swoopBackground = require("./home_background.png");
 
-
 const SignUpFlow = ({ navigation, setisSignUpFlow }) => {
+    const [firstName, onChangeFirstName] = React.useState("");
+    const [courtDate, onChangeCourtDate] = React.useState("");
+    const [courtLocation, onChangeCourtLocation] = React.useState("");
   return (
-      <View style={{ flex: 1, padding: 0 }}>
-        <ImageBackground source={swoopBackground} style={{width: '100%', height: '100%'}}>
+      <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
           <View style={styles.welcomeTextContainer}>
             <Text style={styles.welcomeText} onPress={() => setisSignUpFlow(false)}>
-              {/* Name needs to be a variable */}
-              Sign Up Flow
+              {/* title */}
+              Welcome to Courtesy!
+            </Text>
+            <Text style={styles.subtitleText}>
+            We're excited to help you get ready for court!
             </Text>
           </View>
-          <View style={styles.moodTextContainer}>
-            <Text style={styles.moodText}>
-              {/* Mood needs to be a variable */}
-              Today you're feeling productive - woohoo!
-            </Text>
+          <View style={styles.questionBox1}>
+            <View style={styles.textContainer}>
+                {/* first name question */}
+                <View>
+                    <Text style={styles.questionText}>
+                        What's your preferred first name?
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        //onChangeText={onChangeFirstName}
+                        onChangeText={(text)=>onChangeFirstName({text})}
+                        value={firstName}
+                        placeholder=""
+                    />
+                </View>
+                {/* court date question */}
+                <View>
+                    <Text style={styles.questionText}>
+                        When's your court date?
+                    </Text>
+                    <View style={styles.answerRow}>
+                        <TextInput
+                            style={styles.secondInput}
+                            onChangeText={onChangeCourtDate}
+                            value={courtDate}
+                            //type={'datetime'}
+                            placeholder=""
+                            //options={{
+                                //format: 'DD-MM-YYYY HH:mm:ss'
+                            //}}
+                            //defaultValue={moment().format("yyyy-mm-dd")}  
+                        />
+                        <Ionicons style={styles.icon} name="calendar-outline" size={45} color="white" />
+                    </View>
+                </View>
+                {/* location question */}
+                <View>
+                    <Text style={styles.questionText}>
+                        Where is your court appointment?
+                    </Text>
+                    <View style={styles.answerRow}>
+                        <TextInput
+                            style={styles.secondInput}
+                            //type={'datetime'}
+                            onChangeText={onChangeCourtLocation}
+                            //options={{
+                                //format: 'DD-MM-YYYY HH:mm:ss'
+                            //}}
+                            //defaultValue={moment().format("yyyy-mm-dd")}  
+                            value={courtLocation}
+                            placeholder=""
+                        />
+                        <Ionicons style={styles.icon} name="location-outline" size={45} color="white" />
+                    </View>
+                </View>
+            </View>
           </View>
-          {/* task module */}
-          <TouchableOpacity style={[
-            styles.module,
-            styles.dropShadow,
-            { top: 200, height: "20%" }
-          ]}/>
-          {/* call the court module */}
-          <TouchableOpacity style={[
-            styles.module,
-            styles.dropShadow,
-            { top: 380, height: "10%", borderRadius: '18px' }
-          ]}/>
-          {/* countdown module */}
-          <View style={[styles.module,
-            { top: 490, height: "20%", width: "40%", borderWidth: 1.5, borderColor: '#779391', justifyContent: "center"}
-          ]}>
-            <Text style={styles.countdownText}>you have</Text>
-            <Text style={styles.countdownText}>court in</Text>
-            {/* number needs to be a variable */}
-            <Text style={styles.countdownNumber}>20</Text>
-            <Text style={styles.countdownText}>days</Text>
-          </View>
-          {/* map module */}
-          <View style={[styles.module,
-            { top: 490, left: 220, height: "20%", width: "40%", borderWidth: 1.5, borderColor: '#779391' }
-          ]}/>
-        </ImageBackground>
-      </View>
+          {/* submit button */}
+          {/*<View>
+            <TouchableOpacity
+                style={[
+                styles.module,
+                { top: 100, height: "10%" }
+                ]}
+                onPress={() => navigation.navigate(homeScreenMoods[mood].taskRoute)}
+            />
+        </View>*/}
+        </View>
   );
 };
 
 const styles = StyleSheet.create({
+    welcomeText: {
+        fontFamily: "Avenir",
+        fontWeight: "bold",
+        fontSize: 30,
+        textAlign: "center",
+        color: "#FFFFFF",
+        paddingTop: 30,
+    },
+    subtitleText: {
+        fontFamily: "Avenir",
+        fontWeight: "bold",
+        fontSize: 22,
+        lineHeight: 29,
+        padding: 20,
+        textAlign: "center",
+        color: "#FFFFFF",
+        paddingBottom: 50,
+      },
+    input: {
+        height: 40,
+        margin: 20,
+        marginLeft: 40,
+        marginRight: 40,
+        borderWidth: 1,
+        color: "#FFFFFF",
+        padding: 10,
+        borderColor: "#FFFFFF",
+        fontSize:20,
+        textAlign: "center",
+    },
+    secondInput: {
+        height: 40,
+        margin: 20,
+        marginLeft: 40,
+        marginRight: 100,
+        borderWidth: 1,
+        color: "#FFFFFF",
+        padding: 10,
+        borderColor: "#FFFFFF",
+        fontSize:20,
+        textAlign: "center",
+    },
+    textContainer: {
+        //flex: 1
+    },
+    questionText:{
+        fontFamily: "Avenir",
+        fontWeight: "bold",
+        fontSize: 18,
+        textAlign: "center",
+        color: "#FFFFFF",
+        paddingTop: 30,
+    },
+    questionBox1: {
+        paddingTop: 120,
+        //paddingBottom: 110,
+    },
+    questionBox2: {
+        paddingTop: 80,
+        //paddingBottom: 110,
+    },
+    icon: {
+        textAlign: "right",
+        paddingRight: 40,
+        //paddingTop: 13,
+    },
+    welcomeTextContainer: {
+        position: 'absolute',
+        top: 50,
+        left: 0,
+        right: 0,
+        bottom: 50,
+        paddingBottom: 80,
+        alignItems: 'center',
+      },
+    //  answerRow: {
+    //      display: flex,
+    //      flexDirection: row
+    //  },
   button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
     width: 300,
     marginTop: 16,
-  },
-  welcomeTextContainer: {
-    position: 'absolute',
-    top: 20,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-  },
-  welcomeText: {
-    fontFamily: "Avenir",
-    fontWeight: "bold",
-    fontSize: 24,
-    textAlign: "center",
-    color: "#6F909C",
   },
   moodTextContainer: {
     position: 'absolute',
@@ -88,14 +195,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     alignItems: 'center',
-  },
-  moodText: {
-    fontFamily: "Avenir",
-    fontWeight: "bold",
-    fontSize: 24,
-    lineHeight: 29,
-    textAlign: "center",
-    color: "#6F909C",
   },
   module: {
     backgroundColor: "#85B0AE",

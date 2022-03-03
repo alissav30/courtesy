@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import SignUpFlow from './screens/SignUpFlow';
+//import SignUpFlow from './screens/SignUpFlowCopy';
+
 
 const styles = StyleSheet.create({
   dropShadow:  {
@@ -57,9 +59,6 @@ function SettingsScreen() {
 
 let signUpFlow = false;
 
-function setSignUpFlow(bool) {
-    signUpFlow = bool;
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -68,7 +67,7 @@ export default function App() {
     // hook variable thing
     if (isSignUpFlow) {
         return  (
-            <SignUpFlow setisSignUpFlow={setisSignUpFlow}/>
+        <SignUpFlow setisSignUpFlow={setisSignUpFlow} title={{title: 'Sign Up'}}/>
         );
     } else {
     return (
