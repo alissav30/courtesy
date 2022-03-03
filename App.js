@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import SignUpFlow from './screens/SignUpFlow';
+//import SignUpFlow from './screens/SignUpFlowCopy';
+
 
 // function HomeScreen() {
 //   return (
@@ -55,11 +57,7 @@ function SettingsScreen() {
   );
 }
 
-let signUpFlow = true;
 
-function setSignUpFlow(bool) {
-    signUpFlow = bool;
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -68,7 +66,7 @@ export default function App() {
     // hook variable thing
     if (isSignUpFlow) {
         return  (
-            <SignUpFlow setisSignUpFlow={setisSignUpFlow}/>
+        <SignUpFlow setisSignUpFlow={setisSignUpFlow} title={{title: 'Sign Up'}}/>
         );
     } else {
     return (
