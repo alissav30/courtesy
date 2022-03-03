@@ -11,15 +11,19 @@ import {
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
-import { getCountdownDays, homeScreenMoods } from '../utils';
+import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 
 const swoopBackground = require("./home_background.png");
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, mood, setIsMoodPicker }) => {
   // *** eventually hardcoded variables with actual data ***
-  const fakeDataCourtDate = new Date('04/26/22');
+  const fakeDataCourtDate = new Date('04/27/22');
   const name = "Jane";
-  const mood = "productive";
+
+  let moodKey = mood;
+  if (moods.indexOf(mood) == -1) {
+    moodKey = "other";
+  }
 
   return (
       <View style={{ flex: 1, padding: 0 }}>
@@ -46,9 +50,9 @@ const HomeScreen = ({ navigation }) => {
             <View style={{ flexDirection: "row" }}>
               <Text
                 style={styles.moodWordText}
-                onPress={() => navigation.navigate("Moods")}
-              > {mood}</Text>
-              <Text style={styles.moodText}> {homeScreenMoods[mood].headerText} </Text>
+                onPress={() => setIsMoodPicker(true)}
+              > {mood.toLowerCase()}</Text>
+              <Text style={styles.moodText}> {homeScreenMoods[moodKey].headerText} </Text>
             </View>
           </View>
           }
@@ -59,14 +63,14 @@ const HomeScreen = ({ navigation }) => {
               styles.dropShadow,
               { top: 200, height: "20%" }
             ]}
-            onPress={() => navigation.navigate(homeScreenMoods[mood].taskRoute)}
+            onPress={() => navigation.navigate(homeScreenMoods[moodKey].taskRoute)}
           >
             <Text style={{
               color: 'white',
               fontSize: 20,
               padding: 20,
             }}>
-              {homeScreenMoods[mood].taskText}
+              {homeScreenMoods[moodKey].taskText}
             </Text>
             <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 24 }}> GO </Text>

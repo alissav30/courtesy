@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import SignUpFlow from './screens/SignUpFlow';
+import MoodPicker from './screens/MoodPicker';
 
 const styles = StyleSheet.create({
   dropShadow:  {
@@ -64,15 +65,22 @@ function setSignUpFlow(bool) {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false)
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isMoodPicker, setIsMoodPicker] = useState(false);
+
+    const [mood, setMood] = useState('default');
     // hook variable thing
     if (isSignUpFlow) {
         return  (
             <SignUpFlow setisSignUpFlow={setisSignUpFlow}/>
         );
+    } else if (isMoodPicker) {
+      return (
+        <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setMood={setMood} />
+      );
     } else {
     return (
-        <NavigationContainer style={{boxShadow: "0px -3px 5px rgba(0, 0, 0, 0.4)"}}>
+        <NavigationContainer>
         <Tab.Navigator
             screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -96,7 +104,7 @@ export default function App() {
                 // Not sure if this is the best way to handle this, but I don't want
                 // text under the bookmark icon so it seems like the best solution is
                 // to name this route " " so no text shows up
-              } else if (route.name === 'Plan') {
+              } else if (route.name === ' ') {
                 return (
                     <View style={[{
                     backgroundColor: 'white',
@@ -140,16 +148,17 @@ export default function App() {
             tabBarActiveTintColor: 'white',
             tabBarActiveBackgroundColor: '#779391',
             tabBarInactiveBackgroundColor: '#779391',
-            tabBarShowLabel: route.name !== 'Plan',
             tabBarLabelStyle: { marginBottom: 7 },
-            tabBarStyle: {borderTopWidth: 0, shadowColor: '#000', shadowOffset: {width: 0, height: -2}, shadowOpacity: 0.4, shadowRadius: 3, height: 90},
+            tabBarStyle: { marginBottom: -30, borderBottomWidth: 0, borderTopWidth: 0, shadowColor: '#000', shadowOffset: {width: 0, height: -2}, shadowOpacity: 0.4, shadowRadius: 3, height: 90},
             })}
         >
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home">
+              {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker} />}
+            </Tab.Screen>
             <Tab.Screen name="Tasks" component={TaskScreen} />
-            <Tab.Screen name="Plan" component={MyPlanScreen} />
+            <Tab.Screen name=" " component={MyPlanScreen} />
             <Tab.Screen name="Forum" component={MessageBoardScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
+            <Tab.Screen name="Settings" component={MoodPicker} />
         </Tab.Navigator>
         </NavigationContainer>
     );
