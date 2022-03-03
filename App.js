@@ -64,6 +64,8 @@ export default function App() {
     const [courtDate, onChangeCourtDate] = useState("");
     const [courtLocation, onChangeCourtLocation] = useState("");
     const [courtTime, onChangeCourtTime] = useState("");
+    const [childCare, onChangeChildCare] = useState("");
+
 
 
     // hook variable thing
@@ -162,6 +164,8 @@ export default function App() {
             <Tab.Screen 
                 name="Home" 
                 component={HomeScreen} 
+                mood={mood}
+                setIsMoodPicker={setIsMoodPicker}
                 firstName={firstName} 
                 courtDate={courtDate}
                 courtLocation={courtLocation}
@@ -182,6 +186,7 @@ export default function App() {
                 courtDate={courtDate}
                 courtLocation={courtLocation}
                 courtTime={courtTime}
+                childCare={childCare}
             />
             <Tab.Screen 
                 name="Forum" 
