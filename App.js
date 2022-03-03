@@ -65,7 +65,7 @@ export default function App() {
     const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
-    const [mood, setMood] = useState('default');
+    const [mood, setMood] = useState('productive');
     // hook variable thing
     if (isSignUpFlow) {
         return  (

@@ -20,7 +20,7 @@ const yCoordinates = [30, -15, -185, -160, -195, -380, -350, -370, -550, -530, -
 const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setIsCustomMoodScreen }) => {
   return (
     <TouchableOpacity onPress={() => {
-      if (mood !== "Other...") {
+      if (mood !== "other...") {
         setMood(mood.toLowerCase());
         setIsMoodPicker(false);
       } else {
