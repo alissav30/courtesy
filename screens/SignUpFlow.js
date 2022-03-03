@@ -15,14 +15,17 @@ import {
 
 const swoopBackground = require("./home_background.png");
 
-const SignUpFlow = ({ navigation, setisSignUpFlow }) => {
+const SignUpFlow = ({ navigation, props }) => {
     const [firstName, onChangeFirstName] = React.useState("");
     const [courtDate, onChangeCourtDate] = React.useState("");
     const [courtLocation, onChangeCourtLocation] = React.useState("");
+    const [courtTime, onChangeCourtTime] = React.useState("");
+    console.warn(this.props)
+
   return (
       <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
           <View style={styles.welcomeTextContainer}>
-            <Text style={styles.welcomeText} onPress={() => setisSignUpFlow(false)}>
+            <Text style={styles.welcomeText} onPress={() => props.setisSignUpFlow(false)}>
               {/* title */}
               Welcome to Courtesy!
             </Text>
@@ -40,7 +43,7 @@ const SignUpFlow = ({ navigation, setisSignUpFlow }) => {
                     <TextInput
                         style={styles.input}
                         //onChangeText={onChangeFirstName}
-                        onChangeText={(text)=>onChangeFirstName({text})}
+                        onChangeText={(text) => onChangeFirstName({text})}
                         value={firstName}
                         placeholder=""
                     />

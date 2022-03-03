@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import SignUpFlow from './screens/SignUpFlow';
 import MoodPicker from './screens/MoodPicker';
+import MyPlanScreen from './screens/MyPlanScreen';
+
 
 const styles = StyleSheet.create({
   dropShadow:  {
@@ -32,14 +34,6 @@ function MoodsScreen() {
   );
 }
 
-function MyPlanScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>My Plan!</Text>
-    </View>
-  );
-}
-
 function MessageBoardScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -56,7 +50,6 @@ function SettingsScreen() {
   );
 }
 
-let signUpFlow = false;
 
 
 const Tab = createBottomTabNavigator();
@@ -66,10 +59,27 @@ export default function App() {
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
+
+    const [firstName, onChangeFirstName] = useState("");
+    const [courtDate, onChangeCourtDate] = useState("");
+    const [courtLocation, onChangeCourtLocation] = useState("");
+    const [courtTime, onChangeCourtTime] = useState("");
+
+
     // hook variable thing
     if (isSignUpFlow) {
         return  (
-        <SignUpFlow setisSignUpFlow={setisSignUpFlow} title={{title: 'Sign Up'}}/>
+        <SignUpFlow 
+            firstName={firstName} 
+            onChangeFirstName={onChangeFirstName}
+            courtDate={courtDate}
+            onChangeCourtDate={onChangeCourtDate}
+            courtLocation={courtLocation}
+            onChangeCourtLocation={onChangeCourtLocation}
+            courtTime={courtTime}
+            onChangeCourtTime={onChangeCourtTime}
+            setisSignUpFlow={setisSignUpFlow} 
+            title={{title: 'Sign Up'}}/>
         );
     } else if (isMoodPicker) {
       return (
@@ -146,16 +156,49 @@ export default function App() {
             tabBarActiveBackgroundColor: '#779391',
             tabBarInactiveBackgroundColor: '#779391',
             tabBarLabelStyle: { marginBottom: 7 },
-            tabBarStyle: { marginBottom: -30, borderBottomWidth: 0, borderTopWidth: 0, shadowColor: '#000', shadowOffset: {width: 0, height: -2}, shadowOpacity: 0.4, shadowRadius: 3, height: 90},
+            tabBarStyle: { marginBottom: -30, borderTopWidth: 0, shadowColor: '#000', shadowOffset: {width: 0, height: -2}, shadowOpacity: 0.4, shadowRadius: 3, height: 90},
             })}
         >
-            <Tab.Screen name="Home">
-              {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker} />}
-            </Tab.Screen>
-            <Tab.Screen name="Tasks" component={TaskScreen} />
-            <Tab.Screen name=" " component={MyPlanScreen} />
-            <Tab.Screen name="Forum" component={MessageBoardScreen} />
-            <Tab.Screen name="Settings" component={MoodPicker} />
+            <Tab.Screen 
+                name="Home" 
+                component={HomeScreen} 
+                firstName={firstName} 
+                courtDate={courtDate}
+                courtLocation={courtLocation}
+                courtTime={courtTime}
+                />
+            <Tab.Screen 
+                name="Tasks" 
+                component={TaskScreen} 
+                firstName={firstName} 
+                courtDate={courtDate}
+                courtLocation={courtLocation}
+                courtTime={courtTime}
+            />
+            <Tab.Screen 
+                name=" " 
+                component={MyPlanScreen} 
+                firstName={firstName} 
+                courtDate={courtDate}
+                courtLocation={courtLocation}
+                courtTime={courtTime}
+            />
+            <Tab.Screen 
+                name="Forum" 
+                component={MessageBoardScreen} 
+                firstName={firstName} 
+                courtDate={courtDate}
+                courtLocation={courtLocation}
+                courtTime={courtTime}
+            />
+            <Tab.Screen 
+                name="Settings" 
+                component={SettingsScreen} 
+                firstName={firstName} 
+                courtDate={courtDate}
+                courtLocation={courtLocation}
+                courtTime={courtTime}
+            />
         </Tab.Navigator>
         </NavigationContainer>
     );
