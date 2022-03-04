@@ -55,7 +55,7 @@ function SettingsScreen() {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -81,6 +81,8 @@ export default function App() {
             courtTime={courtTime}
             onChangeCourtTime={onChangeCourtTime}
             setisSignUpFlow={setisSignUpFlow} 
+            isMoodPicker={isMoodPicker}
+            setIsMoodPicker={setIsMoodPicker}
             title={{title: 'Sign Up'}}/>
         );
     } else if (isMoodPicker) {

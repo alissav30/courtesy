@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { TextInputMask } from 'react-native-masked-text'
-
+import SignUpFlowNext from './SignUpFlow2';
+import * as Progress from 'react-native-progress';
 
 import {
   TouchableOpacity,
@@ -10,8 +11,12 @@ import {
   Text,
   SafeAreaView,
   ImageBackground,
-  TextInput
+  TextInput,
 } from 'react-native';
+
+import { CheckBox } from 'react-native-elements'
+
+
 
 const swoopBackground = require("./home_background.png");
 
@@ -20,18 +25,24 @@ const SignUpFlow = ({ navigation, props }) => {
     const [courtDate, onChangeCourtDate] = React.useState("");
     const [courtLocation, onChangeCourtLocation] = React.useState("");
     const [courtTime, onChangeCourtTime] = React.useState("");
-    console.warn(this.props)
+    const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
+    const [childCare, onChangeChildCare] = React.useState(false)
+    const [car, onChangeCar] = React.useState(false)
+    const [legalRep, onChangeLegalRep] = React.useState(false)
 
-  return (
+    
+    if (signUpScreenNumber == 1) {
+    return (
       <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
           <View style={styles.welcomeTextContainer}>
-            <Text style={styles.welcomeText} onPress={() => props.setisSignUpFlow(false)}>
+            <Text style={styles.welcomeText}>
               {/* title */}
               Welcome to Courtesy!
             </Text>
             <Text style={styles.subtitleText}>
             We're excited to help you get ready for court!
             </Text>
+            <Progress.Bar progress={0.2} width={200} color="white" />
           </View>
           <View style={styles.questionBox1}>
             <View style={styles.textContainer}>
@@ -48,75 +59,352 @@ const SignUpFlow = ({ navigation, props }) => {
                         placeholder=""
                     />
                 </View>
-                {/* court date question */}
-                <View>
-                    <Text style={styles.questionText}>
-                        When's your court date?
-                    </Text>
-                    <View style={styles.answerRow}>
-                        <TextInput
-                            style={styles.secondInput}
-                            onChangeText={onChangeCourtDate}
-                            value={courtDate}
-                            //type={'datetime'}
-                            placeholder=""
-                            //options={{
-                                //format: 'DD-MM-YYYY HH:mm:ss'
-                            //}}
-                            //defaultValue={moment().format("yyyy-mm-dd")}  
-                        />
-                        <Ionicons style={styles.icon} name="calendar-outline" size={45} color="white" />
-                    </View>
-                </View>
-                {/* location question */}
-                <View>
-                    <Text style={styles.questionText}>
-                        Where is your court appointment?
-                    </Text>
-                    <View style={styles.answerRow}>
-                        <TextInput
-                            style={styles.secondInput}
-                            //type={'datetime'}
-                            onChangeText={onChangeCourtLocation}
-                            //options={{
-                                //format: 'DD-MM-YYYY HH:mm:ss'
-                            //}}
-                            //defaultValue={moment().format("yyyy-mm-dd")}  
-                            value={courtLocation}
-                            placeholder=""
-                        />
-                        <Ionicons style={styles.icon} name="location-outline" size={45} color="white" />
-                    </View>
-                </View>
             </View>
           </View>
           {/* submit button */}
-          {/*<View>
+          <View style={styles.submitButton}>
             <TouchableOpacity
                 style={[
                 styles.module,
-                { top: 100, height: "10%" }
                 ]}
-                onPress={() => navigation.navigate(homeScreenMoods[mood].taskRoute)}
-            />
-        </View>*/}
+                onPress={() => onChangeSignUpScreenNumber(2)}
+            >
+                <View>
+                    <Text style={styles.buttonText}>
+                        Next
+                    </Text>
+                </View>
+            </TouchableOpacity>
+            </View>
         </View>
-  );
+        );
+    }
+    if (signUpScreenNumber == 2) {
+        return (
+            <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
+                <View style={styles.welcomeTextContainer2}>
+                  <Text style={styles.welcomeText2}>
+                    {/* title */}
+                    Courtesy
+                  </Text>
+                  {/*<Text style={styles.subtitleText}>
+                  We're excited to help you get ready for court!
+                  </Text>*/}
+                  <Progress.Bar progress={0.4} width={200} color="white" />
+                </View>
+                <View style={styles.questionBox1}>
+                  <View style={styles.textContainer}>
+                      {/* court date question */}
+                      <View>
+                          <Text style={styles.questionText}>
+                              When's your court date?
+                          </Text>
+                          <View style={styles.answerRow}>
+                          <TextInputMask
+                            style={styles.input}
+                            //refInput={(ref) => courtDate = ref}
+                            value={courtDate}
+                            onChangeText={onChangeCourtDate}
+                            type={'datetime'}
+                            options={{
+                                format: 'DD/MM/YYYY'
+                            }}
+                        />
+                            {/*<Ionicons style={styles.icon} name="calendar-outline" size={45} color="white" />*/}
+                          </View>
+                      </View>
+                  </View>
+                </View>
+                {/* submit button */}
+                  <View style={styles.submitButton}>
+                      <TouchableOpacity
+                          style={[
+                          styles.backModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(1)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Back
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                          style={[
+                          styles.nextModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(3)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Next
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                  </View>
+              </View>
+        );
+    }
+    if (signUpScreenNumber == 3) {
+        return (
+            <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
+                <View style={styles.welcomeTextContainer2}>
+                  <Text style={styles.welcomeText2}>
+                    {/* title */}
+                    Courtesy
+                  </Text>
+                  {/*<Text style={styles.subtitleText}>
+                  We're excited to help you get ready for court!
+                  </Text>*/}
+                  <Progress.Bar progress={0.6} width={200} color="white" />
+                </View>
+                <View style={styles.questionBox1}>
+                  <View style={styles.textContainer}>
+                      {/* court date question */}
+                      <View>
+                          <Text style={styles.questionText}>
+                              What time is your court appointment?
+                          </Text>
+                          <View style={styles.answerRow}>
+                                <TextInputMask
+                                    style={styles.input}
+                                    //refInput={(ref) => courtDate = ref}
+                                    value={courtTime}
+                                    onChangeText={onChangeCourtTime}
+                                    type={'datetime'}
+                                    options={{
+                                        format: 'HH:MM'
+                                    }}
+                                />
+                              {/*<Ionicons style={styles.icon} name="location-outline" size={45} color="white" />*/}
+                          </View>
+                      </View>
+                  </View>
+                </View>
+                {/* submit button */}
+                  <View style={styles.submitButton}>
+                      <TouchableOpacity
+                          style={[
+                          styles.backModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(2)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Back
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                          style={[
+                          styles.nextModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(4)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Next
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                  </View>
+              </View>
+        );
+    }
+    if (signUpScreenNumber == 4) {
+        return (
+            <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
+                <View style={styles.welcomeTextContainer2}>
+                  <Text style={styles.welcomeText2}>
+                    {/* title */}
+                    Courtesy
+                  </Text>
+                  {/*<Text style={styles.subtitleText}>
+                  We're excited to help you get ready for court!
+                  </Text>*/}
+                  <Progress.Bar progress={0.8} width={200} color="white" />
+                </View>
+                <View style={styles.questionBox1}>
+                  <View style={styles.textContainer}>
+                      {/* court date question */}
+                      <View>
+                          <Text style={styles.questionText}>
+                              Where is your court appointment?
+                          </Text>
+                          <View style={styles.answerRow}>
+                              <TextInput
+                                  style={styles.input}
+                                  //type={'datetime'}
+                                  onChangeText={onChangeCourtLocation}
+                                  //options={{
+                                      //format: 'DD-MM-YYYY HH:mm:ss'
+                                  //}}
+                                  //defaultValue={moment().format("yyyy-mm-dd")}  
+                                  value={courtLocation}
+                                  placeholder=""
+                              />
+                          </View>
+                      </View>
+                  </View>
+                </View>
+                {/* submit button */}
+                  <View style={styles.submitButton}>
+                      <TouchableOpacity
+                          style={[
+                          styles.backModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(3)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Back
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                          style={[
+                          styles.nextModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(5)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Next
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                  </View>
+              </View>
+        );
+    }
+    if (signUpScreenNumber == 5) {
+        return (
+            <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
+                <View style={styles.welcomeTextContainer2}>
+                  <Text style={styles.welcomeText2}>
+                    {/* title */}
+                    Courtesy
+                  </Text>
+                  {/*<Text style={styles.subtitleText}>
+                  We're excited to help you get ready for court!
+                  </Text>*/}
+                  <Progress.Bar progress={1.0} width={200} color="white" />
+                </View>
+                <View style={styles.questionBox5}>
+                  <View style={styles.textContainer}>
+                      {/* court date question */}
+                      <View>
+                          <Text style={styles.questionText}>
+                              Which of the following apply to you?
+                          </Text>
+                          <View style={styles.checkboxContainer}>
+                              <CheckBox
+                                  //center
+                                  title="I have children"
+                                  checked={childCare}
+                                  onPress={() => onChangeChildCare(!childCare)}
+                                  //value={childCare}
+                                  //onValueChange={onChangeChildCare}
+                                  style={styles.checkbox}
+                                  checkedColor="#fff"
+                                  containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                  textStyle={{
+                                      color: '#fff',
+                                      fontSize: 18
+                                  }}
+                                  />
+                          </View>
+                          <View style={styles.checkboxContainer}>
+                              <CheckBox
+                                  //center
+                                  title="I have a car"
+                                  checked={car}
+                                  onPress={() => onChangeCar(!car)}
+                                  //value={childCare}
+                                  //onValueChange={onChangeChildCare}
+                                  style={styles.checkbox}
+                                  checkedColor="#fff"
+                                  containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                  textStyle={{
+                                      color: '#fff',
+                                      fontSize: 18
+                                  }}
+                                  />
+                          </View>
+                          <View style={styles.checkboxContainer}>
+                              <CheckBox
+                                  //center
+                                  title="I know what legal representation I'll use"
+                                  checked={legalRep}
+                                  onPress={() => onChangeLegalRep(!legalRep)}
+                                  //value={childCare}
+                                  //onValueChange={onChangeChildCare}
+                                  style={styles.checkbox}
+                                  checkedColor="#fff"
+                                  containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                  textStyle={{
+                                      color: '#fff',
+                                      fontSize: 18
+                                  }}
+                                  />
+                          </View>
+                      </View>
+                  </View>
+                </View>
+                {/* submit button */}
+                  <View style={styles.submitButton}>
+                      <TouchableOpacity
+                          style={[
+                          styles.backModule,
+                          ]}
+                          onPress={() => onChangeSignUpScreenNumber(4)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Back
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                          style={[
+                          styles.nextModule,
+                          ]}
+                          //onPress={() => navigation.navigate(SignUpFlowNext)}
+                      >
+                          <View>
+                              <Text style={styles.buttonText}>
+                                  Submit
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
+                  </View>
+              </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
     welcomeText: {
         fontFamily: "Avenir",
         fontWeight: "bold",
-        fontSize: 30,
+        fontSize: 36,
         textAlign: "center",
         color: "#FFFFFF",
         paddingTop: 30,
     },
+    welcomeText2: {
+        fontFamily: "Avenir",
+        fontWeight: "bold",
+        fontSize: 36,
+        textAlign: "center",
+        color: "#FFFFFF",
+        //paddingTop: 30,
+        paddingBottom: 30
+    },
     subtitleText: {
         fontFamily: "Avenir",
         fontWeight: "bold",
-        fontSize: 22,
+        fontSize: 26,
         lineHeight: 29,
         padding: 20,
         textAlign: "center",
@@ -153,14 +441,14 @@ const styles = StyleSheet.create({
     questionText:{
         fontFamily: "Avenir",
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 22,
         textAlign: "center",
         color: "#FFFFFF",
         paddingTop: 30,
     },
     questionBox1: {
-        paddingTop: 120,
-        //paddingBottom: 110,
+        paddingTop: '70%',
+        paddingBottom: '70%',
     },
     questionBox2: {
         paddingTop: 80,
@@ -180,6 +468,30 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
         alignItems: 'center',
       },
+    welcomeTextContainer2: {
+        position: 'absolute',
+        top: 150,
+        left: 0,
+        right: 0,
+        bottom: 50,
+        paddingBottom: 80,
+        alignItems: 'center',
+      },
+      submitButton: {
+        position: 'absolute',
+        bottom:0,
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: "center",
+      },
+      buttonText: {
+        color: '#85B0AE',
+        fontFamily: "Avenir",
+        fontWeight: "bold",
+        fontSize: 18,
+    },
     //  answerRow: {
     //      display: flex,
     //      flexDirection: row
@@ -200,16 +512,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   module: {
-    backgroundColor: "#85B0AE",
-    borderWidth: 2,
-    borderColor: "#779391",
+    backgroundColor: "#FFFFFF",
+    borderWidth: 4,
+    borderColor: "#FFFFFF",
     position: 'absolute',
-    width: '90%',
-    height: "20%",
+    //width: '90%',
+    //height: "90%",
     left: 20,
-    right: 0,
-    bottom: 0,
-    borderRadius: 30,
+    right: 40,
+    bottom: 40,
+    borderRadius: 10,
+    //backgroundColor: "#FFFFFF",
+    //borderRadius: 50,
+    width: 300,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: "center",
+    marginRight: 30,
+    marginLeft: 30
   },
   countdownText: {
     color: "#fff",
@@ -229,7 +550,67 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.3,
     shadowRadius: 3,
-  }
+  },
+  backModule: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 4,
+    borderColor: "#FFFFFF",
+    position: 'absolute',
+    //width: '90%',
+    //height: "90%",
+    left: 30,
+    //right: 40,
+    bottom: 40,
+    borderRadius: 10,
+    //backgroundColor: "#FFFFFF",
+    //borderRadius: 50,
+    width: 160,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    //textAlign: "center",
+    //marginRight: 30,
+    //marginLeft: 30
+  },
+  nextModule: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 4,
+    borderColor: "#FFFFFF",
+    position: 'absolute',
+    //width: '90%',
+    //height: "90%",
+    left: 220,
+    //right: 20,
+    bottom: 40,
+    borderRadius: 10,
+    //backgroundColor: "#FFFFFF",
+    //borderRadius: 50,
+    width: 160,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    //textAlign: "center",
+    //marginRight: 30,
+    //marginLeft: 30,
+  },
+  questionBox5: {
+    paddingTop: '50%',
+    paddingBottom: '50%',
+},
+checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: 0,
+    marginTop: 20
+    //justifyContent: "center",
+  },
+  checkbox: {
+    alignSelf: "center",
+    alignItems: "center"
+  },
+  label: {
+    margin: 8,
+    color: '#fff'
+  },
 });
 
 export default SignUpFlow;

@@ -3,8 +3,8 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://va-ty5.uphatak.courtesy.exp.direct",
-  "packagerNgrokUrl": "https://va-ty5.uphatak.courtesy.exp.direct",
-  "ngrokPid": 28698,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
