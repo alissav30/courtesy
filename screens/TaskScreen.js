@@ -9,9 +9,9 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import {
-    CheckBox,
-} from '@react-native-community/checkbox';
+// import {
+//     CheckBox,
+// } from '@react-native-community/checkbox';
 import {
     Card,
   } from 'react-native-elements';
@@ -51,8 +51,8 @@ const TaskScreen = ({ navigation, childCare }) => {
                             <Card.Divider />
                             <View style={styles.taskCardContentWrapper}>
                                 <View style={styles.taskCardContent}>
-                                    {/* <View style={[styles.checkbox]}></View> */}
-                                    <CheckBox />
+                                    <View style={[styles.checkbox]}></View>
+                                    {/* <CheckBox /> */}
                                     <View style={[styles.task]}>
                                         <Text>
                                             Take some time to explore transportation options
