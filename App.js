@@ -7,6 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import SignUpFlow from './screens/SignUpFlow';
 import MoodPicker from './screens/MoodPicker';
 import MyPlanScreen from './screens/MyPlanScreen';
+import MessageBoardScreen from './screens/MessageBoardScreen';
 
 
 const styles = StyleSheet.create({
@@ -34,14 +35,6 @@ function MoodsScreen() {
   );
 }
 
-function MessageBoardScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Message Board!</Text>
-    </View>
-  );
-}
-
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -55,7 +48,7 @@ function SettingsScreen() {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(true);
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -71,8 +64,8 @@ export default function App() {
     // hook variable thing
     if (isSignUpFlow) {
         return  (
-        <SignUpFlow 
-            firstName={firstName} 
+        <SignUpFlow
+            firstName={firstName}
             onChangeFirstName={onChangeFirstName}
             courtDate={courtDate}
             onChangeCourtDate={onChangeCourtDate}
@@ -80,7 +73,7 @@ export default function App() {
             onChangeCourtLocation={onChangeCourtLocation}
             courtTime={courtTime}
             onChangeCourtTime={onChangeCourtTime}
-            setisSignUpFlow={setisSignUpFlow} 
+            setisSignUpFlow={setisSignUpFlow}
             isMoodPicker={isMoodPicker}
             setIsMoodPicker={setIsMoodPicker}
             title={{title: 'Sign Up'}}/>
@@ -94,6 +87,7 @@ export default function App() {
         <NavigationContainer>
         <Tab.Navigator
             screenOptions={({ route }) => ({
+            headerShown: false,
             tabBarIcon: ({ focused, color, size }) => {
                 if (route.name === 'Home') {
                 return (
@@ -172,18 +166,18 @@ export default function App() {
                         courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
                         childCare={childCare} />}
             </Tab.Screen>
-            <Tab.Screen 
-                name="Forum" 
-                component={MessageBoardScreen} 
-                firstName={firstName} 
+            <Tab.Screen
+                name="Forum"
+                component={MessageBoardScreen}
+                firstName={firstName}
                 courtDate={courtDate}
                 courtLocation={courtLocation}
                 courtTime={courtTime}
             />
-            <Tab.Screen 
-                name="Settings" 
-                component={SettingsScreen} 
-                firstName={firstName} 
+            <Tab.Screen
+                name="Settings"
+                component={SettingsScreen}
+                firstName={firstName}
                 courtDate={courtDate}
                 courtLocation={courtLocation}
                 courtTime={courtTime}

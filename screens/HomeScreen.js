@@ -61,14 +61,14 @@ const HomeScreen = ({ navigation, mood, setIsMoodPicker }) => {
             style={[
               styles.module,
               styles.dropShadow,
-              { top: 200, height: "20%" }
+              { top: 270, height: "20%" }
             ]}
             onPress={() => navigation.navigate(homeScreenMoods[moodKey].taskRoute)}
           >
             <Text style={{
               color: 'white',
               fontSize: 20,
-              padding: 20,
+              padding: 25,
             }}>
               {homeScreenMoods[moodKey].taskText}
             </Text>
@@ -81,7 +81,7 @@ const HomeScreen = ({ navigation, mood, setIsMoodPicker }) => {
           <TouchableOpacity style={[
             styles.module,
             styles.dropShadow,
-            { top: 380, height: "10%", borderRadius: '18px', justifyContent: 'center' }
+            { top: 470, height: "10%", borderRadius: '18px', justifyContent: 'center' }
           ]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
               <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> CLICK HERE TO CALL YOUR COURTHOUSE </Text>
@@ -90,7 +90,7 @@ const HomeScreen = ({ navigation, mood, setIsMoodPicker }) => {
           </TouchableOpacity>
           {/* countdown module */}
           <View style={[styles.module,
-            { top: 490, height: "22%", width: "40%", borderWidth: 1, borderColor: '#779391', justifyContent: "center"}
+            { top: 590, height: "20%", width: "40%", borderWidth: 1, borderColor: '#779391', justifyContent: "center"}
           ]}>
             <Text style={styles.countdownText}>you have</Text>
             <Text style={styles.countdownText}>court in</Text>
@@ -99,7 +99,7 @@ const HomeScreen = ({ navigation, mood, setIsMoodPicker }) => {
           </View>
           {/* map module */}
           <View style={[styles.module,
-            { top: 490, left: 220, height: "22%", width: "40%", borderWidth: 1, borderColor: '#779391', overflow: "hidden" }
+            { top: 590, left: 220, height: "20%", width: "40%", borderWidth: 1, borderColor: '#779391', overflow: "hidden" }
           ]}>
           {/* coordinates should be a variable */}
           <MapView
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   welcomeTextContainer: {
     position: 'absolute',
-    top: 20,
+    top: 75,
     left: 0,
     right: 0,
     bottom: 0,
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   moodTextContainer: {
     position: 'absolute',
-    top: 60,
+    top: 120,
     left: 0,
     right: 0,
     bottom: 0,

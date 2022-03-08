@@ -30,16 +30,16 @@ const MyPlanScreen = ({ navigation, childCare }) => {
 
   return (
       <View style={{ flex: 1, padding: 0 }}>
-        <ImageBackground source={swoopBackground} style={{width: '100%', height: '107%'}}>
+        <ImageBackground source={swoopBackground} style={{width: '100%', height: '105%'}}>
             {/* <Text>{childCare? "hi" : "hello"}</Text> */}
             <Text style={[styles.myPlanHeader]}>MY PLAN</Text>
             <ScrollView>
                 <View style={styles.inputFields}>
                     <View style={[styles.planItem]}>
-                        <Text style={[styles.planHeader]}> COURT DATE </Text> 
+                        <Text style={[styles.planHeader]}> COURT DATE </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {Moment(fakeDataCourtDate).format('MM/DD/YYYY')} </Text> 
+                                <Text numberOfLines={1} style={styles.planContentText}> {Moment(fakeDataCourtDate).format('MM/DD/YYYY')} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
@@ -49,10 +49,10 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         </View>
                     </View>
                     <View style={[styles.planItem]}>
-                        <Text style={[styles.planHeader]}> COURT TIME </Text> 
+                        <Text style={[styles.planHeader]}> COURT TIME </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataCourtTime} </Text> 
+                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataCourtTime} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
@@ -62,10 +62,10 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         </View>
                     </View>
                     <View style={[styles.planItem]}>
-                        <Text style={[styles.planHeader]}> LOCATION </Text> 
+                        <Text style={[styles.planHeader]}> LOCATION </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataLocation} </Text> 
+                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataLocation} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
@@ -75,10 +75,10 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         </View>
                     </View>
                     <View style={[styles.planItem]}>
-                        <Text style={[styles.planHeader]}> TRANSPORTATION </Text> 
+                        <Text style={[styles.planHeader]}> TRANSPORTATION </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataTransportation} </Text> 
+                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataTransportation} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {fakeFoundTransportation ? "view / edit" : "explore!"} </Text>
@@ -88,10 +88,10 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         </View>
                     </View>
                     <View style={[styles.planItem]}>
-                        <Text style={[styles.planHeader]}> LEGAL REPRESENTATION </Text> 
+                        <Text style={[styles.planHeader]}> LEGAL REPRESENTATION </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataLegalRep} </Text> 
+                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataLegalRep} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}>{fakeFoundLegalTransportation ? "view / edit" : "explore!"} </Text>
@@ -100,12 +100,12 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                             </View>
                         </View>
                     </View>
-                    {fakeNeedsChildCare ? 
+                    {fakeNeedsChildCare ?
                         <View style={[styles.planItem]}>
-                            <Text style={[styles.planHeader]}> CHILDCARE </Text> 
+                            <Text style={[styles.planHeader]}> CHILDCARE </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
-                                    <Text numberOfLines={1} style={styles.planContentText}> {fakeDataChildCare} </Text> 
+                                    <Text numberOfLines={1} style={styles.planContentText}> {fakeDataChildCare} </Text>
                                     <TouchableOpacity style={styles.editButton}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {fakeFoundChildcare ? "view / edit" : "explore!"} </Text>
@@ -134,11 +134,11 @@ const styles = StyleSheet.create({
         color: '#779391',
         textAlign: 'center',
         letterSpacing: 0.4,
-        marginTop: 20,
+        marginTop: 60,
         marginBottom: 20,
     },
     inputFields: {
-        marginTop: 60,
+        marginTop: 50,
         alignItems: 'center',
         paddingBottom: 100,
     },
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     planContent: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        flex: 1, 
+        flex: 1,
         alignItems: 'center',
     },
     planContentText: {
