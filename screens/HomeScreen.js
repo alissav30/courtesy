@@ -4,14 +4,13 @@ import {
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
   ImageBackground,
-  Dimensions,
 } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
+import {Linking} from 'react-native'
 
 const swoopBackground = require("./home_background.png");
 
@@ -78,11 +77,14 @@ const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker })
             </View>
           </TouchableOpacity>
           {/* call the court module */}
-          <TouchableOpacity style={[
-            styles.module,
-            styles.dropShadow,
-            { top: 470, height: "10%", borderRadius: '18px', justifyContent: 'center' }
-          ]}>
+          <TouchableOpacity
+            style={[
+              styles.module,
+              styles.dropShadow,
+              { top: 470, height: "10%", borderRadius: '18px', justifyContent: 'center' }
+            ]}
+            onPress={()=>{Linking.openURL('tel:(408) 556-3000')}}
+            >
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
               <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> CLICK HERE TO CALL YOUR COURTHOUSE </Text>
               <Ionicons name={'call'} color={'white'} size={22} styles={{ marginLeft: 18 }}/>
