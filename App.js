@@ -8,6 +8,9 @@ import SignUpFlow from './screens/SignUpFlow';
 import MoodPicker from './screens/MoodPicker';
 import MyPlanScreen from './screens/MyPlanScreen';
 import MessageBoardScreen from './screens/MessageBoardScreen';
+import TaskScreen from './screens/TaskScreen';
+import MakeAPost from './screens/MakeAPost';
+import SettingsScreen from './screens/Settings'
 
 
 const styles = StyleSheet.create({
@@ -19,26 +22,18 @@ const styles = StyleSheet.create({
   }
 })
 
-function TaskScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Tasks!</Text>
-    </View>
-  );
-}
+// function TaskScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Tasks!</Text>
+//     </View>
+//   );
+// }
 
 function MoodsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Tasks!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
     </View>
   );
 }
@@ -76,14 +71,12 @@ export default function App() {
             setisSignUpFlow={setisSignUpFlow}
             isMoodPicker={isMoodPicker}
             setIsMoodPicker={setIsMoodPicker}
-            mood={mood} 
-            setMood={setMood}
             title={{title: 'Sign Up'}}/>
         );
-    //} else if (isMoodPicker) {
-    //  return (
-    //    <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setMood={setMood} />
-    //  );
+    } else if (isMoodPicker) {
+      return (
+        <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setMood={setMood} />
+      );
     } else {
     return (
         <NavigationContainer>
@@ -162,7 +155,9 @@ export default function App() {
             <Tab.Screen name="Home">
               {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker } />}
             </Tab.Screen>
-            <Tab.Screen name="Tasks" component={TaskScreen} />
+            <Tab.Screen name="Tasks" >
+            {props => <TaskScreen {...props}  />}
+              </Tab.Screen>
             <Tab.Screen name=" ">
               {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
                         courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
