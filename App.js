@@ -83,12 +83,14 @@ export default function App() {
             setisSignUpFlow={setisSignUpFlow} 
             isMoodPicker={isMoodPicker}
             setIsMoodPicker={setIsMoodPicker}
+            mood={mood} 
+            setMood={setMood}
             title={{title: 'Sign Up'}}/>
         );
-    } else if (isMoodPicker) {
-      return (
-        <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setMood={setMood} />
-      );
+    //} else if (isMoodPicker) {
+    //  return (
+    //    <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setMood={setMood} />
+    //  );
     } else {
     return (
         <NavigationContainer>
