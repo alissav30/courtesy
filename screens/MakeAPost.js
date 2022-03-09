@@ -6,6 +6,7 @@ import {
   View,
   Text,
   TextInput,
+  Alert,
 } from 'react-native';
 import { CheckBox } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
@@ -45,6 +46,30 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
   const [postTitle, setPostTitle] = React.useState('');
   const [postDescription, setPostDescription] = React.useState('');
   const [category, setCategory] = React.useState('');
+
+  const showConfirmDialog = (isAnonymous) => {
+    return Alert.alert(
+      "Post Confirmation",
+      `Are you sure you want to make this ${isAnonymous ? "anonymous" : "public"} post?`,
+      [
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "Cancel",
+        },
+        {
+            text: "Post",
+            onPress: () => {
+              handleSubmitPost(postTitle, postDescription, category);
+              setPostTitle('');
+              setPostDescription('');
+              setCategory('');
+              setMakeNewPost(false);
+          },
+        },
+      ]
+    );
+  };
 
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
@@ -143,11 +168,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
           ]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around'}}>
               <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => {
-                handleSubmitPost(postTitle, postDescription, category);
-                setPostTitle('');
-                setPostDescription('');
-                setCategory('');
-                setMakeNewPost(false);
+                showConfirmDialog(isAnonymous)
               }}> POST </Text>
             </View>
           </TouchableOpacity>
