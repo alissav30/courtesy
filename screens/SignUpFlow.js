@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { TextInputMask } from 'react-native-masked-text'
-import SignUpFlowNext from './SignUpFlow2';
 import * as Progress from 'react-native-progress';
 //import Modal from "react-native-modal";
 import { MaterialIcons } from '@expo/vector-icons'; 
@@ -29,37 +28,38 @@ import {
 import { CheckBox } from 'react-native-elements'
 
 
-
 const swoopBackground = require("./home_background.png");
 
-const SignUpFlow = ({ navigation, props, setisSignUpFlow }) => {
-    const [firstName, onChangeFirstName] = React.useState("");
-    const [courtDate, onChangeCourtDate] = React.useState("");
-    const [mood, setMood] = React.useState('productive');
-    const [isMoodPicker, setIsMoodPicker] = React.useState(false);
+
+const SignUpFlow = ({ navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, title}) => {
+    //const [firstName, onChangeFirstName] = React.useState("");
+    //const [courtDate, onChangeCourtDate] = React.useState("");
+    //const [mood, setMood] = React.useState('productive');
+    //const [isMoodPicker, setIsMoodPicker] = React.useState(false);
 
 
-    const [courtLocation, onChangeCourtLocation] = React.useState("");
-    const [courtTime, onChangeCourtTime] = React.useState("");
+    //const [courtLocation, onChangeCourtLocation] = React.useState("");
+    //const [courtTime, onChangeCourtTime] = React.useState("");
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
     const [childCare, onChangeChildCare] = React.useState(false)
     const [car, onChangeCar] = React.useState(false)
     const [legalRep, onChangeLegalRep] = React.useState(false)
 
     const [isModalVisible, setIsModalVisible] = React.useState(false);
-    const [isCustomMoodScreen, setIsCustomMoodScreen] = React.useState(false);
-    const [customMood, setCustomMood] = React.useState('');
+
 
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
-    const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setIsCustomMoodScreen }) => {
+
+    const MoodBubble = ({ mood, index, setIsCustomMoodScreen }) => {
         return (
           <TouchableOpacity onPress={() => {
             if (mood !== "other...") {
               setMood(mood.toLowerCase());
               setIsMoodPicker(false);
-              setisSignUpFlow(false);
+              setisSignUpFlow(false)
             } else {
               setIsCustomMoodScreen(true);
+            //  setisSignUpFlow(false)
             }
           }}>
             <View style={{
@@ -82,7 +82,59 @@ const SignUpFlow = ({ navigation, props, setisSignUpFlow }) => {
           </TouchableOpacity>
         );
       };
-
+    
+      const MoodPicker = ({ navigation }) => {
+        const [isCustomMoodScreen, setIsCustomMoodScreen] = React.useState(false);
+        const [customMood, setCustomMood] = React.useState('');
+      
+        if (isCustomMoodScreen) {
+          return (
+            <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
+              <View style={{ flexDirection: 'row', marginTop: 70, marginLeft: 20, alignItems: 'center' }}>
+                <Ionicons name={'arrow-back'} color={'white'} size={30} onPress={() => setIsCustomMoodScreen(false)}/>
+                <Text style={{ color: 'white', fontSize: 24 }} onPress={() => setIsCustomMoodScreen(false)}> Back </Text>
+              </View>
+              <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 210, marginLeft: 60, marginRight: 60}}>Would you like to share how you feel about your upcoming court summons today?</Text>
+              <TextInput
+                style={{ borderWidth: 1.5, padding: 10, margin: 20, borderRadius: 8, borderColor: 'white', color: 'white', fontSize: 20 }}
+                value={customMood}
+                onChangeText={setCustomMood}
+              />
+              <TouchableOpacity style={customMood.length == 0 ? styles.disabledButton : styles.button} onPress={() => {
+                if (customMood.length != 0) {
+                  setMood(customMood);
+                  setIsCustomMoodScreen(false);
+                  setIsMoodPicker(false);
+                }
+              }}>
+                <Text> Continue </Text>
+              </TouchableOpacity>
+            </View>
+          );
+        } else {
+          return (
+              <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
+                <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60}}>How are you feeling today about court? </Text>
+                {
+                  moods.map((mood, key) => {
+                    return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
+                  })
+                }
+                <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -620 }}>
+                  <Text style={{ color: 'white', fontSize: 24 }} onPress={() => {
+                    setMood('default');
+                    setIsMoodPicker(false);
+                  }}> Skip </Text>
+                  <Ionicons name={'arrow-forward'} color={'white'} size={30} onPress={() => {
+                    setMood('default');
+                    setIsMoodPicker(false);
+                  }}/>
+                </View>
+              </View>
+          );
+        }
+    }
+    
     
     if (signUpScreenNumber == 1) {
     return (
@@ -446,58 +498,8 @@ const SignUpFlow = ({ navigation, props, setisSignUpFlow }) => {
         );
     }
     if (signUpScreenNumber == 6) {
-
-
-  if (isCustomMoodScreen) {
-    return (
-      <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-        <View style={{ flexDirection: 'row', marginTop: 70, marginLeft: 20, alignItems: 'center' }}>
-          <Ionicons name={'arrow-back'} color={'white'} size={30} onPress={() => setIsCustomMoodScreen(false)}/>
-          <Text style={{ color: 'white', fontSize: 24 }} onPress={() => setIsCustomMoodScreen(false)}> Back </Text>
-        </View>
-        <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 210, marginLeft: 60, marginRight: 60}}>Would you like to share how you feel about your upcoming court summons today?</Text>
-        <TextInput
-          style={{ borderWidth: 1.5, padding: 10, margin: 20, borderRadius: 8, borderColor: 'white', color: 'white', fontSize: 20 }}
-          value={customMood}
-          onChangeText={setCustomMood}
-        />
-        <TouchableOpacity style={customMood.length == 0 ? styles.disabledButton : styles.button} onPress={() => {
-          if (customMood.length != 0) {
-            setMood(customMood);
-            setIsCustomMoodScreen(false);
-            setIsMoodPicker(false);
-            setisSignUpFlow(false);
-          }
-        }}>
-          <Text> Continue </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  } else {
-    return (
-        <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-          <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60}}>How are you feeling today about court? </Text>
-          {
-            moods.map((mood, key) => {
-              return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
-            })
-          }
-          <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -620 }}>
-            <Text style={{ color: 'white', fontSize: 24 }} onPress={() => {
-              setMood('default');
-              setIsMoodPicker(false);
-              setisSignUpFlow(false);
-            }}> Skip </Text>
-            <Ionicons name={'arrow-forward'} color={'white'} size={30} onPress={() => {
-              setMood('default');
-              setIsMoodPicker(false);
-              setisSignUpFlow(false);
-            }}/>
-          </View>
-        </View>
-    );
-  }
-}
+        return (<MoodPicker navigation={navigation} mood={mood} setMood={setMood} setIsMoodPicker />)
+    }
 };
 
 const styles = StyleSheet.create({
@@ -621,12 +623,37 @@ const styles = StyleSheet.create({
     //      display: flex,
     //      flexDirection: row
     //  },
+//  button: {
+//    alignItems: 'center',
+//    backgroundColor: '#DDDDDD',
+//    padding: 10,
+//    width: 300,
+//    marginTop: 16,
+//  },
   button: {
+    backgroundColor: 'white',
+    color: '#768A89',
+    width: 130,
+    height: 50,
+    borderRadius: 90,
+    shadowColor: '#171717',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    width: 300,
-    marginTop: 16,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 30,
+  },
+  disabledButton: {
+    backgroundColor: '#819897',
+    width: 130,
+    height: 50,
+    borderRadius: 90,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 30,
   },
   moodTextContainer: {
     position: 'absolute',
