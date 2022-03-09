@@ -8,6 +8,7 @@ import SignUpFlow from './screens/SignUpFlow';
 import MoodPicker from './screens/MoodPicker';
 import MyPlanScreen from './screens/MyPlanScreen';
 import MessageBoardScreen from './screens/MessageBoardScreen';
+import TaskScreen from './screens/TaskScreen'
 
 
 const styles = StyleSheet.create({
@@ -19,13 +20,6 @@ const styles = StyleSheet.create({
   }
 })
 
-function TaskScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Tasks!</Text>
-    </View>
-  );
-}
 
 function MoodsScreen() {
   return (
@@ -162,7 +156,7 @@ export default function App() {
             <Tab.Screen name="Home">
               {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker } />}
             </Tab.Screen>
-            <Tab.Screen name="Tasks" component={TaskScreen} />
+            <Tab.Screen name="Tasks" component={TaskScreen} mood={mood}/>
             <Tab.Screen name=" ">
               {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
                         courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
