@@ -100,7 +100,7 @@ const SettingsScreen = ({ navigation, childCare,
                         />
                         {/* <Text style={styles.checkboxText}></Text> */}
                     </View>
-                    
+
                     <View style={styles.checkboxItem}>
                         <CheckBox
                             style={[styles.checkbox, {flex: 1, padding: 10}]}
@@ -129,10 +129,10 @@ const SettingsScreen = ({ navigation, childCare,
                         {/* <Text style={styles.checkboxText}></Text> */}
                     </View>
                 </View>
-                
+
             </View>
         </View>
-        
+
       </View>
   );
 };
@@ -140,7 +140,7 @@ const SettingsScreen = ({ navigation, childCare,
 const styles = StyleSheet.create({
     myPlanHeader: {
         top: 70,
-        fontFamily: 'Inter',
+        fontFamily: 'Helvetica',
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 30,

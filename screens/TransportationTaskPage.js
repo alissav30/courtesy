@@ -12,28 +12,31 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
+import MessageBoardScreen from './MessageBoardScreen';
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TasksScreen = ({ navigation, mood }) => {
+const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory }) => {
+    const [nextScreen, setNextScreen] = React.useState("")
 
-  let selectedCategory = 'none';
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
     moodKey = "other";
   }
 
-  if (selectedCategory == 'none') {
-    return (
+  if (nextScreen == "") {
+  return (
         <View style={{ flex: 1 }}>
           <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
-            <Text style={{ top: 65, color: 'white', fontSize: 30, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Transportation Task Page </Text>
+            <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out how
+you’ll get to court! </Text>
             <View style={{ flex: 0.75 }}>
             <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                     <TouchableOpacity style={styles.categoryModule}>
                       <Text style={styles.categoryText}> access resources to help you get representation.</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.categoryModule}>
+                    <TouchableOpacity style={styles.categoryModule}
+                        onPress={setNextScreen("messageBoard")}>
                       <Text style={styles.categoryText}> discuss transportation options with other courtesy users.</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.categoryModule}>
@@ -44,6 +47,13 @@ const TasksScreen = ({ navigation, mood }) => {
           </ImageBackground>
         </View>
     );
+  }
+  if (nextScreen == "messageBoard") {
+      return (
+          <MessageBoardScreen
+          selectedCategory={'transportation'}
+          setSelectedCategory={setSelectedCategory}/>
+      )
   }
 
 };
@@ -70,4 +80,4 @@ const styles = StyleSheet.create({
       }
 });
 
-export default TasksScreen;
+export default TransportationTasksScreen;

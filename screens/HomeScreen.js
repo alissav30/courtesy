@@ -15,10 +15,10 @@ import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 
 const swoopBackground = require("./home_background.png");
 
-const HomeScreen = ({ navigation, mood, setIsMoodPicker }) => {
+const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker }) => {
   // *** eventually hardcoded variables with actual data ***
-  const fakeDataCourtDate = new Date('04/27/22');
-  const name = "Jane";
+  const fakeDataCourtDate = new Date(courtDate);
+  const name = firstName;
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {

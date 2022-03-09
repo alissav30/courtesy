@@ -126,7 +126,7 @@ const MyPlanScreen = ({ navigation, childCare }) => {
 
 const styles = StyleSheet.create({
     myPlanHeader: {
-        fontFamily: 'Inter',
+        fontFamily: 'Helvetica',
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 30,
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         paddingBottom: 100,
     },
     planHeader: {
-        fontFamily: 'Inter',
+        fontFamily: 'Helvetica',
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 16,
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     planContentText: {
-        fontFamily: 'Inter',
+        fontFamily: 'Helvetica',
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 14,
