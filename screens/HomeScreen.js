@@ -9,8 +9,15 @@ import {
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
+// import Geonames from 'geonames.js';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import {Linking} from 'react-native'
+
+// const geonames = Geonames({
+//   username: 'courtesy',
+//   lan: 'en',
+//   encoding: 'JSON'
+// });
 
 const swoopBackground = require("./home_background.png");
 
@@ -23,6 +30,9 @@ const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker })
   if (moods.indexOf(mood) == -1) {
     moodKey = "other";
   }
+
+  // console.log()
+  // geonames.geoCodeAddress()
 
   return (
       <View style={{ flex: 1, padding: 0 }}>

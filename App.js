@@ -31,7 +31,7 @@ export default function App() {
 
     const [firstName, onChangeFirstName] = useState("");
     const [courtDate, onChangeCourtDate] = useState("");
-    const [courtLocation, onChangeCourtLocation] = useState("");
+    const [courtLocation, onChangeCourtLocation] = useState('');
     const [courtTime, onChangeCourtTime] = useState("");
     const [child, onChangeChild] = useState("");
     const [selectedCategory, setSelectedCategory] = useState('none');
