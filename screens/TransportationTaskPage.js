@@ -27,7 +27,8 @@ const TasksScreen = ({ navigation, mood }) => {
     return (
         <View style={{ flex: 1 }}>
           <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
-            <Text style={{ top: 65, color: 'white', fontSize: 30, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Transportation Task Page </Text>
+            <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out how
+you’ll get to court! </Text>
             <View style={{ flex: 0.75 }}>
             <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                     <TouchableOpacity style={styles.categoryModule}>
