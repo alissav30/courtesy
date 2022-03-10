@@ -15,10 +15,10 @@ import {
 import MessageModule from './MessageModule';
 import MakeAPost from './MakeAPost';
 import { FontAwesome5, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts } from '../utils';
+import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts, myPosts } from '../utils';
 
 const swoopBackground = require("./Message_Board_Background.png");
-const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
+const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other', 'my posts'];
 
 function getPosts(category) {
   switch (category) {
@@ -32,6 +32,8 @@ function getPosts(category) {
       return transportationPosts;
     case 'testimonials':
       return testimonialPosts;
+    case 'my posts':
+      return myPosts;
     default:
       return otherPosts;
   }
@@ -79,7 +81,8 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
                 <FontAwesome5 name={'pencil-alt'} color={'white'} size={16}/>
               </TouchableOpacity>
             </View>
-            <View style={{ flex: 1, marginTop: 120, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
+            <ScrollView style={{ top: 130, marginBottom: 150 }} contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }} scrollEnabled>
+            {/*<View style={{ flex: 1, marginTop: 120, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>*/}
               {
                 categories.map((category) => {
                   return (
@@ -92,7 +95,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
                   )
                 })
               }
-            </View>
+            </ScrollView>
           </ImageBackground>
         </View>
     );
@@ -233,7 +236,8 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     height: 80,
     width: '90%',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 30
   },
   categoryText: {
     color: 'white',

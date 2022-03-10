@@ -317,3 +317,5 @@ export let otherPosts = [
     comments: []
   }
 ];
+
+export let myPosts = [];

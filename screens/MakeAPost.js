@@ -11,7 +11,7 @@ import {
 import { CheckBox } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
 import { TextInputMask } from 'react-native-masked-text'
-import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts } from '../utils';
+import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts, myPosts } from '../utils';
 
 
 const swoopBackground = require("./tasks_background.png");
@@ -39,6 +39,7 @@ function handleSubmitPost(title, description, category) {
     default:
       otherPosts.push(newPost);
   }
+  myPosts.push(newPost);
 }
 
 const MakeAPost = ({ navigation, setMakeNewPost }) => {
