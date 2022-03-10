@@ -13,6 +13,7 @@ import {
   Share,
 } from 'react-native';
 import MessageModule from './MessageModule';
+import MakeAPost from './MakeAPost';
 import { FontAwesome5, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts } from '../utils';
 
@@ -51,6 +52,13 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
   const [searchTerm, setSearchTerm] = useState('');
   const [postToDisplay, setPostToDisplay] = useState('');
   const [newComment, setNewComment] = useState('');
+  const [makeNewPost, setMakeNewPost] = useState(false);
+
+  if (makeNewPost) {
+    return (
+      <MakeAPost setMakeNewPost={setMakeNewPost}/>
+    );
+  }
 
   if (selectedCategory === 'none' && postToDisplay === '') {
     return (
@@ -66,7 +74,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
                 />
                 <MaterialCommunityIcons name={'magnify'} color={'white'} size={20} />
               </View>
-              <TouchableOpacity style={styles.makePostButton}>
+              <TouchableOpacity style={styles.makePostButton} onPress={() => setMakeNewPost(true)}>
                 <Text style={{ color: 'white', fontWeight: 'bold'}}> MAKE A POST </Text>
                 <FontAwesome5 name={'pencil-alt'} color={'white'} size={16}/>
               </TouchableOpacity>
@@ -103,7 +111,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
               <Ionicons name={'md-arrow-back'} color={'white'} size={24}/>
               <Text style={{ color: 'white', fontSize: 20}}> Back </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.makePostButtonFull}>
+            <TouchableOpacity style={styles.makePostButtonFull} onPress={() => setMakeNewPost(true)}>
               <Text style={{ color: 'white', fontWeight: 'bold'}}> MAKE A POST </Text>
               <FontAwesome5 name={'pencil-alt'} color={'white'} size={16}/>
             </TouchableOpacity>

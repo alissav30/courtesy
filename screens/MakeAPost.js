@@ -10,22 +10,48 @@ import {
 import { CheckBox } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
 import { TextInputMask } from 'react-native-masked-text'
+import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts } from '../utils';
 
 
 const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
+function handleSubmitPost(title, description, category) {
+  const newPost = {
+    title: title,
+    description: description,
+    upvotes: 0,
+    comments: []
+  };
+  switch (category) {
+    case 'court date information':
+      courtDatePosts.push(newPost);
+    case 'contacting court':
+      contactCourtPosts.push(newPost);
+    case 'legal help':
+      legalHelpPosts.push(newPost);
+    case 'transportation':
+      transportationPosts.push(newPost);
+    case 'testimonials':
+      testimonialPosts.push(newPost);
+    default:
+      otherPosts.push(newPost);
+  }
+}
 
-const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
+const MakeAPost = ({ navigation, setMakeNewPost }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
+  const [postTitle, setPostTitle] = React.useState('');
+  const [postDescription, setPostDescription] = React.useState('');
+  const [category, setCategory] = React.useState('');
 
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
         <View>
             <TouchableOpacity style={[
                 { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
-            ]}>
+            ]} onPress={() => setMakeNewPost(false)}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                 </View>
@@ -40,7 +66,7 @@ const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
                 <SelectDropdown
                   data={categories}
                   onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
+                    setCategory(selectedItem);
                   }}
                   defaultButtonText={"Select category"}
                   buttonTextAfterSelection={(selectedItem, index) => {
@@ -71,7 +97,7 @@ const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
             <Text style={styles.header}>GIVE YOUR POST A TITLE</Text>
             <TextInput
                 style={[styles.titleBox, styles.dropShadow]}
-                onChangeText={onChangePostTitle}
+                onChangeText={setPostTitle}
                 value={postTitle ? postTitle : ""}
             />
         </View>
@@ -79,8 +105,8 @@ const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
             <Text style={[styles.header, styles.descriptionHeader]}>DESCRIPTION</Text>
             <TextInput
                 style={[styles.descriptionBox, styles.dropShadow]}
-                onChangeText={onChangePostTitle}
-                value={postTitle ? postTitle : ""}
+                onChangeText={setPostDescription}
+                value={postDescription ? postDescription : ""}
                 textAlignVertical={'top'}
                 multiline
             />
@@ -89,7 +115,6 @@ const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
         <View>
         {/* <View style={styles.checkbox}> */}
         <CheckBox
-            style={{ flex: 1, padding: 10, color: '#DEE2E6' }}
             // onClick={()=>{
             // this.setState({
             //     isChecked:!this.state.isChecked
@@ -116,7 +141,13 @@ const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
             { height: "20%", width:'27%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
           ]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around'}}>
-              <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}> POST </Text>
+              <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => {
+                handleSubmitPost(postTitle, postDescription, category);
+                setPostTitle('');
+                setPostDescription('');
+                setCategory('');
+                setMakeNewPost(false);
+              }}> POST </Text>
             </View>
           </TouchableOpacity>
         </View>

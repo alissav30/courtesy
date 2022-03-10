@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(true);
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -147,7 +147,7 @@ export default function App() {
               {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} setIsMoodPicker={setIsMoodPicker } />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
-            {props => <TaskScreen {...props}  
+            {props => <TaskScreen {...props}
                 mood={mood}
                 setSelectedCategory={setSelectedCategory}
                 selectedCategory={selectedCategory}
@@ -158,16 +158,17 @@ export default function App() {
                         courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
                         childCare={childCare} />}
             </Tab.Screen>
-            <Tab.Screen
-                name="Forum"
-                component={MessageBoardScreen}
+            <Tab.Screen name="Forum">
+              {props => <MessageBoardScreen
+                {...props}
                 firstName={firstName}
                 courtDate={courtDate}
                 courtLocation={courtLocation}
                 courtTime={courtTime}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
-            />
+              />}
+            </Tab.Screen>
             <Tab.Screen
                 name="Settings"
                 component={SettingsScreen}
