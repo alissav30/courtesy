@@ -6,7 +6,6 @@ import {
     Text,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
-import TransportationTaskPage from "./TransportationTaskPage";
 
 
 

@@ -7,7 +7,6 @@ import {
     Alert,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
-import TransportationTaskPage from "./TransportationTaskPage";
 import { Ionicons } from '@expo/vector-icons';
 import {Linking} from 'react-native'
 
@@ -34,7 +33,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
         ]
       );
     };
-  
+
 
   return (
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>

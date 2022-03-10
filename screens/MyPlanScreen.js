@@ -221,7 +221,13 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                         {
                             foundLegalRepresentation ?
                                 <View style={styles.bin}>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity
+                                    onPress={()=>{
+                                        setFoundLegalRepresentation(false)
+                                        setLegalRepresentationPlan("Start your plan!")
+                                        onChangeLegalRepresentationPlanDescription("")
+                                    }}
+                                    >
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
                                     </TouchableOpacity>
                                 </View>
@@ -258,8 +264,14 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                         {
                             foundChildcare ?
                                 <View style={styles.bin}>
-                                    <TouchableOpacity>
-                                        <Ionicons name={'trash-bin'} color={'white'} size={22}/>
+                                    <TouchableOpacity
+                                    onPress={()=>{
+                                        setFoundChildCare(false)
+                                        setChildCarePlan("Start your plan!")
+                                        onChangeChildCarePlanDescription("")
+                                    }}
+                                    >                                        
+                                    <Ionicons name={'trash-bin'} color={'white'} size={22}/>
                                     </TouchableOpacity>
                                 </View>
                             :

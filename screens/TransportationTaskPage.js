@@ -13,9 +13,7 @@ import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import MessageBoardScreen from './MessageBoardScreen';
-import TransportationResourcesPage from './TransportationResourcesPage';
 import MakeAPlan from './MakeTransportationPlan';
-import TaskScreen from './TasksScreen';
 
 
 const swoopBackground = require("./Message_Board_Background.png");
@@ -73,22 +71,7 @@ const TransportationTasksScreen = ({ navigation, navScreen, setNavScreen, currSc
 //      navigation.navigate('Forum')
 //  }
 //  else if (nextScreen == "resources") {
-//    return (
-//        <TransportationResourcesPage
-//        navigation={navigation}
-//        setSelectedCategory={setSelectedCategory}
-//        currScreen={currScreen}
-//        setCurrScreen={setCurrScreen}
-//        selectedCategory={selectedCategory}
-//        nextScreen={nextScreen}
-//        transportationPlan={transportationPlan}
-//        setTransportationPlan={setTransportationPlan}
-//        mood={mood}
-//        setIsMoodPicker={setIsMoodPicker}
-//        courtDate={courtDate}
-//        courtTime={courtTime}
-//        child={child}/>
-//    )
+
 //}
 //else if (nextScreen == "makePlan") {
 //    return (
