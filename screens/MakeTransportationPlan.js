@@ -90,7 +90,7 @@ const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTrans
                 </TouchableOpacity>
                 </View>
                 {
-                    transportationPlan == "Start your plan!" ?
+                    transportationPlan != "Start your plan!" ?
                     <View>
                         <TouchableOpacity style={styles.explore}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
+  Alert,
 } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { Colors } from 'react-native-paper';
@@ -25,6 +26,29 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+    
+    const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescripption, category) => {
+        return Alert.alert(
+          "Clear Your Plan",
+          `Are you sure you want to clear your ${category} plan?`,
+          [
+            // The "No" button
+            // Does nothing but dismiss the dialog when tapped
+            {
+              text: "Cancel",
+            },
+            {
+                text: "Delete",
+                onPress: () => {
+                    setFoundTransportation(false)
+                    setTransportationPlan("Start your plan!")
+                    onChangeTransportationPlanDescription("")
+                },
+            },
+          ]
+        );
+      };
+    
     const [foundTransportation, setFoundTransportation] = React.useState(false)
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
     const [foundChildcare, setFoundChildCare] = React.useState(false)
@@ -161,10 +185,7 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                                 <View style={styles.bin}>
                                     <TouchableOpacity
                                     onPress={()=>{
-                                        setFoundTransportation(false)
-                                        setTransportationPlan("Start your plan!")
-                                        onChangeTransportationPlanDescription("")
-                                    }}
+                                        showConfirmDialog(setFoundTransportation, setTransportationPlan, onChangeTransportationPlanDescription, "transportation")}}
                                     >
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
                                     </TouchableOpacity>
