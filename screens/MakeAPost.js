@@ -5,9 +5,10 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput
+  TextInput,
 } from 'react-native';
-import CheckBox from 'react-native-check-box';
+import { CheckBox } from 'react-native-elements'
+import { FontAwesome } from '@expo/vector-icons';
 import { TextInputMask } from 'react-native-masked-text'
 
 
@@ -16,29 +17,16 @@ const swoopBackground = require("./tasks_background.png");
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
 
-const MakeaPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
-    // eventually replace w/ real data
-  const fakeName = "Jane";
-  const fakeDataCourtDate = new Date('04/27/22');
-  const fakeDataCourtTime = "5:00 PM PST";
-  const fakeDataLocation = "Palo Alto Courthouse";
-  const fakeDataTransportation = "Start your plan!";
-  const fakeDataLegalRep = "Start your plan!";
-  const fakeDataChildCare = "Found babysitter";
-  const fakeFoundTransportation = false;
-  const fakeFoundLegalTransportation = false;
-  const fakeFoundChildcare = true;
-  const fakeNeedsChildCare = true;
-
-//   {childCare ? "edit / view" : "explore"}
+const MakeAPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
+  const [isAnonymous, setIsAnonymous] = React.useState(false);
 
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
         <View>
             <TouchableOpacity style={[
-                { top: 80, left: 20, width: '27%', height: '23%', borderRadius: '18px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
+                { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
             ]}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                 </View>
             </TouchableOpacity>
@@ -50,21 +38,32 @@ const MakeaPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
             <Text style={styles.header}>TOPIC</Text>
             <View  style={styles.dropdown}>
                 <SelectDropdown
-                    borderRadius={30}
-                    data={categories}
-                    onSelect={(selectedItem, index) => {
-                        console.log(selectedItem, index)
-                    }}
-                    buttonTextAfterSelection={(selectedItem, index) => {
-                        // text represented after item is selected
-                        // if data array is an array of objects then return selectedItem.property to render after item is selected
-                        return selectedItem
-                    }}
-                    rowTextForSelection={(item, index) => {
-                        // text represented for each item in dropdown
-                        // if data array is an array of objects then return item.property to represent item in dropdown
-                        return item
-                    }}
+                  data={categories}
+                  onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                  }}
+                  defaultButtonText={"Select category"}
+                  buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem;
+                  }}
+                  rowTextForSelection={(item, index) => {
+                    return item;
+                  }}
+                  buttonStyle={styles.dropdown1BtnStyle}
+                  buttonTextStyle={styles.dropdown1BtnTxtStyle}
+                  renderDropdownIcon={(isOpened) => {
+                    return (
+                      <FontAwesome
+                        name={isOpened ? "chevron-up" : "chevron-down"}
+                        color={"#DEE2E6"}
+                        size={18}
+                      />
+                    );
+                  }}
+                  dropdownIconPosition={"right"}
+                  dropdownStyle={styles.dropdown1DropdownStyle}
+                  rowStyle={styles.dropdown1RowStyle}
+                  rowTextStyle={styles.dropdown1RowTxtStyle}
                 />
             </View>
         </View>
@@ -73,7 +72,7 @@ const MakeaPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
             <TextInput
                 style={[styles.titleBox, styles.dropShadow]}
                 onChangeText={onChangePostTitle}
-                value={postTitle ? postTitle : "Default text"}
+                value={postTitle ? postTitle : ""}
             />
         </View>
         <View>
@@ -81,37 +80,46 @@ const MakeaPost = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
             <TextInput
                 style={[styles.descriptionBox, styles.dropShadow]}
                 onChangeText={onChangePostTitle}
-                value={postTitle ? postTitle : "Default text"}
+                value={postTitle ? postTitle : ""}
                 textAlignVertical={'top'}
+                multiline
             />
         </View>
 
         <View>
         {/* <View style={styles.checkbox}> */}
         <CheckBox
-            style={{flex: 1, padding: 10, color: 'white'}}
+            style={{ flex: 1, padding: 10, color: '#DEE2E6' }}
             // onClick={()=>{
             // this.setState({
             //     isChecked:!this.state.isChecked
             // })
             // }}
             // isChecked={this.state.isChecked}
-            rightText={"Make this post anonymous"}
+            title="Make this post anonymous"
+            style={styles.checkbox}
+            checkedColor="#fff"
+            containerStyle={{ borderWidth: 0, backgroundColor: '#768A89', marginBottom: 80 }}
+            textStyle={{
+                color: '#DEE2E6',
+                fontSize: 18,
+                fontWeight: '400',
+            }}
+            checked={isAnonymous}
+            onPress={() => setIsAnonymous(!isAnonymous)}
         />
         {/* </View> */}
 
         <TouchableOpacity style={[
             styles.postButton,
             styles.dropShadow,
-            { height: "23%", width:'27%', borderRadius: '18px', justifyContent: 'center', backgroundColor: 'white'}
+            { height: "20%", width:'27%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
           ]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around'}}>
               <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}> POST </Text>
             </View>
           </TouchableOpacity>
         </View>
- 
-        
       </View>
   );
 };
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 26,
         lineHeight: 31,
-
+        top: -45,
     },
     dropShadow:  {
         shadowColor: '#00000040',
@@ -141,11 +149,14 @@ const styles = StyleSheet.create({
         left: 20,
         marginBottom: 10,
         marginTop: 10,
+        top: -30,
     },
     dropdown: {
         marginLeft: 20,
         borderRadius: 50,
-        width: '100%'
+        width: '100%',
+        top: -30,
+        marginBottom: 20,
     },
     titleBox: {
         left: 20,
@@ -155,26 +166,56 @@ const styles = StyleSheet.create({
         borderColor: '#DEE2E6',
         borderRadius: 9,
         color: 'white',
+        top: -30,
+        paddingLeft: 10,
+        marginBottom: 20,
     },
     checkbox: {
         color: 'white',
         width: '100%',
     },
     descriptionBox: {
-        // top: -120,
-        left: 20,
-        borderWidth: 2,
-        width: '90%',
-        height: 100,
-        borderColor: '#DEE2E6',
-        borderRadius: 9,
-        color: 'white',
-        textAlignVertical: 'top',
+      left: 20,
+      borderWidth: 2,
+      width: '90%',
+      height: 100,
+      borderColor: '#DEE2E6',
+      borderRadius: 9,
+      color: 'white',
+      top: -30,
+      padding: 10,
+      paddingTop: 10,
     },
     postButton: {
-        alignSelf: 'center',
+      alignSelf: 'center',
     },
     underline: {textDecorationLine: 'underline'},
+    dropdown1BtnStyle: {
+      width: "90%",
+      height: 42,
+      backgroundColor: "#768A89",
+      borderRadius: 9,
+      borderWidth: 2,
+      borderColor: "#DEE2E6",
+    },
+    dropdown1BtnTxtStyle: { color: "#DEE2E6", textAlign: "left" },
+    dropdown1DropdownStyle: { backgroundColor: "#EFEFEF" },
+    dropdown1RowStyle: {
+      backgroundColor: "#EFEFEF",
+      borderBottomColor: "#C5C5C5",
+    },
+    dropdown1RowTxtStyle: { color: "#444", textAlign: "left" },
+    checkboxContainer: {
+        flexDirection: "row",
+        marginBottom: 0,
+        marginTop: 20
+        //justifyContent: "center",
+      },
+      checkbox: {
+        alignSelf: "center",
+        alignItems: "center"
+      },
+
 });
 
-export default MakeaPost;
+export default MakeAPost;
