@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import MessageBoardScreen from './MessageBoardScreen';
 import TransportationResourcesPage from './TransportationResourcesPage';
+import MakeAPlan from './MakeAPlan';
 
 
 const swoopBackground = require("./Message_Board_Background.png");
@@ -60,9 +61,12 @@ const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSele
   }
   else if (nextScreen == "resources") {
     return (
-        <TransportationResourcesPage
-        selectedCategory={'transportation'}
-        setSelectedCategory={setSelectedCategory}/>
+        <TransportationResourcesPage/>
+    )
+}
+else if (nextScreen == "makePlan") {
+    return (
+        <MakeAPlan/>
     )
 }
 
