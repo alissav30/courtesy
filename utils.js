@@ -14,7 +14,7 @@ export function getCountdownDays(courtDate) {
 }
 
 
-export const moods = ['productive', 'confused', 'stressed', 'encouraged', 'overwhelmed', 'prepared', 'frustrated', 'content', 'optimistic', 'nervous', 'other...'];
+export const moods = ['confused', 'productive', 'stressed', 'overwhelmed', 'encouraged', 'prepared', 'optimistic', 'content', 'frustrated', 'nervous', 'other...'];
 
 
 /*  Dictionary to control customization of the home screen

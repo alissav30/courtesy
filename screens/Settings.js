@@ -25,18 +25,6 @@ const SettingsScreen = ({ navigation, childCare,
  }) => {
     // eventually replace w/ real data
   const fakeName = "Jane";
-  const fakeDataCourtDate = new Date('04/27/22');
-  const fakeDataCourtTime = "5:00 PM PST";
-  const fakeDataLocation = "Palo Alto Courthouse";
-  const fakeDataTransportation = "Start your plan!";
-  const fakeDataLegalRep = "Start your plan!";
-  const fakeDataChildCare = "Found babysitter";
-  const fakeFoundTransportation = false;
-  const fakeFoundLegalTransportation = false;
-  const fakeFoundChildcare = true;
-  const fakeNeedsChildCare = true;
-
-//   {childCare ? "edit / view" : "explore"}
 
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
@@ -56,17 +44,17 @@ const SettingsScreen = ({ navigation, childCare,
                 />
             </View>
             <View style={styles.row}>
-                <Text style={styles.settingsHeader}>edit time: </Text>
+                <Text style={styles.settingsHeader}>edit court time: </Text>
                 <TextInput
-                    style={[styles.input, {left: 63}]}
+                    style={[styles.input]}
                     onChangeText={onChangeLocation}
                     value={location}
                 />
             </View>
-            <View style={styles.row}>
-                <Text style={styles.settingsHeader}>edit location: </Text>
+            <View style={styles.rowLong}>
+                <Text style={styles.settingsHeader}>edit court location: </Text>
                 <TextInput
-                    style={[styles.input, {left: 25}]}
+                    style={[styles.input, {left: 165}]}
                     onChangeText={onChangeLocation}
                     value={location}
                 />
@@ -165,6 +153,11 @@ const styles = StyleSheet.create({
     row: {
         display: "flex",
         flexDirection: "row",
+        alignContent: "space-around"
+    },
+    rowLong: {
+        display: "flex",
+        flexDirection: "column",
         alignContent: "space-around"
     },
     checkboxItem: {

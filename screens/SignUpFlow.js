@@ -1,17 +1,6 @@
 import * as React from 'react';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { TextInputMask } from 'react-native-masked-text'
 import * as Progress from 'react-native-progress';
-//import Modal from "react-native-modal";
-import { MaterialIcons } from '@expo/vector-icons';
-
-import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
-import { getCountdownDays, homeScreenMoods, moods } from '../utils';
-
-const xCoordinates = [20, 150, 284, 30, 160, 284, 20, 150, 280, 20, 280];
-const yCoordinates = [30, -15, -185, -160, -195, -380, -350, -370, -550, -530, -640];
+import MoodPicker from './MoodPicker';
 
 import {
   TouchableOpacity,
@@ -28,90 +17,6 @@ import { CheckBox } from 'react-native-elements'
 
 const swoopBackground = require("./home_background.png");
 
-const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, setIsCustomMoodScreen }) => {
-    return (
-      <TouchableOpacity onPress={() => {
-        if (mood !== "other...") {
-          setMood(mood.toLowerCase());
-          setIsMoodPicker(false);
-          setisSignUpFlow(false)
-        } else {
-          setIsCustomMoodScreen(true);
-        //  setisSignUpFlow(false)
-        }
-      }}>
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 100,
-          backgroundColor: '#8DA4A3',
-          width: 110,
-          height: 110,
-          left: xCoordinates[index],
-          top: yCoordinates[index],
-          position: 'fixed',
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 0},
-          shadowOpacity: 0.25,
-          shadowRadius: 4,
-        }}>
-          <Text style={{ color: 'white', fontWeight: '500' }}> {mood} </Text>
-        </View>
-      </TouchableOpacity>
-    );
-};
-
-const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigation }) => {
-  const [isCustomMoodScreen, setIsCustomMoodScreen] = React.useState(false);
-  const [customMood, setCustomMood] = React.useState('');
-
-  if (isCustomMoodScreen) {
-    return (
-      <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-        <View style={{ flexDirection: 'row', marginTop: 70, marginLeft: 20, alignItems: 'center' }}>
-          <Ionicons name={'arrow-back'} color={'white'} size={30} onPress={() => setIsCustomMoodScreen(false)}/>
-          <Text style={{ color: 'white', fontSize: 24 }} onPress={() => setIsCustomMoodScreen(false)}> Back </Text>
-        </View>
-        <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 210, marginLeft: 60, marginRight: 60}}>Would you like to share how you feel about your upcoming court summons today?</Text>
-        <TextInput
-          style={{ borderWidth: 1.5, padding: 10, margin: 20, borderRadius: 8, borderColor: 'white', color: 'white', fontSize: 20 }}
-          value={customMood}
-          onChangeText={setCustomMood}
-        />
-        <TouchableOpacity style={customMood.length == 0 ? styles.disabledButton : styles.button} onPress={() => {
-          if (customMood.length != 0) {
-            setMood(customMood);
-            setIsCustomMoodScreen(false);
-            setIsMoodPicker(false);
-          }
-        }}>
-          <Text> Continue </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  } else {
-    return (
-        <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-          <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60}}>How are you feeling today about court? </Text>
-          {
-            moods.map((mood, key) => {
-              return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setisSignUpFlow={setisSignUpFlow} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
-            })
-          }
-          <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -620 }}>
-            <Text style={{ color: 'white', fontSize: 24 }} onPress={() => {
-              setMood('default');
-              setIsMoodPicker(false);
-            }}> Skip </Text>
-            <Ionicons name={'arrow-forward'} color={'white'} size={30} onPress={() => {
-              setMood('default');
-              setIsMoodPicker(false);
-            }}/>
-          </View>
-        </View>
-    );
-  }
-};
 const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, childCare, onChangeChildCare, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
@@ -598,17 +503,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 18,
     },
-    //  answerRow: {
-    //      display: flex,
-    //      flexDirection: row
-    //  },
-//  button: {
-//    alignItems: 'center',
-//    backgroundColor: '#DDDDDD',
-//    padding: 10,
-//    width: 300,
-//    marginTop: 16,
-//  },
   button: {
     backgroundColor: 'white',
     color: '#768A89',
@@ -633,14 +527,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: 30,
-  },
-  moodTextContainer: {
-    position: 'absolute',
-    top: 60,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
   },
   module: {
     backgroundColor: "#FFFFFF",
