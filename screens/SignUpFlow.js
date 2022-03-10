@@ -31,7 +31,7 @@ import { CheckBox } from 'react-native-elements'
 const swoopBackground = require("./home_background.png");
 
 
-const SignUpFlow = ({ navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, title}) => {
+const SignUpFlow = ({ navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, childCare, onChangeChildCare, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
     //const [firstName, onChangeFirstName] = React.useState("");
     //const [courtDate, onChangeCourtDate] = React.useState("");
     //const [mood, setMood] = React.useState('productive');
@@ -41,9 +41,9 @@ const SignUpFlow = ({ navigation, props, setisSignUpFlow, mood, firstName, setMo
     //const [courtLocation, onChangeCourtLocation] = React.useState("");
     //const [courtTime, onChangeCourtTime] = React.useState("");
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
-    const [childCare, onChangeChildCare] = React.useState(false)
-    const [car, onChangeCar] = React.useState(false)
-    const [legalRep, onChangeLegalRep] = React.useState(false)
+    //const [childCare, onChangeChildCare] = React.useState(false)
+    //const [car, onChangeCar] = React.useState(false)
+    //const [legalRep, onChangeLegalRep] = React.useState(false)
 
     const [isModalVisible, setIsModalVisible] = React.useState(false);
 

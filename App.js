@@ -8,7 +8,7 @@ import SignUpFlow from './screens/SignUpFlow';
 import MoodPicker from './screens/MoodPicker';
 import MyPlanScreen from './screens/MyPlanScreen';
 import MessageBoardScreen from './screens/MessageBoardScreen';
-import TaskScreen from './screens/TaskScreen';
+import TaskScreen from './screens/TasksScreen';
 import MakeAPost from './screens/MakeAPost';
 import SettingsScreen from './screens/Settings'
 
@@ -53,6 +53,11 @@ export default function App() {
     const [courtLocation, onChangeCourtLocation] = useState("");
     const [courtTime, onChangeCourtTime] = useState("");
     const [childCare, onChangeChildCare] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState('none');
+
+    const [car, onChangeCar] = React.useState(false)
+    const [legalRep, onChangeLegalRep] = React.useState(false)
+
 
 
 
@@ -71,6 +76,12 @@ export default function App() {
             setisSignUpFlow={setisSignUpFlow}
             isMoodPicker={isMoodPicker}
             setIsMoodPicker={setIsMoodPicker}
+            childCare={childCare}
+            onChangeChildCare={onChangeChildCare}
+            car={car}
+            onChangeCar={onChangeCar}
+            legalRep={legalRep}
+            onChangeLegalRep={onChangeLegalRep}
             title={{title: 'Sign Up'}}/>
         );
     } else if (isMoodPicker) {
@@ -156,7 +167,11 @@ export default function App() {
               {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker } />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
-            {props => <TaskScreen {...props}  />}
+            {props => <TaskScreen {...props}  
+                mood={mood}
+                setSelectedCategory={setSelectedCategory}
+                selectedCategory={selectedCategory}
+            />}
               </Tab.Screen>
             <Tab.Screen name=" ">
               {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
@@ -170,6 +185,8 @@ export default function App() {
                 courtDate={courtDate}
                 courtLocation={courtLocation}
                 courtTime={courtTime}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
             />
             <Tab.Screen
                 name="Settings"

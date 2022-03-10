@@ -46,8 +46,8 @@ const onShare = async (title) => {
   }
 };
 
-const MessageBoardScreen = ({ navigation }) => {
-  const [selectedCategory, setSelectedCategory] = useState('none');
+const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}) => {
+//  const [selectedCategory, setSelectedCategory] = useState('none');
   const [searchTerm, setSearchTerm] = useState('');
   const [postToDisplay, setPostToDisplay] = useState('');
   const [newComment, setNewComment] = useState('');
