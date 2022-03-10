@@ -106,7 +106,7 @@ const MyPlanScreen = ({ navigation, setTaskCompleted, child, mood, setIsMoodPick
                     </View>
                     <View style={[styles.planItemWithBin]}>
                         <View style={[styles.planItem]}>
-                            <Text style={[styles.planHeader]}> Location </Text>
+                            <Text style={[styles.planHeader]}> Courthouse Location </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {courtLocation} </Text>

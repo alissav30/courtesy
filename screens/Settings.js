@@ -125,7 +125,7 @@ const SettingsScreen = ({ navigation, childCare,
                                 textStyle={{
                                     color: '#fff',
                                     fontSize: 18,
-                                    fontWeight: "light"
+                                    fontWeight: "400"
                                 }}
                             />
                         </View>
@@ -152,7 +152,7 @@ const SettingsScreen = ({ navigation, childCare,
                                 textStyle={{
                                     color: '#fff',
                                     fontSize: 18,
-                                    fontWeight: "light"
+                                    fontWeight: "400"
                                 }}
                             />
                         </View>
@@ -179,7 +179,7 @@ const SettingsScreen = ({ navigation, childCare,
                                 textStyle={{
                                     color: '#fff',
                                     fontSize: 18,
-                                    fontWeight: "light"
+                                    fontWeight: "400"
                                 }}
                             />
                         </View>
@@ -206,7 +206,7 @@ const SettingsScreen = ({ navigation, childCare,
                                 textStyle={{
                                     color: '#fff',
                                     fontSize: 18,
-                                    fontWeight: "light"
+                                    fontWeight: "400"
                                 }}
                             />
                         </View>
