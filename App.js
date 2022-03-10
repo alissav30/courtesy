@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(true);
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
 
     const [firstName, onChangeFirstName] = useState("");
     const [courtDate, onChangeCourtDate] = useState("");
-    // const [courtLocation, onChangeCourtLocation] = useState('');
+    const [courtLocation, onChangeCourtLocation] = useState('');
     const [courtStreet, onChangeCourtStreet] = useState('');
     const [courtCity, onChangeCourtCity] = useState('');
     const [courtState, onChangeCourtState] = useState('');
@@ -180,6 +180,11 @@ export default function App() {
                 selectedCategory={selectedCategory}
                 transportationPlan={transportationPlan}
                 setTransportationPlan={setTransportationPlan}
+                setIsMoodPicker={setIsMoodPicker}
+                courtLocation={courtLocation}
+                courtDate={courtDate}
+                courtTime={courtTime}
+                child={child}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">
@@ -212,8 +217,12 @@ export default function App() {
                   setIsMoodPicker={setIsMoodPicker }
                   courtTime={courtTime}
                   onChangeCourtTime={onChangeCourtTime}
-                  courtLocation={courtLocation}
-                  onChangeCourtLocation={onChangeCourtLocation}
+                  courtStreet={courtStreet}
+                  onChangeCourtStreet={onChangeCourtStreet}
+                  courtCity={courtCity}
+                  onChangeCourtCity={onChangeCourtCity}
+                  courtState={courtState}
+                  onChangeCourtState={onChangeCourtState}
                   />}
             </Tab.Screen>
         </Tab.Navigator>

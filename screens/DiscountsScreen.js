@@ -12,7 +12,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import TransportationTaskPage from "./TransportationTaskPage";
 
 
-const Discounts = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
+const Discounts = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   return (

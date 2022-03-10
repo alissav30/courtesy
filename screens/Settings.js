@@ -10,18 +10,20 @@ import { TextInputMask } from 'react-native-masked-text'
 import { CheckBox } from 'react-native-elements'
 
 const SettingsScreen = ({ navigation, childCare,
-    courtDate, onChangeCourtDate,
-    location, onChangeLocation,
+    courtDate, onChangeCourtDate, courtStreet, courtCity, courtState,
+    onChangeCourtStreet, onChangeCourtCity, onChangeCourtState,
     notifSettings, onChangeNotifSettings, firstName,
     courtTime, onChangeCourtTime,
  }) => {
     // eventually replace w/ real data
 //   const fakeName = "Jane";
   const name = firstName;
-  const [weeklyReminders, setWeeklyReminders] = React.useState("false")
-  const [notifyOnNewTask, setNotifyOnNewTask] = React.useState("false")
-  const [notifyWeekBefore, setNotifyWeekBefore] = React.useState("false")
-  const [notifyDayBefore, setNotifyDayBefore] = React.useState("false")
+  const [weeklyReminders, setWeeklyReminders] = React.useState(false)
+  const [notifyOnNewTask, setNotifyOnNewTask] = React.useState(false)
+  const [notifyWeekBefore, setNotifyWeekBefore] = React.useState(false)
+  const [notifyDayBefore, setNotifyDayBefore] = React.useState(false)
+
+  const courtLocation = `${courtStreet}, ${courtCity}, ${courtState}`;
 
   const showConfirmDialog = (toChange, setToChange) => {
     return Alert.alert(
@@ -65,16 +67,32 @@ const SettingsScreen = ({ navigation, childCare,
                     <Text style={styles.settingsHeader}>edit court time: </Text>
                     <TextInput
                         style={[styles.input, styles.dropShadow]}
-                        onChangeText={onChangeLocation}
-                        value={location}
+                        onChangeText={onChangeCourtTime}
+                        value={courtTime}
                     />
                 </View>
-                <View style={styles.rowLong}>
-                    <Text style={styles.settingsHeader}>edit court location: </Text>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit courthouse street: </Text>
                     <TextInput
-                        style={[styles.locationInput, styles.dropShadow]}
-                        onChangeText={onChangeLocation}
-                        value={location}
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeCourtStreet}
+                        value={courtStreet}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit courthouse city: </Text>
+                    <TextInput
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeCourtCity}
+                        value={courtCity}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit courthouse state: </Text>
+                    <TextInput
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeCourtState}
+                        value={courtState}
                     />
                 </View>
                 <View>
@@ -172,7 +190,7 @@ const SettingsScreen = ({ navigation, childCare,
                                     fontWeight: "light"
                                 }}
                             />
-                        </View> 
+                        </View>
                     </View>
 
                 </View>

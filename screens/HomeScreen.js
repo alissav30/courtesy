@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Geocode from 'react-geocode';
+import axios from 'axios';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -11,9 +13,9 @@ import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 // import Geonames from 'geonames.js';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
-import {Linking} from 'react-native'
+import { Linking } from 'react-native'
 
-// const geonames = Geonames({
+// const geonames = Geocode({
 //   username: 'courtesy',
 //   lan: 'en',
 //   encoding: 'JSON'
@@ -21,124 +23,161 @@ import {Linking} from 'react-native'
 
 const swoopBackground = require("./home_background.png");
 
-const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker }) => {
-  // *** eventually hardcoded variables with actual data ***
-  const fakeDataCourtDate = new Date(courtDate);
-  const name = firstName;
-
-  let moodKey = mood;
-  if (moods.indexOf(mood) == -1) {
-    moodKey = "other";
+class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      longitude: 0,
+      latitude: 0
+    };
   }
 
-  // console.log()
-  // geonames.geoCodeAddress()
+  async componentDidMount() {
+    Geocode.setApiKey("AIzaSyDzV35DFTwO9PmKmQyqr3TBNqvZ2GNYg6E");
+    Geocode.setLocationType("ROOFTOP");
+    let address = `${this.props.courtStreet}, ${this.props.courtCity}, ${this.props.courtState}`;
+    if (!this.props.courtStreet || !this.props.courtCity || !this.props.courtState) {
+      address = '650 Mayfield Ave, Stanford, CA';
+    }
+    const coordinates = await Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        // this.setState({ longitude: lng });
+        // this.setState({ latitude: lat });
+        // console.log(lat, lng);
+        return { lng: lng, lat: lat };
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    this.setState({ longitude: coordinates.lng, latitude: coordinates.lat });
+  }
 
-  return (
-      <View style={{ flex: 1, padding: 0 }}>
-        <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
-          <View style={styles.welcomeTextContainer}>
-            <Text style={styles.welcomeText}>
-              Welcome back, {name}!
-            </Text>
-          </View>
-          { mood == "default" ?
+  render() {
+    const { navigation, mood, firstName, courtDate, courtStreet, courtCity, courtState, setIsMoodPicker } = this.props;
+    const { latitude, longitude } = this.state;
+
+    const fakeDataCourtDate = new Date(courtDate);
+    const name = firstName;
+
+    let moodKey = mood;
+    if (moods.indexOf(mood) == -1) {
+      moodKey = "other";
+    }
+
+    if (longitude == 0) {
+      return (null);
+    }
+
+    return (
+        <View style={{ flex: 1, padding: 0 }}>
+          <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
+            <View style={styles.welcomeTextContainer}>
+              <Text style={styles.welcomeText}>
+                Welcome back, {name}!
+              </Text>
+            </View>
+            { mood == "default" ?
+              <View style={styles.moodTextContainer}>
+                <Text style={styles.moodText}>
+                  You've got {getCountdownDays(fakeDataCourtDate)} days until
+                </Text>
+                <Text style={styles.moodText}>
+                  court - let's get to work!
+                </Text>
+              </View>
+            :
             <View style={styles.moodTextContainer}>
               <Text style={styles.moodText}>
-                You've got {getCountdownDays(fakeDataCourtDate)} days until
+                Today you're feeling
               </Text>
-              <Text style={styles.moodText}>
-                court - let's get to work!
-              </Text>
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={styles.moodWordText}
+                  onPress={() => setIsMoodPicker(true)}
+                > {mood.toLowerCase() + ' '}</Text>
+                <Text style={styles.moodText}> {homeScreenMoods[moodKey].headerText} </Text>
+              </View>
             </View>
-          :
-          <View style={styles.moodTextContainer}>
-            <Text style={styles.moodText}>
-              Today you're feeling
-            </Text>
-            <View style={{ flexDirection: "row" }}>
-              <Text
-                style={styles.moodWordText}
-                onPress={() => setIsMoodPicker(true)}
-              > {mood.toLowerCase() + ' '}</Text>
-              <Text style={styles.moodText}> {homeScreenMoods[moodKey].headerText} </Text>
-            </View>
-          </View>
-          }
-          {/* task module */}
-          <TouchableOpacity
-            style={[
-              styles.module,
-              styles.dropShadow,
-              { top: 260, height: "24%" }
-            ]}
-            onPress={() => navigation.navigate(homeScreenMoods[moodKey].taskRoute)}
-          >
-            <Text style={{
-              color: 'white',
-              fontSize: 20,
-              padding: 25,
-            }}>
-              {homeScreenMoods[moodKey].taskText}
-            </Text>
-            <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center' }}>
-              <Text style={[{ color: 'white', fontWeight: 'bold', fontSize: 24 }]}> GO </Text>
-              <Ionicons name={'arrow-forward'} color={'white'} size={30}/>
-            </View>
-          </TouchableOpacity>
-          {/* call the court module */}
-          <TouchableOpacity
-            style={[
-              styles.module,
-              styles.dropShadow,
-              { top: 470, height: "10%", borderRadius: '18px', justifyContent: 'center' }
-            ]}
-            onPress={()=>{Linking.openURL('tel:(408) 556-3000')}}
+            }
+            {/* task module */}
+            <TouchableOpacity
+              style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 260, height: "24%" }
+              ]}
+              onPress={() => navigation.navigate(homeScreenMoods[moodKey].taskRoute)}
             >
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
-              <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> CLICK HERE TO CALL YOUR COURTHOUSE </Text>
-              <Ionicons name={'call'} color={'white'} size={22} styles={{ marginLeft: 18 }}/>
+              <Text style={{
+                color: 'white',
+                fontSize: 20,
+                padding: 25,
+              }}>
+                {homeScreenMoods[moodKey].taskText}
+              </Text>
+              <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center' }}>
+                <Text style={[{ color: 'white', fontWeight: 'bold', fontSize: 24 }]}> GO </Text>
+                <Ionicons name={'arrow-forward'} color={'white'} size={30}/>
+              </View>
+            </TouchableOpacity>
+            {/* call the court module */}
+            <TouchableOpacity
+              style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 470, height: "10%", borderRadius: '18px', justifyContent: 'center' }
+              ]}
+              onPress={()=>{Linking.openURL('tel:(408) 556-3000')}}
+              >
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> CLICK HERE TO CALL YOUR COURTHOUSE </Text>
+                <Ionicons name={'call'} color={'white'} size={22} styles={{ marginLeft: 18 }}/>
+              </View>
+            </TouchableOpacity>
+            {/* countdown module */}
+            <View style={[styles.module,
+              { top: 590, height: "20%", width: "40%", borderWidth: 1, borderColor: '#779391', justifyContent: "center"}
+            ]}>
+              <Text style={styles.countdownText}>you have</Text>
+              <Text style={styles.countdownText}>court in</Text>
+              <Text style={styles.countdownNumber}>{getCountdownDays(fakeDataCourtDate)}</Text>
+              <Text style={styles.countdownText}>days</Text>
             </View>
-          </TouchableOpacity>
-          {/* countdown module */}
-          <View style={[styles.module,
-            { top: 590, height: "20%", width: "40%", borderWidth: 1, borderColor: '#779391', justifyContent: "center"}
-          ]}>
-            <Text style={styles.countdownText}>you have</Text>
-            <Text style={styles.countdownText}>court in</Text>
-            <Text style={styles.countdownNumber}>{getCountdownDays(fakeDataCourtDate)}</Text>
-            <Text style={styles.countdownText}>days</Text>
-          </View>
-          {/* map module */}
-          <View style={[styles.module,
-            { top: 590, left: 220, height: "20%", width: "40%", borderWidth: 1, borderColor: '#779391', overflow: "hidden" }
-          ]}>
-          {/* coordinates should be a variable */}
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          >
-          {/* coordinates should be a variable */}
-          <Marker
-            coordinate={{ latitude: 37.78825 , longitude: -122.4324 }}
-            title={"Courthouse"}
-          />
-          </MapView>
-          <View style={{ alignItems: "center" }}>
-            <Text numberOfLines={1} style={{ color: "white", fontWeight: "bold", fontSize: 12, textAlign: "center"}}>Palo Alto Courthouse</Text>
-            <Text numberOfLines={1} style={{ color: "white", fontSize: 8, textAlign: "center" }}>123 Main St.,</Text>
-            <Text numberOfLines={1} style={{ color: "white", fontSize: 8, textAlign: "center" }}>Palo Alto, CA</Text>
-          </View>
-          </View>
-        </ImageBackground>
-      </View>
-  );
-};
+            {/* map module */}
+            <View style={[styles.module,
+              { top: 590, left: 220, height: "20%", width: "40%", borderWidth: 1, borderColor: '#779391', overflow: "hidden" }
+            ]}>
+            {/* coordinates should be a variable */}
+            <MapView
+              style={styles.map}
+              initialRegion={{
+                latitude: Number(latitude),
+                longitude: Number(longitude),
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            >
+            {/* coordinates should be a variable */}
+            <Marker
+              coordinate={{ latitude: Number(latitude), longitude: Number(longitude)}}
+              title={"Courthouse"}
+            />
+            </MapView>
+            <View style={{ alignItems: "center" }}>
+              <Text numberOfLines={1} style={{ color: "white", fontWeight: "bold", fontSize: 12, textAlign: "center"}}>Your Courthouse:</Text>
+              <Text numberOfLines={1} style={{ color: "white", fontSize: 11, textAlign: "center" }}>{courtStreet},</Text>
+              <Text numberOfLines={1} style={{ color: "white", fontSize: 11, textAlign: "center" }}>{courtCity}, {courtState}</Text>
+            </View>
+            </View>
+          </ImageBackground>
+        </View>
+    );
+  }
+}
+
+
 
 const styles = StyleSheet.create({
   button: {

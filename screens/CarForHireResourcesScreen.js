@@ -10,24 +10,69 @@ import {
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import TransportationTaskPage from "./TransportationTaskPage";
+import { Ionicons } from '@expo/vector-icons';
+import {Linking} from 'react-native'
 
 
-const CarForHire = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
+const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCategory, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   return (
-    <View style={{ flex: 1 }}>
-    <View style={{width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
+    <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
-                    { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
-                ]} onPress={() => setCurrScreen("resources")}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
-                    </View>
+                { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
+            ]} onPress={() => setCurrScreen("transportation task")}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
+                </View>
+        </TouchableOpacity>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> Car-For-Hire Resources </Text>
+        <View>
+            <TouchableOpacity
+                style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                ]}
+                onPress={()=>{Linking.openURL('https://m.uber.com/ul/')}}
+                >
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Check Uber </Text>
+                </View>
             </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}>car-for-hire resources</Text>
-    </View>
-    </View>
+        </View>
+        <View>
+            <TouchableOpacity
+                style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                ]}
+                onPress={()=>{Linking.openURL('lyft://')}}
+                >
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Try Lyft </Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+        <View>
+            <TouchableOpacity
+                style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                ]}
+                onPress={()=>{
+                    navigation.navigate("Forum")
+                    setSelectedCategory("transportation")
+                }}
+                >
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Ask Someone for a Ride in the Message Board </Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+</View>
   );
 }
 
@@ -81,7 +126,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     alignSelf: 'center'
-  }
+  },
+  module: {
+    backgroundColor: "#fff",
+    borderWidth: 2,
+    borderColor: "#779391",
+    position: 'absolute',
+    width: '90%',
+    height: "20%",
+    left: 20,
+    right: 0,
+    bottom: 0,
+    borderRadius: 30,
+  },
 })
 
 export default CarForHire;
