@@ -21,7 +21,7 @@ import { Linking } from 'react-native'
 //   encoding: 'JSON'
 // });
 
-const swoopBackground = require("./home_background.png");
+// const swoopBackground = require("./home_background.png");
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    const { navigation, mood, firstName, courtDate, courtStreet, courtCity, courtState, setIsMoodPicker, longitude, latitude, setLongitude, setLatitude } = this.props;
+    const { navigation, mood, firstName, homeBackground, courtDate, courtStreet, courtCity, courtState, setIsMoodPicker, longitude, latitude, setLongitude, setLatitude } = this.props;
 
     const fakeDataCourtDate = new Date(courtDate);
     const name = firstName;
@@ -73,7 +73,7 @@ class HomeScreen extends React.Component {
 
     return (
         <View style={{ flex: 1, padding: 0 }}>
-          <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
+          <ImageBackground source={homeBackground} style={{width: '102%', height: '103%', left: -1}}>
             <View style={styles.welcomeTextContainer}>
               <Text style={styles.welcomeText}>
                 Welcome back, {name}!

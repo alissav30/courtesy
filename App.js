@@ -11,6 +11,9 @@ import MessageBoardScreen from './screens/MessageBoardScreen';
 import TasksScreen from './screens/TasksScreen';
 import MakeAPost from './screens/MakeAPost';
 import SettingsScreen from './screens/Settings';
+const homeBackground = require("./screens/home_background.png");
+const tasksBackground = require("./screens/tasks_background.png");
+const forumBackground = require("./screens/Message_Board_Background.png");
 
 const styles = StyleSheet.create({
   dropShadow:  {
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -173,7 +176,7 @@ export default function App() {
             })}
         >
             <Tab.Screen name="Home">
-              {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setIsMoodPicker={setIsMoodPicker } longitude={longitude} latitude={latitude} setLongitude={setLongitude} setLatitude={setLatitude} />}
+              {props => <HomeScreen {...props} homeBackground={homeBackground} mood={mood} firstName={firstName} courtDate={courtDate} courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setIsMoodPicker={setIsMoodPicker } longitude={longitude} latitude={latitude} setLongitude={setLongitude} setLatitude={setLatitude} />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
             {props => <TasksScreen {...props}
@@ -191,6 +194,7 @@ export default function App() {
                 child={child}
                 taskCompleted={taskCompleted}
                 setTaskCompleted={setTaskCompleted}
+                tasksBackground={tasksBackground}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">
@@ -211,6 +215,7 @@ export default function App() {
                 courtTime={courtTime}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
+                forumBackground={forumBackground}
               />}
             </Tab.Screen>
             <Tab.Screen name="Settings">

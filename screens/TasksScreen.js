@@ -29,10 +29,7 @@ import {
   } from 'react-native-elements';
 //import MessageBoardScreen from './screens/MessageBoardScreen';
 
-
-const swoopBackground = require("./tasks_background_final.png");
-
-const TasksScreen = ({ navigation, setTaskCompleted, taskCompleted, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TasksScreen = ({ navigation, tasksBackground, setTaskCompleted, taskCompleted, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false);
 const [currScreen, setCurrScreen] = React.useState("tasks");
 
@@ -43,7 +40,7 @@ const [currScreen, setCurrScreen] = React.useState("tasks");
   if (currScreen == "tasks") {
     return (
     <View style={{ flex: 1, padding: 0 }}>
-        <ImageBackground source={swoopBackground} style={{width: '100%', height: '130%'}}>
+        <ImageBackground source={tasksBackground} style={{width: '100%', height: '110%'}}>
             <Text style={[styles.taskHeader]}>Tasks</Text>
 
             <ScrollView style={{flex: 1}}>
