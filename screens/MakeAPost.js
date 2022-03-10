@@ -2,7 +2,9 @@ import * as React from 'react';
 import SelectDropdown from 'react-native-select-dropdown'
 import {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   StyleSheet,
+  Keyboard,
   View,
   Text,
   TextInput,
@@ -16,6 +18,12 @@ import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts,
 const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
+
+const HideKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 function handleSubmitPost(title, description, category) {
   const newPost = {
@@ -72,6 +80,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
   };
 
   return (
+    <HideKeyboard>
       <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
         <View>
             <TouchableOpacity style={[
@@ -127,7 +136,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
                 maxLength = {50}
                 placeholder={'Ex. My experience in court today'}
                 placeholderTextColor={'#dae8e7'}
-                    
+
             />
         </View>
         <View>
@@ -168,11 +177,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
         />
         {/* </View> */}
 
-        <TouchableOpacity style={[
-            styles.postButton,
-            styles.dropShadow,
-            { height: "20%", width:'27%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
-          ]}>
+        <TouchableOpacity style={ postTitle.length > 0 ? styles.postButton : styles.disabledButton }>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around'}}>
               <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => {
                 showConfirmDialog(isAnonymous)
@@ -181,6 +186,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
           </TouchableOpacity>
         </View>
       </View>
+    </HideKeyboard>
   );
 };
 
@@ -248,6 +254,15 @@ const styles = StyleSheet.create({
     },
     postButton: {
       alignSelf: 'center',
+      width: 130,
+      height: 50,
+      borderRadius: 20,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      shadowColor: '#00000040',
+      shadowOffset: {width: 0, height: 4},
+      shadowOpacity: 0.3,
+      shadowRadius: 3,
     },
     underline: {textDecorationLine: 'underline'},
     dropdown1BtnStyle: {
@@ -265,6 +280,16 @@ const styles = StyleSheet.create({
       borderBottomColor: "#C5C5C5",
     },
     dropdown1RowTxtStyle: { color: "#444", textAlign: "left" },
+    disabledButton: {
+      backgroundColor: '#819897',
+      width: 130,
+      height: 50,
+      borderRadius: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'center',
+      marginTop: 30,
+    },
     checkboxContainer: {
         flexDirection: "row",
         marginBottom: 0,

@@ -17,7 +17,7 @@ import LegalTasksScreen from './LegalTaskPage';
 import LegalResourcesPage from './LegalResourcesScreen';
 import TransportationTaskPage from "./TransportationTaskPage";
 import TransportationResourcesPage from './TransportationResourcesPage';
-import MakeAPlan from './MakeAPlan';
+import MakeAPlan from './MakeTransportationPlan';
 import ComparePricing from "./ComparePricingScreen"
 import PubTranOptsScreen from './PubTranOptsScreen';
 import Discounts from './DiscountsScreen';
@@ -29,9 +29,12 @@ import {
   } from 'react-native-elements';
 //import MessageBoardScreen from './screens/MessageBoardScreen';
 
-const TasksScreen = ({ navigation, tasksBackground, setTaskCompleted, taskCompleted, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
-const [isTransportationTask, setIsTransportationTask] = React.useState(false);
-const [currScreen, setCurrScreen] = React.useState("tasks");
+
+const tasksBackground = require("./tasks_background.png");
+
+const TasksScreen = ({ navigation, currScreen, setCurrScreen, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const [isTransportationTask, setIsTransportationTask] = React.useState(false)
+//const [currScreen, setCurrScreen] = React.useState("tasks")
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -113,6 +116,8 @@ const [currScreen, setCurrScreen] = React.useState("tasks");
             courtDate={courtDate}
             courtTime={courtTime}
             child={child}
+            navScreen={navScreen}
+            setNavScreen={setNavScreen}
             //setNextScreen={setNextScreen}
             />
         )
@@ -278,7 +283,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
         lineHeight: 28,
-        color: '#779391',
+        color: '#6B7E7E',
         textAlign: 'center',
         letterSpacing: 0.4,
         marginTop: 70,
