@@ -22,7 +22,7 @@ const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood
   const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
   return (
-        <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
+        <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
             <View>
                 <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
@@ -32,41 +32,44 @@ const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood
                     </View>
                 </TouchableOpacity>
             </View>
-            <View>
-                <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>TRANSPORTATION PLAN</Text>
-            </View>
-            <View>
-                <Text style={styles.header}>TRANSPORTATION CHOICE:</Text>
-                <TextInput
-                    style={[styles.titleBox, styles.dropShadow]}
-                    onChangeText={setTransportationPlan}
-                    value={(transportationPlan == "Start your plan!") ?  " " : transportationPlan}
-                />
-            </View>
-            <View>
-                <Text style={[styles.header, styles.descriptionHeader]}>(OPTIONAL) ADDITIONAL DESCRIPTION 
-                OR NOTES</Text>
-                <TextInput
-                    style={[styles.descriptionBox, styles.dropShadow]}
-                    onChangeText={onChangeTransportationPlanDescription}
-                    value={transportationPlanDescription ? transportationPlanDescription : ""}
-                    textAlignVertical={'top'}
-                    multiline
-                />
-            </View>
+            <View style={styles.fullPage}>
+                <View>
+                    <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>transportation plan</Text>
+                </View>
+                <View>
+                    <Text style={styles.header}>Transportation Choice:</Text>
+                    <TextInput
+                        style={[styles.titleBox, styles.dropShadow]}
+                        onChangeText={setTransportationPlan}
+                        value={(transportationPlan == "Start your plan!") ?  " " : transportationPlan}
+                    />
+                </View>
+                <View>
+                    <Text style={[styles.header, styles.descriptionHeader]}>Additional Description 
+                    or Notes:</Text>
+                    <Text style={[styles.optional]}>(optional)</Text>
+                    <TextInput
+                        style={[styles.descriptionBox, styles.dropShadow]}
+                        onChangeText={onChangeTransportationPlanDescription}
+                        value={transportationPlanDescription ? transportationPlanDescription : ""}
+                        textAlignVertical={'top'}
+                        multiline
+                    />
+                </View>
 
-            <View>
-            <TouchableOpacity style={[
-                styles.postButton,
-                styles.dropShadow,
-                { height: "20%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
-            ]}
-            onPress={()=>navigation.navigate(" ")}
-            >
-                {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
-                <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> SET YOUR PLAN </Text>
-                {/*</View>*/}
-            </TouchableOpacity>
+                <View>
+                <TouchableOpacity style={[
+                    styles.postButton,
+                    styles.dropShadow,
+                    { height: "25%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
+                ]}
+                onPress={()=>navigation.navigate(" ")}
+                >
+                    {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
+                    <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> set your plan! </Text>
+                    {/*</View>*/}
+                </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
@@ -76,6 +79,9 @@ const styles = StyleSheet.create({
     backButton: {
         borderColor: "#FFFFFF",
         borderRadius: 30,
+    },
+    fullPage: {
+        top: 20
     },
     makeAPostHeader: {
         textAlign: 'center',
@@ -98,6 +104,16 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
         top: -30,
+    },
+    optional: {
+        color: '#dae8e7',
+        fontSize: 14,
+        lineHeight: 22,
+        fontWeight: '600',
+        left: 20,
+        marginBottom: 10,
+        top: -30,
+        fontStyle: 'italic',
     },
     dropdown: {
         marginLeft: 20,

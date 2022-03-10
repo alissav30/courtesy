@@ -78,7 +78,7 @@ export const homeScreenMoods = {
     taskRoute: "Forum",
   },
   other: {
-    headerText: "",
+    headerText: "- we hear you.",
     taskText: "Check the tasks screen to make sure you're all caught up on things to do.",
     taskRoute: "Tasks",
   }

@@ -17,10 +17,10 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'COMPARE PRICING OF OPTIONS', code: '#fff' },
-    { name: 'SELF-REPRESENTING GUIDE', code: '#fff' },
-    { name: 'PRO BONO LEGAL RESOURCES', code: '#fff' },
-    { name: 'FIND A LAWYER NEAR YOU', code: '#fff' },
+    { name: 'compare pricing of options', code: '#fff' },
+    { name: '???', code: '#fff' },
+    { name: '???', code: '#fff' },
+    { name: '???', code: '#fff' },
   ]);
 
   return (
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 15,
     height: 130,
-    marginBottom: 40,
+    // marginBottom: 40,
     marginLeft: 10,
     marginRight: 10
   },
