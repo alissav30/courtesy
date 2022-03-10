@@ -83,3 +83,237 @@ export const homeScreenMoods = {
     taskRoute: "Tasks",
   }
 };
+
+export let courtDatePosts = [
+  {
+    title: 'How do I know what my court date is for sure?',
+    description: '',
+    upvotes: 40,
+    comments: []
+  },
+  {
+    title: 'Does anyone know what I should do if I need to push my court date back?',
+    description: '',
+    upvotes: 5,
+    comments: []
+  },
+  {
+    title: 'Need help figuring out my court date - can anyone help?',
+    description: '',
+    upvotes: 16,
+    comments: []
+  },
+  {
+    title: 'Can anyone give me advice on this issue with my court date?',
+    description: '',
+    upvotes: 52,
+    comments: []
+  },
+  {
+    title: 'How to check court date without summons handy?',
+    description: '',
+    upvotes: 2,
+    comments: []
+  }
+];
+
+export let contactCourtPosts = [
+  {
+    title: 'Where do I find which phone number to use to contact my courthouse?',
+    description: '',
+    upvotes: 35,
+    comments: ['I have a phone number on my court summons', 'I was able to just Google it']
+  },
+  {
+    title: 'What should I do if I need to contact my courthouse but no one is answering?',
+    description: '',
+    upvotes: 3,
+    comments: ['You could try emailing them?', 'Can you find the phone number of the court clerk?', 'This happened to me so I just went in person']
+  },
+  {
+    title: 'Need help contacting my courthouse - can anyone help?',
+    description: '',
+    upvotes: 11,
+    comments: ['Do you have a phone number to call?', 'Sometimes I think it\'s better to find the email of your court clerk']
+  },
+  {
+    title: 'Can anyone give me advice on this issue w/ contacting my courthouse?',
+    description: '',
+    upvotes: 34,
+    comments: []
+  },
+  {
+    title: 'What’s the best method to contact the court?',
+    description: '',
+    upvotes: 1,
+    comments: []
+  }
+];
+
+export let legalHelpPosts = [
+  {
+    title: 'Does anyone have any advice on how to self-represent?',
+    description: '',
+    upvotes: 13,
+    comments: []
+  },
+  {
+    title: 'How should I pick a lawyer?',
+    description: '',
+    upvotes: 4,
+    comments: []
+  },
+  {
+    title: 'Can anyone help me find a lawyer in my area?',
+    description: '',
+    upvotes: 14,
+    comments: []
+  },
+  {
+    title: 'Would love to hear stories from people who self-represented',
+    description: '',
+    upvotes: 28,
+    comments: []
+  },
+  {
+    title: 'Trying to find a lawyer on a budget...any advice?',
+    description: '',
+    upvotes: 1,
+    comments: []
+  },
+  {
+    title: 'How can I get pro bono legal representation?',
+    description: '',
+    upvotes: 1,
+    comments: []
+  }
+];
+
+export let transportationPosts = [
+  {
+    title: 'No car but need to get to court tomorrow - any recommendations?',
+    description: '',
+    upvotes: 25,
+    comments: []
+  },
+  {
+    title: 'Has anyone had good experiences taking public transport to court?',
+    description: '',
+    upvotes: 8,
+    comments: []
+  },
+  {
+    title: 'Trying to figure out when I need to leave my house for court...how early should I get there',
+    description: '',
+    upvotes: 10,
+    comments: []
+  },
+  {
+    title: 'Is taking an Uber more reliable than public transport?',
+    description: '',
+    upvotes: 17,
+    comments: []
+  },
+  {
+    title: 'No car and no money for an Uber what should I do',
+    description: '',
+    upvotes: 9,
+    comments: []
+  }
+];
+
+export let testimonialPosts = [
+  {
+    title: 'Just got back from my court appointment and want to share my experience!',
+    description: '',
+    upvotes: 21,
+    comments: []
+  },
+  {
+    title: 'Want to share some words of support and advice to everyone going through this process',
+    description: '',
+    upvotes: 33,
+    comments: []
+  },
+  {
+    title: 'Hang in there guys!',
+    description: '',
+    upvotes: 19,
+    comments: []
+  },
+  {
+    title: 'Sending everyone love and support as they go through this :)',
+    description: '',
+    upvotes: 7,
+    comments: []
+  },
+  {
+    title: 'My court story - hopefully you guys can learn from my experience!',
+    description: '',
+    upvotes: 12,
+    comments: []
+  }
+];
+
+export let otherPosts = [
+  {
+    title: 'Is it ok to bring my kids with me to court?',
+    description: 'Hi guys! I have two kids (ages 5 and 7) and I cannot find anyone to watch them during my court appointment tomorrow. Is it ok to bring them with me?',
+    upvotes: 4,
+    comments: []
+  },
+  {
+    title: 'Don\'t know where my court summons is - do I need it?',
+    description: 'Lost my court summons a few days ago...could this pose a problem at all in the future?',
+    upvotes: 13,
+    comments: []
+  },
+  {
+    title: 'How early should I get to court?',
+    description: 'I\'m trying to figure out how early I should leave my house for court tomorrow...how early should I get to the courthouse? Is it ok to get there just a few minutes before?',
+    upvotes: 9,
+    comments: []
+  },
+  {
+    title: 'Should I bring food with me?',
+    description: 'My court appointment is at 11:00am and I think I\'ll probably get hungry for lunch pretty quickly. Is it ok to bring food with me? Will they break for lunch at a certain point?',
+    upvotes: 16,
+    comments: []
+  },
+  {
+    title: 'What happens if I can\'t make it to my appointment?',
+    description: 'Hi everyone. It\'s starting to look like I might not be able to make it to my court appointment. Does anyone know what the consequences are if I don\'t show up?',
+    upvotes: 1,
+    comments: []
+  },
+  {
+    title: 'Just got back from my court appointment and want to share my experience!',
+    description: '',
+    upvotes: 21,
+    comments: []
+  },
+  {
+    title: 'Want to share some words of support and advice to everyone going through this process',
+    description: '',
+    upvotes: 33,
+    comments: []
+  },
+  {
+    title: 'Hang in there guys!',
+    description: '',
+    upvotes: 19,
+    comments: []
+  },
+  {
+    title: 'Sending everyone love and support as they go through this :)',
+    description: '',
+    upvotes: 7,
+    comments: []
+  },
+  {
+    title: 'My court story - hopefully you guys can learn from my experience!',
+    description: '',
+    upvotes: 12,
+    comments: []
+  }
+];
