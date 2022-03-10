@@ -32,7 +32,7 @@ import {
 
 const tasksBackground = require("./tasks_background.png");
 
-const TasksScreen = ({ navigation, currScreen, setCurrScreen, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TasksScreen = ({ navigation, currScreen, setCurrScreen, taskCompleted, setTaskCompleted, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
 //const [currScreen, setCurrScreen] = React.useState("tasks")
 

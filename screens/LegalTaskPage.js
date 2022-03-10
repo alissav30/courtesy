@@ -12,11 +12,6 @@ const swoopBackground = require("./Message_Board_Background.png");
 
 const LegalTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, legalRepPlan, setLegalRepPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 
-  let moodKey = mood;
-  if (moods.indexOf(mood) == -1) {
-    moodKey = "other";
-  }
-
   return (
             <View style={{ flex: 1 }}>
             <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
@@ -31,7 +26,7 @@ const LegalTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selecte
                 </View>
                 <View>
                 <Text style={{ top: 30, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out how
-                you’ll get to court!</Text>
+                you’ll get legal representation!</Text>
                 </View>
                 <View style={{ flex: 0.8 }}>
                 <View style={{ flex: 1, marginTop: 50, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
