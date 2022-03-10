@@ -107,14 +107,14 @@ class HomeScreen extends React.Component {
               style={[
                 styles.module,
                 styles.dropShadow,
-                { top: 260, height: "24%" }
+                { top: 260, height: "22%" }
               ]}
               onPress={() => navigation.navigate(homeScreenMoods[moodKey].taskRoute)}
             >
               <Text style={{
                 color: 'white',
                 fontSize: 20,
-                padding: 25,
+                padding: 20,
               }}>
                 {homeScreenMoods[moodKey].taskText}
               </Text>
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   },
   module: {
     backgroundColor: "#85B0AE",
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "#779391",
     position: 'absolute',
     width: '90%',
