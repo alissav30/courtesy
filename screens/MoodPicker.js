@@ -4,13 +4,10 @@ import {
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
   TextInput,
 } from 'react-native';
-import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
-import { getCountdownDays, homeScreenMoods, moods } from '../utils';
+import { moods } from '../utils';
 
 const swoopBackground = require("./home_background.png");
 
@@ -57,6 +54,8 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
           style={{ borderWidth: 1.5, padding: 10, margin: 20, borderRadius: 8, borderColor: 'white', color: 'white', fontSize: 20 }}
           value={customMood}
           onChangeText={setCustomMood}
+          placeholder={'We hear you!'}
+          placeholderTextColor={'#dae8e7'}
         />
         <TouchableOpacity style={customMood.length == 0 ? styles.disabledButton : styles.button} onPress={() => {
           if (customMood.length != 0) {

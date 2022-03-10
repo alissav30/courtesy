@@ -4,12 +4,7 @@ import {
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
-  TextInput,
-  BackHandler,
-  ScrollView,
   Share,
-  Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 

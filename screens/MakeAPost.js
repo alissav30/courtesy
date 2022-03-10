@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { CheckBox } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
-import { TextInputMask } from 'react-native-masked-text'
 import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts, myPosts } from '../utils';
 
 
@@ -124,7 +123,11 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
             <TextInput
                 style={[styles.titleBox, styles.dropShadow]}
                 onChangeText={setPostTitle}
-                value={postTitle ? postTitle : ""}
+                value={!postTitle ? "" : postTitle}
+                maxLength = {50}
+                placeholder={'Ex. My experience in court today'}
+                placeholderTextColor={'#dae8e7'}
+                    
             />
         </View>
         <View>
@@ -132,9 +135,12 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
             <TextInput
                 style={[styles.descriptionBox, styles.dropShadow]}
                 onChangeText={setPostDescription}
-                value={postDescription ? postDescription : ""}
+                value={!postDescription ? "" : postDescription}
                 textAlignVertical={'top'}
                 multiline
+                maxLength = {2000}
+                placeholder={'What do you want courtesy users to know?'}
+                placeholderTextColor={'#dae8e7'}
             />
         </View>
 
