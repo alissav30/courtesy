@@ -553,7 +553,7 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         paddingTop: 10,
     },
-    errorMessageText:{
+    errorMessageText: {
       fontFamily: "Avenir",
       fontSize: 18,
       textAlign: "center",
@@ -562,7 +562,7 @@ const styles = StyleSheet.create({
     errorMessageContainer: {
       backgroundColor: '#A15353',
       width: '80%',
-      marginTop: -120,
+      marginTop: -180,
       borderRadius: 50,
       alignSelf: 'center',
     },
