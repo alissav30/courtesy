@@ -32,21 +32,21 @@ function handleSubmitPost(title, description, category) {
     upvotes: 0,
     comments: []
   };
+  myPosts.push(newPost);
   switch (category) {
     case 'court date information':
-      courtDatePosts.push(newPost);
+      return courtDatePosts.push(newPost);
     case 'contacting court':
-      contactCourtPosts.push(newPost);
+      return contactCourtPosts.push(newPost);
     case 'legal help':
-      legalHelpPosts.push(newPost);
+      return legalHelpPosts.push(newPost);
     case 'transportation':
-      transportationPosts.push(newPost);
+      return transportationPosts.push(newPost);
     case 'testimonials':
-      testimonialPosts.push(newPost);
+      return testimonialPosts.push(newPost);
     default:
-      otherPosts.push(newPost);
+      return otherPosts.push(newPost);
   }
-  myPosts.push(newPost);
 }
 
 const MakeAPost = ({ navigation, setMakeNewPost }) => {

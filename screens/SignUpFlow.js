@@ -586,7 +586,7 @@ const styles = StyleSheet.create({
         marginRight: 40,
         borderWidth: 1,
         color: "#FFFFFF",
-        padding: 10,
+        padding: 8,
         borderColor: "#FFFFFF",
         fontSize:20,
         textAlign: "center",

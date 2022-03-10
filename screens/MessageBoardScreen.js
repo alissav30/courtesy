@@ -132,6 +132,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
   else if (!postToDisplay) {
     const posts = getPosts(selectedCategory);
     return (
+      <HideKeyboard>
       <View style={{ flex: 1 }}>
         <ImageBackground source={forumBackground} style={{ width: '102%', height: '103%', left: -1 }}>
           <View style={{ flexDirection: 'row', top: 80, justifyContent: 'space-between', width: '90%', alignSelf: 'center' }}>
@@ -167,11 +168,13 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
           </ScrollView>
         </ImageBackground>
       </View>
+      </HideKeyboard>
     );
   }
 
   else {
     return (
+      <HideKeyboard>
       <View style={{ flex: 1, backgroundColor: '#85B0AE' }}>
         {/* back button */}
         <View style={{ flexDirection: 'row', top: 70, marginLeft: 15 }}>
@@ -233,11 +236,11 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <View style={styles.addComment}>
             <TextInput
-              style={{ fontSize: 18, height: '100%', width: '100%', paddingLeft: 8, color: 'white' }}
+              style={{ fontSize: 18, height: '100%', width: '100%', paddingLeft: 4, color: 'white' }}
               onChangeText={setNewComment}
               value={newComment}
               placeholder={'add a comment...'}
-              placeholderTextColor={'white'}
+              placeholderTextColor={'#A7CBC8'}
               maxLength = {200}
             />
           </View>
@@ -250,6 +253,8 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
         </View>
 
       </View>
+      </HideKeyboard>
+
     );
   }
 
