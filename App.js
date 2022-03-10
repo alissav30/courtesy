@@ -132,6 +132,7 @@ export default function App() {
                         size={size * 1.5}
                         color={"#779391"}
                     />
+                    <Text style={{ color: '#779391', fontSize: 10 }}>My Plan</Text>
                     </View>
                 );
                 } else if (route.name === 'Forum') {
