@@ -23,7 +23,7 @@ const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, se
       if (mood !== "other...") {
         setMood(mood.toLowerCase());
         setIsMoodPicker(false);
-        setisSignUpFlow(false)
+        setisSignUpFlow(false);
       } else {
         setIsCustomMoodScreen(true);
       //  setisSignUpFlow(false)
@@ -61,6 +61,7 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
             setMood(customMood);
             setIsCustomMoodScreen(false);
             setIsMoodPicker(false);
+            setisSignUpFlow(false);
           }
         }}>
           <Text style={customMood.length == 0 ? {color: '#768A89'} : {color: 'black'}}> Continue </Text>
