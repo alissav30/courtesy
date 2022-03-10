@@ -112,13 +112,12 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
     );
   }
 };
+const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, childCare, onChangeChildCare, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 
-
-const SignUpFlow = ({ navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, title}) => {
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
-    const [childCare, onChangeChildCare] = React.useState(false)
-    const [car, onChangeCar] = React.useState(false)
-    const [legalRep, onChangeLegalRep] = React.useState(false)
+    //const [childCare, onChangeChildCare] = React.useState(false)
+    //const [car, onChangeCar] = React.useState(false)
+    //const [legalRep, onChangeLegalRep] = React.useState(false)
 
     const [isModalVisible, setIsModalVisible] = React.useState(false);
 
