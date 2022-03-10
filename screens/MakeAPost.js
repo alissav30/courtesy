@@ -115,6 +115,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
         <View>
         {/* <View style={styles.checkbox}> */}
         <CheckBox
+            //style={{ flex: 1, padding: 10, color: '#DEE2E6' }}
             // onClick={()=>{
             // this.setState({
             //     isChecked:!this.state.isChecked
