@@ -13,6 +13,7 @@ import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import TransportationTaskPage from "./TransportationTaskPage";
+
 //import MessageBoardScreen from './screens/MessageBoardScreen';
 
 
@@ -20,6 +21,8 @@ const swoopBackground = require("./Message_Board_Background.png");
 
 const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
+const [nextScreen, setNextScreen] = React.useState("")
+
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -56,7 +59,9 @@ const [isTransportationTask, setIsTransportationTask] = React.useState(false)
     else {
         return (<TransportationTaskPage 
             setSelectedCategory={setSelectedCategory}
-            selectedCategory={selectedCategory}/>)
+            selectedCategory={selectedCategory}
+            nextScreen={nextScreen}
+            setNextScreen={setNextScreen}/>)
     }
 
 };
