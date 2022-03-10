@@ -275,6 +275,8 @@ const styles = StyleSheet.create({
         height: 30,
         borderWidth: 1.5,
         borderColor: 'white',
+        color: "white",
+        paddingLeft: 5,
     },
     locationInput: {
         width: '75%',
@@ -286,7 +288,9 @@ const styles = StyleSheet.create({
         height: 30,
         borderWidth: 1.5,
         borderColor: 'white',
-
+        color: "white",
+        paddingLeft: 5,
+    
     },
     dropShadow:  {
         shadowColor: '#00000040',
