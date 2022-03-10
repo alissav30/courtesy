@@ -60,7 +60,7 @@ const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker })
               <Text
                 style={styles.moodWordText}
                 onPress={() => setIsMoodPicker(true)}
-              > {mood.toLowerCase()}</Text>
+              > {mood.toLowerCase() + ' '}</Text>
               <Text style={styles.moodText}> {homeScreenMoods[moodKey].headerText} </Text>
             </View>
           </View>
@@ -70,7 +70,7 @@ const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker })
             style={[
               styles.module,
               styles.dropShadow,
-              { top: 270, height: "20%" }
+              { top: 260, height: "24%" }
             ]}
             onPress={() => navigation.navigate(homeScreenMoods[moodKey].taskRoute)}
           >
@@ -82,7 +82,7 @@ const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker })
               {homeScreenMoods[moodKey].taskText}
             </Text>
             <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center' }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 24 }}> GO </Text>
+              <Text style={[{ color: 'white', fontWeight: 'bold', fontSize: 24 }]}> GO </Text>
               <Ionicons name={'arrow-forward'} color={'white'} size={30}/>
             </View>
           </TouchableOpacity>
@@ -130,9 +130,9 @@ const HomeScreen = ({ navigation, mood, firstName, courtDate, setIsMoodPicker })
           />
           </MapView>
           <View style={{ alignItems: "center" }}>
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 14, textAlign: "center"}}>Palo Alto Courthouse</Text>
-            <Text style={{ color: "white", fontSize: 12, textAlign: "center" }}>123 Main St.,</Text>
-            <Text style={{ color: "white", fontSize: 12, textAlign: "center" }}>Palo Alto, CA</Text>
+            <Text numberOfLines={1} style={{ color: "white", fontWeight: "bold", fontSize: 12, textAlign: "center"}}>Palo Alto Courthouse</Text>
+            <Text numberOfLines={1} style={{ color: "white", fontSize: 8, textAlign: "center" }}>123 Main St.,</Text>
+            <Text numberOfLines={1} style={{ color: "white", fontSize: 8, textAlign: "center" }}>Palo Alto, CA</Text>
           </View>
           </View>
         </ImageBackground>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   moodText: {
     fontFamily: "Helvetica",
     fontWeight: "400",
-    fontSize: 24,
+    fontSize: 22,
     lineHeight: 29,
     textAlign: "center",
     color: "#6F909C",
@@ -183,12 +183,13 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     fontWeight: "500",
     fontStyle: "italic",
-    fontSize: 24,
+    fontSize: 22,
     lineHeight: 29,
     textAlign: "center",
     textDecorationLine: "underline",
     textDecorationStyle: "solid",
     color: "#3F5C67",
+    // width: '35%',
   },
   module: {
     backgroundColor: "#85B0AE",
@@ -205,13 +206,13 @@ const styles = StyleSheet.create({
   countdownText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: "Helvetica",
   },
   countdownNumber: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 56,
+    fontSize: 50,
     fontWeight: "bold",
     fontFamily: "Helvetica",
   },
@@ -226,6 +227,7 @@ const styles = StyleSheet.create({
     height: "70%",
     borderRadius: 0,
   },
+  underline: {textDecorationLine: 'underline'},
 });
 
 export default HomeScreen;
