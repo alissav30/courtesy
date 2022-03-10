@@ -20,7 +20,7 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresetnation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
@@ -65,7 +65,7 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                         textAlignVertical={'top'}
                         multiline
                         maxLength = {2000}
-                        placeholder={'Ex. My babysitter\'s number is 123-456-7890'}
+                        placeholder={'Ex. Talked to Amelie about self-representing'}
                         placeholderTextColor={'#dae8e7'}
                     />
                 </View>
@@ -79,7 +79,7 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                 onPress={()=>{
                     navigation.navigate(" ")
                     setNavScreen("my plan")
-                    setFoundLegalRepresetnation(true)
+                    setFoundLegalRepresentation(true)
                 }}
                 >
                     {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
@@ -87,6 +87,19 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                     {/*</View>*/}
                 </TouchableOpacity>
                 </View>
+                {
+                    legalPlan != "Start your plan!" ?
+                    <View>
+                        <TouchableOpacity style={styles.explore}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>
+                                <Text style={[{ color: "white", fontSize: 14, fontWeight: '500', fontStyle: 'italic' }, styles.underline]}> want to explore resources again? </Text>
+                            </View>
+                        </TouchableOpacity>
+                                
+                    </View> 
+                    :
+                    <View></View>
+                }
             </View>
         </View>
       </HideKeyboard>

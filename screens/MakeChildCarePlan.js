@@ -86,6 +86,19 @@ const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare
                     {/*</View>*/}
                 </TouchableOpacity>
                 </View>
+                {
+                    childCarePlan != "Start your plan!" ?
+                    <View>
+                        <TouchableOpacity style={styles.explore}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>
+                                <Text style={[{ color: "white", fontSize: 14, fontWeight: '500', fontStyle: 'italic' }, styles.underline]}> want to explore resources again? </Text>
+                            </View>
+                        </TouchableOpacity>
+                                
+                    </View> 
+                    :
+                    <View></View>
+                }
             </View>
         </View>
       </HideKeyboard>
