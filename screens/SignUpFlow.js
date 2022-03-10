@@ -17,7 +17,22 @@ import { CheckBox } from 'react-native-elements'
 
 function isDateFormat(date) {
   const date_regex = /^\d{2}\/\d{2}\/\d{2}$/;
-  return date_regex.test(date);
+
+  if (!date_regex.test(date)) {
+    return (
+      <Text>please fix the formatting of your date</Text>
+    );
+  };
+
+  const dateObject = new Date(date);
+  const currDate = new Date();
+
+  if (dateObject < currDate) {
+    return (
+      <Text>please enter a date in the future</Text>
+    );
+  }
+  return (null);
 }
 
 function isTimeFormat(time) {
@@ -168,10 +183,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </View>
                 </View>
                 {/* submit button */}
-                  { (courtDate.length > 0 && !isDateFormat(courtDate)) &&
+                  { (courtDate.length > 0 && isDateFormat(courtDate)) &&
                     <View style={styles.errorMessageContainer}>
                       <Text style={styles.errorMessageText}>
-                        please fix the formatting of your date
+                        {isDateFormat(courtDate)}
                       </Text>
                     </View>
                   }
@@ -189,9 +204,9 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={ isDateFormat(courtDate) ? styles.nextModule : styles.disabledNextModule }
+                          style={ (isDateFormat(courtDate) === null) ? styles.nextModule : styles.disabledNextModule }
                           onPress={() => {
-                            if (isDateFormat(courtDate)) {
+                            if (isDateFormat(courtDate) === null) {
                               onChangeSignUpScreenNumber(3);
                             }
                           }}
@@ -333,7 +348,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           style={courtLocation.length > 0 ? styles.nextModule : styles.disabledNextModule}
                           onPress={() => {
                             if (courtLocation.length > 0) {
-                              onChangeSignUpScreenNumber(5);                      
+                              onChangeSignUpScreenNumber(5);
                             }
                           }}>
                           <View>
