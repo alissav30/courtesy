@@ -35,7 +35,7 @@ const PubTranOptsScreen = ({navigation, setCurrScreen, currScreen, transportatio
             <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
             </View>
     </TouchableOpacity>
-    <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> Public Transportation Options </Text>
+    <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> public transportation options </Text>
     <View style={{flex: 0.5, top: 100, justifyContent: 'space-between', paddingLeft: 20, paddingRight: 20}}>
         <MapView
             style={styles.map}

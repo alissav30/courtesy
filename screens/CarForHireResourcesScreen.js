@@ -80,7 +80,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 style={[
                 styles.module,
                 styles.dropShadow,
-                { top: 140, height: 90, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                { top: 140, height: 100, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
                 onPress={()=>{
                     navigation.navigate("Forum")
@@ -88,7 +88,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 }}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center', textAlign: 'center' }}> ask for a ride in the Forum </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center', textAlign: 'center' }}> ask for a ride in the Message Board </Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     borderColor: "#779391",
     position: 'relative',
     width: '90%',
-    height: "20%",
+    height: "30%",
     left: 20,
     right: 0,
     bottom: 0,

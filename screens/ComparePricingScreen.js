@@ -26,7 +26,7 @@ const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPl
                 <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                 </View>
         </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:10, marginLeft: 10, marginTop: 20 }}> Compare Pricing </Text>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:10, marginLeft: 10, marginTop: 20 }}> compare pricing </Text>
         <View style={{top: 120, justifyContent: "center", alignItems: 'center'}}>
             <BarChart
             style={{ flex: 1, margin: 10}}
@@ -54,6 +54,12 @@ const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPl
             verticalLabelRotation={50}
             />
         </View>
+        <View>
+          <Text
+            style={{textAlign: 'center', top: 500, color: "white", fontWeight: '400', fontSize: 18}}
+          >Your cheapest option is: Bike ($3)</Text>
+        </View>
+
     </View>
   );
 }
