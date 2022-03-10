@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Moment from 'moment';
 import {
   TouchableOpacity,
   StyleSheet,

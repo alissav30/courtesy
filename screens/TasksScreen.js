@@ -34,7 +34,7 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
     return (
         <View style={{ flex: 1 }}>
           <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
-            <Text style={{ top: 65, color: 'white', fontSize: 30, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> TASKS </Text>
+            <Text style={{ top: 65, color: 'white', fontSize: 30, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Tasks </Text>
             <View style={{ flex: 0.75 }}>
                 <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                     <TouchableOpacity style={styles.dailyTasksModule}

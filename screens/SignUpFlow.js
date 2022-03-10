@@ -24,6 +24,36 @@ function isDateFormat(date) {
     );
   };
 
+  const month = Number(date.slice(0, 2));
+  const day = Number(date.slice(3, 5));
+
+  switch (month) {
+    case 1, 3, 5, 7, 8, 10, 12:
+      if (day > 31) {
+        return (
+          <Text>please enter a valid date</Text>
+        );
+      };
+    case 2:
+      if (day > 28) {
+        return (
+          <Text>please enter a valid date</Text>
+        );
+      };
+    case 4, 6, 9, 11:
+      if (day > 30) {
+        return (
+          <Text>please enter a valid date</Text>
+        );
+      };
+  } 
+
+  if (month > 12) {
+    return (
+      <Text>please enter a valid date</Text>
+    );
+  }
+
   const dateObject = new Date(date);
   const currDate = new Date();
 
@@ -39,8 +69,6 @@ function isTimeFormat(time) {
   const time_regex = /^ *(1[0-2]|[1-9]):[0-5][0-9] *(a|p|A|P)(m|M) *$/;
   return time_regex.test(time);
 }
-
-const swoopBackground = require("./home_background.png");
 
 const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, child, onChangeChild, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 

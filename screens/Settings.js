@@ -1,129 +1,185 @@
 import * as React from 'react';
-import Moment from 'moment';
 import {
-  TouchableOpacity,
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
-  ScrollView,
-  ImageBackground,
-  TextInput
+  TextInput,
+  Alert,
+  ScrollView
 } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'
-import CheckBox from 'react-native-check-box';
-
-
-
-const swoopBackground = require("./home_background.png");
-
+import { CheckBox } from 'react-native-elements'
+import { set } from 'react-native-reanimated';
 
 const SettingsScreen = ({ navigation, childCare,
     courtDate, onChangeCourtDate,
     location, onChangeLocation,
-    notifSettings, onChangeNotifSettings
+    notifSettings, onChangeNotifSettings,
  }) => {
     // eventually replace w/ real data
   const fakeName = "Jane";
+  const [weeklyReminders, setWeeklyReminders] = React.useState("false")
+
+  const showConfirmDialog = (weeklyReminders, setWeeklyReminders) => {
+    return Alert.alert(
+      "\"courtesy\" Would Like to Send You Notifications",
+      `Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.`,
+      [
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "Don't Allow",
+        },
+        {
+            text: "Allow",
+            onPress: () => {
+                setWeeklyReminders(!weeklyReminders)
+            },
+        },
+      ]
+    );
+  };
 
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
         <Text style={[styles.myPlanHeader]}>Hi, {fakeName}!</Text>
-        <View style={styles.settingsContent}>
-            <View style={styles.row}>
-                <Text style={styles.settingsHeader}>edit court date: </Text>
-                <TextInputMask
-                    style={[styles.input]}
-                    //refInput={(ref) => courtDate = ref}
-                    value={courtDate}
-                    onChangeText={onChangeCourtDate}
-                    type={'datetime'}
-                    options={{
-                        format: 'DD/MM/YYYY'
-                    }}
-                />
-            </View>
-            <View style={styles.row}>
-                <Text style={styles.settingsHeader}>edit court time: </Text>
-                <TextInput
-                    style={[styles.input]}
-                    onChangeText={onChangeLocation}
-                    value={location}
-                />
-            </View>
-            <View style={styles.rowLong}>
-                <Text style={styles.settingsHeader}>edit court location: </Text>
-                <TextInput
-                    style={[styles.input, {left: 165}]}
-                    onChangeText={onChangeLocation}
-                    value={location}
-                />
-            </View>
-            <View>
-                <Text style={styles.settingsHeader}>edit notification settings: </Text>
-                <View style={styles.checkboxes}>
-                    <View style={styles.checkboxItem}>
-                        <CheckBox
-                            style={[styles.checkbox, {flex: 1, padding: 10}]}
-                            // onClick={()=>{
-                            // this.setState({
-                            //     isChecked:!this.state.isChecked
-                            // })
-                            // }}
-                            // isChecked={this.state.isChecked}
-                            rightText={"Give me weekly reminders about my court date"}
-                        />
-                        {/* <Text style={styles.checkboxText}></Text> */}
-                    </View>
-                    <View style={styles.checkboxItem}>
-                        <CheckBox
-                            style={[styles.checkbox, {flex: 1, padding: 10}]}
-                            // onClick={()=>{
-                            // this.setState({
-                            //     isChecked:!this.state.isChecked
-                            // })
-                            // }}
-                            // isChecked={this.state.isChecked}
-                            rightText={"Notify me when I have a new task"}
-                        />
-                        {/* <Text style={styles.checkboxText}></Text> */}
-                    </View>
-
-                    <View style={styles.checkboxItem}>
-                        <CheckBox
-                            style={[styles.checkbox, {flex: 1, padding: 10}]}
-                            // onClick={()=>{
-                            // this.setState({
-                            //     isChecked:!this.state.isChecked
-                            // })
-                            // }}
-                            // isChecked={this.state.isChecked}
-                            rightText={"Remind me a week before my court date"}
-                        />
-                        {/* <Text style={styles.checkboxText}></Text> */}
-                    </View>
-
-                    <View style={styles.checkboxItem}>
-                        <CheckBox
-                            style={[styles.checkbox, {flex: 1, padding: 10}]}
-                            // onClick={()=>{
-                            // this.setState({
-                            //     isChecked:!this.state.isChecked
-                            // })
-                            // }}
-                            // isChecked={this.state.isChecked}
-                            rightText={"Remind me the day before my court date"}
-                        />
-                        {/* <Text style={styles.checkboxText}></Text> */}
-                    </View>
+        {/* <ScrollView> */}
+            <View style={styles.settingsContent}>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit court date: </Text>
+                    <TextInputMask
+                        style={[styles.input, styles.dropShadow]}
+                        //refInput={(ref) => courtDate = ref}
+                        value={courtDate}
+                        onChangeText={onChangeCourtDate}
+                        type={'datetime'}
+                        options={{
+                            format: 'DD/MM/YYYY'
+                        }}
+                    />
                 </View>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit court time: </Text>
+                    <TextInput
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeLocation}
+                        value={location}
+                    />
+                </View>
+                <View style={styles.rowLong}>
+                    <Text style={styles.settingsHeader}>edit court location: </Text>
+                    <TextInput
+                        style={[styles.locationInput, styles.dropShadow]}
+                        onChangeText={onChangeLocation}
+                        value={location}
+                    />
+                </View>
+                <View>
+                    <Text style={styles.settingsHeader}>edit notification settings: </Text>
+                    {/* <View style={styles.checkboxes}> */}
+                    <View>
+                        <View style={[styles.checkboxContainer]}>
+                            <CheckBox
+                                //center
+                                title="Give me weekly reminders about my court date"
+                                checked={weeklyReminders}
+                                onPress={() => {
+                                    if (weeklyReminders) {
+                                        setWeeklyReminders(!weeklyReminders)
+                                    }
+                                    if (!weeklyReminders) {
+                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    }
+                                }}
+                                style={styles.checkbox}
+                                checkedColor="#fff"
+                                containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                textStyle={{
+                                    color: '#fff',
+                                    fontSize: 18,
+                                    fontWeight: "light"
+                                }}
+                            />
+                        </View>
+                        <View style={[styles.checkboxContainer]}>
+                            <CheckBox
+                                //center
+                                title="Notify me when I have a new task"
+                                checked={weeklyReminders}
+                                onPress={() => {
+                                    if (weeklyReminders) {
+                                        setWeeklyReminders(!weeklyReminders)
+                                    }
+                                    if (!weeklyReminders) {
+                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    }
+                                }}
+                                style={styles.checkbox}
+                                checkedColor="#fff"
+                                containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                textStyle={{
+                                    color: '#fff',
+                                    fontSize: 18,
+                                    fontWeight: "light"
+                                }}
+                            />
+                        </View>
+                        <View style={[styles.checkboxContainer]}>
+                            <CheckBox
+                                //center
+                                title="Remind me a week before my court date"
+                                checked={weeklyReminders}
+                                onPress={() => {
+                                    if (weeklyReminders) {
+                                        setWeeklyReminders(!weeklyReminders)
+                                    }
+                                    if (!weeklyReminders) {
+                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    }
+                                }}
+                                style={styles.checkbox}
+                                checkedColor="#fff"
+                                containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                textStyle={{
+                                    color: '#fff',
+                                    fontSize: 18,
+                                    fontWeight: "light"
+                                }}
+                            />
+                        </View>
+                        <View style={[styles.checkboxContainer]}>
+                            <CheckBox
+                                //center
+                                title="Remind me the day before my court date"
+                                checked={weeklyReminders}
+                                onPress={() => {
+                                    if (weeklyReminders) {
+                                        setWeeklyReminders(!weeklyReminders)
+                                    }
+                                    if (!weeklyReminders) {
+                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    }
+                                }}
+                                style={styles.checkbox}
+                                checkedColor="#fff"
+                                containerStyle={{ backgroundColor: "#85B0AE", borderWidth: 0 }}
+                                textStyle={{
+                                    color: '#fff',
+                                    fontSize: 18,
+                                    fontWeight: "light"
+                                }}
+                            />
+                        </View> 
+                    </View>
 
+                </View>
             </View>
-        </View>
-
+        {/* </ScrollView> */}
       </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
     myPlanHeader: {
@@ -149,6 +205,7 @@ const styles = StyleSheet.create({
         left: 20,
         marginTop: 10,
         marginBottom: 10,
+        fontWeight: "400",
     },
     row: {
         display: "flex",
@@ -160,24 +217,36 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignContent: "space-around"
     },
-    checkboxItem: {
-        display: "flex",
+    checkboxContainer: {
         flexDirection: "row",
-        alignContent: "space-around"
-    },
-    checkboxText: {
-        flex: 1,
-        flexWrap: 'wrap',
-    },
+        marginBottom: 0,
+        //justifyContent: "center",
+      },
+      checkbox: {
+        alignSelf: "center",
+        alignItems: "center",
+      },
     input: {
-        width: 185,
+        width: 180,
         borderRadius: 6,
         marginBottom: 10,
-        marginLeft: 20,
+        marginLeft: 25,
         top: 12,
         height: 30,
         borderWidth: 1.5,
         borderColor: 'white',
+    },
+    locationInput: {
+        width: '90%',
+        borderRadius: 6,
+        marginBottom: 25,
+        left: 20,
+        // marginLeft: 20,
+        top: 12,
+        height: 30,
+        borderWidth: 1.5,
+        borderColor: 'white',
+
     },
     dropShadow:  {
         shadowColor: '#00000040',
