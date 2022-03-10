@@ -13,6 +13,9 @@ import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import TransportationTaskPage from "./TransportationTaskPage";
+import TransportationResourcesPage from './TransportationResourcesPage';
+import MakeAPlan from './MakeAPlan';
+
 
 //import MessageBoardScreen from './screens/MessageBoardScreen';
 
@@ -21,13 +24,13 @@ const swoopBackground = require("./Message_Board_Background.png");
 
 const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime,courtLocation, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
-const [nextScreen, setNextScreen] = React.useState("")
+const [currScreen, setCurrScreen] = React.useState("tasks")
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
     moodKey = "other";
   }
-  if (isTransportationTask == false) {
+  if (currScreen == "tasks") {
     return (
         <View style={{ flex: 1 }}>
           <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
@@ -35,7 +38,7 @@ const [nextScreen, setNextScreen] = React.useState("")
             <View style={{ flex: 0.75 }}>
                 <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                     <TouchableOpacity style={styles.dailyTasksModule}
-                    onPress={() => setIsTransportationTask(true)}>
+                    onPress={() => setCurrScreen("transportation task")}>
                         <View style={styles.dailyTasksHeader}>
                             <Text style={styles.tasksText}> Task of the Day </Text>
                         </View>
@@ -55,12 +58,15 @@ const [nextScreen, setNextScreen] = React.useState("")
         </View>
     );
   }
-    else {
-        return (<TransportationTaskPage 
+    else if (currScreen == "transportation task"){
+        return (
+        <TransportationTaskPage 
             navigation={navigation}
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
-            nextScreen={nextScreen}
+            //nextScreen={nextScreen}
+            setCurrScreen={setCurrScreen}
+            currScreen={currScreen}
             transportationPlan={transportationPlan}
             setTransportationPlan={setTransportationPlan}
             mood={mood} 
@@ -69,7 +75,45 @@ const [nextScreen, setNextScreen] = React.useState("")
             courtTime={courtTime} 
             courtLocation={courtLocation}
             child={child}
-            setNextScreen={setNextScreen}/>)
+            //setNextScreen={setNextScreen}
+            />
+        )
+    }
+    else if (currScreen == "resources") {
+        return (
+            <TransportationResourcesPage
+            navigation={navigation}
+            setSelectedCategory={setSelectedCategory}
+            selectedCategory={selectedCategory}
+            //nextScreen={nextScreen}
+            transportationPlan={transportationPlan}
+            setTransportationPlan={setTransportationPlan}
+            mood={mood} 
+            setIsMoodPicker={setIsMoodPicker}
+            courtDate={courtDate} 
+            courtTime={courtTime} 
+            courtLocation={courtLocation}
+            currScreen={currScreen}
+            setCurrScreen={setCurrScreen}
+            child={child}
+            //setNextScreen={setNextScreen}
+            />
+        )
+    }
+    else if (currScreen == "makePlan") {
+        return (
+            <MakeAPlan
+            navigation={navigation}
+            transportationPlan={transportationPlan}
+            setTransportationPlan={setTransportationPlan}
+            mood={mood} 
+            setIsMoodPicker={setIsMoodPicker}
+            courtDate={courtDate} 
+            courtTime={courtTime} 
+            courtLocation={courtLocation}
+            child={child}
+            />
+        )
     }
 
 };
