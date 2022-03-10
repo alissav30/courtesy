@@ -12,7 +12,6 @@ import TaskScreen from './screens/TaskScreen';
 import MakeAPost from './screens/MakeAPost';
 import SettingsScreen from './screens/Settings'
 
-
 const styles = StyleSheet.create({
   dropShadow:  {
     shadowColor: '#171717',
@@ -22,28 +21,10 @@ const styles = StyleSheet.create({
   }
 })
 
-// function TaskScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Tasks!</Text>
-//     </View>
-//   );
-// }
-
-function MoodsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Tasks!</Text>
-    </View>
-  );
-}
-
-
-
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -54,9 +35,6 @@ export default function App() {
     const [courtTime, onChangeCourtTime] = useState("");
     const [childCare, onChangeChildCare] = useState("");
 
-
-
-    // hook variable thing
     if (isSignUpFlow) {
         return  (
         <SignUpFlow
@@ -71,6 +49,8 @@ export default function App() {
             setisSignUpFlow={setisSignUpFlow}
             isMoodPicker={isMoodPicker}
             setIsMoodPicker={setIsMoodPicker}
+            mood={mood}
+            setMood={setMood}
             title={{title: 'Sign Up'}}/>
         );
     } else if (isMoodPicker) {
@@ -153,7 +133,7 @@ export default function App() {
             })}
         >
             <Tab.Screen name="Home">
-              {props => <HomeScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker } />}
+              {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} setIsMoodPicker={setIsMoodPicker } />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
             {props => <TaskScreen {...props}  />}

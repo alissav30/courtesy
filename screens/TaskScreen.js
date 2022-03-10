@@ -39,7 +39,7 @@ const TaskScreen = ({ navigation, childCare }) => {
       <View style={{ flex: 1, padding: 0 }}>
         <ImageBackground source={swoopBackground} style={{width: '100%', height: '130%'}}>
             <Text style={[styles.taskHeader]}>Tasks</Text>
-            
+
             <ScrollView>
                 <View style={[styles.container, styles.dropShadow]}>
                     <View style={[styles.cardInnerStyle]}>
@@ -102,7 +102,7 @@ const TaskScreen = ({ navigation, childCare }) => {
                         </Card>
                     </View>
                 </View>
-                
+
             </ScrollView>
         </ImageBackground>
       </View>
@@ -111,7 +111,7 @@ const TaskScreen = ({ navigation, childCare }) => {
 
 const styles = StyleSheet.create({
     taskHeader: {
-        fontFamily: 'Inter',
+        fontFamily: 'Helvetica',
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 30,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     // planContent: {
     //     flexDirection: 'row',
     //     justifyContent: 'space-around',
-    //     flex: 1, 
+    //     flex: 1,
     //     alignItems: 'center',
     // },
     // planContentText: {
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     topHalf:  {
-        
+
     },
     bottomHalf: {
         // backgroundColor: '#779391',
