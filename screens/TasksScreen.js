@@ -50,16 +50,16 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                     <View style={[styles.card, styles.dropShadow,]}>
                             <View style={styles.topHalf}>
                                 <View styles={[styles.cardTitleContainer]}>
-                                        <Text style={[styles.cardTitle]}>TASK OF THE DAY</Text>
+                                        <Text style={[styles.cardTitle]}>task of the day</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomHalf}>
                                 <View style={styles.taskCardContentWrapper}>
                                     <View style={styles.taskCardContent}>
-                                        <View style={[styles.checkbox]}></View>
+                                        <View style={[styles.checkbox, {top: 5}]}></View>
                                         {/* <CheckBox /> */}
                                         <View style={[styles.task]}>
-                                            <Text style={[{color: "#fff"}]}>
+                                            <Text style={[{color: "#fff", fontSize: 18,}]}>
                                                 Take some time to explore transportation options
                                             </Text>
                                         </View>
@@ -67,7 +67,7 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                                     <TouchableOpacity style={styles.exploreButton}
                                     onPress={() => setCurrScreen("transportation task")}>
                                         <View>
-                                            <Text style={[{ fontSize: 14, fontWeight: 'bold', alignSelf: 'center', color:"#fff" }, styles.underline]}> EXPLORE OPTIONS → </Text>
+                                            <Text style={[{ fontSize: 16, fontWeight: 'bold', alignSelf: 'center', color:"#fff" }, styles.underline]}> EXPLORE OPTIONS → </Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -79,13 +79,13 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                     <View style={[styles.card, styles.dropShadow,]}>
                             <View style={styles.topHalfPast}>
                                 <View styles={[styles.cardTitleContainer]}>
-                                        <Text style={[styles.cardTitle, {color: "#fff"}]}>PAST TASKS</Text>
+                                        <Text style={[styles.cardTitle, {color: "#fff"}]}>past tasks</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomHalf}>
                                 <View style={styles.taskCardContentWrapper}>
                                     <View style={[styles.taskCardContent, { justifyContent: 'center' }]}>
-                                        <Text style={{ color: 'white', fontStyle: 'italic' }}> No completed tasks yet </Text>
+                                        <Text style={{ color: 'white', fontStyle: 'italic', fontSize: 16 }}> No completed tasks yet </Text>
                                     </View>
                                 </View>
                         </View>
@@ -316,6 +316,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         color: "#788E96",
+        fontSize: 18,
+        fontWeight: '600',
     },
     taskCardContent: {
         display: 'flex',
