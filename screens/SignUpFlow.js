@@ -299,7 +299,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       {/* court date question */}
                       <View>
                           <Text style={styles.questionText}>
-                              Where is your court appointment?
+                            Where is your court appointment?
+                          </Text>
+                          <Text style={styles.questionHelperText}>
+                              Format: street name, city, state abbreviation
                           </Text>
                           <View style={styles.answerRow}>
                               <TextInput
@@ -327,11 +330,12 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={[
-                          styles.nextModule,
-                          ]}
-                          onPress={() => onChangeSignUpScreenNumber(5)}
-                      >
+                          style={courtLocation.length > 0 ? styles.nextModule : styles.disabledNextModule}
+                          onPress={() => {
+                            if (courtLocation.length > 0) {
+                              onChangeSignUpScreenNumber(5);                      
+                            }
+                          }}>
                           <View>
                               <Text style={styles.buttonText}>
                                   Next
