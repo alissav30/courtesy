@@ -47,10 +47,13 @@ const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood
                 <View style={{ flex: 1, marginTop: 50, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                         <TouchableOpacity style={styles.categoryModule}
                         onPress={() => setCurrScreen("resources")}>
-                        <Text style={styles.categoryText}> access resources to help you get representation.</Text>
+                        <Text style={styles.categoryText}> access resources to help you get transportation.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
-                            onPress={() => navigation.navigate("Forum")}>
+                            onPress={() => {
+                                setSelectedCategory("transportation")
+                                navigation.navigate("Forum")}
+                            }>
                         <Text style={styles.categoryText}> discuss transportation options with other courtesy users.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}

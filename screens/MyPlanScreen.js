@@ -66,7 +66,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
             <Text style={[styles.myPlanHeader]}>My Plan</Text>
             <ScrollView>
                 <View style={styles.progressBar}>
-                    <Progress.Bar progress={progress/total} width={200} color="white"/>
+                    <Progress.Bar progress={0.5} width={200} color="white"/>
                 </View>
                 <View style={styles.inputFields}>
                     <View style={[styles.planItemWithBin]}>

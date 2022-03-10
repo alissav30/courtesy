@@ -17,10 +17,10 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
+    { name: 'PUBLIC TRANSPORT OPTIONS', code: '#fff' },
+    { name: 'CAR-FOR-HIRE RESOURCES', code: '#fff' },
+    { name: 'DISCOUNTS / PROMOTIONS', code: '#fff' },
     { name: 'COMPARE PRICING OF OPTIONS', code: '#fff' },
-    { name: 'SELF-REPRESENTING GUIDE', code: '#fff' },
-    { name: 'PRO BONO LEGAL RESOURCES', code: '#fff' },
-    { name: 'FIND A LAWYER NEAR YOU', code: '#fff' },
   ]);
 
   return (
