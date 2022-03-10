@@ -9,11 +9,13 @@ import {
     Dimensions,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
+import TransportationTaskPage from "./TransportationTaskPage";
 
-//const swoopBackground = require("tasks_background.png");
 
 
-export default function Example() {
+const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
+    //const [backButton, setBackButton] = React.useState(false)
+
   const [items, setItems] = React.useState([
     { name: 'COMPARE PRICING OF OPTIONS', code: '#fff' },
     { name: 'SELF-REPRESENTING GUIDE', code: '#fff' },
@@ -24,10 +26,17 @@ export default function Example() {
   return (
     <View style={{ flex: 1 }}>
     <View style={{width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
+        <TouchableOpacity style={[
+                    { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25}
+                ]} onPress={() => setCurrScreen("transportation task")}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
+                    </View>
+            </TouchableOpacity>
         <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out how
         you’ll get to court!</Text>
         <View style={{ flex: 0.75 }}>
-        <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
+        <View style={{ flex: 1, marginTop: 120, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
             <FlatGrid
                 itemDimension={130}
                 data={items}
@@ -47,6 +56,26 @@ export default function Example() {
     </View>
   );
 }
+//else if (backButton == true) {
+//    console.log("getting back true")
+//    return (
+//    <TransportationTaskPage 
+//        navigation={navigation}
+//        setSelectedCategory={setSelectedCategory}
+//        selectedCategory={selectedCategory}
+//        nextScreen={nextScreen}
+//        transportationPlan={transportationPlan}
+//        setTransportationPlan={setTransportationPlan}
+//        mood={mood} 
+//        setIsMoodPicker={setIsMoodPicker}
+//        courtDate={courtDate} 
+//        courtTime={courtTime} 
+//        courtLocation={courtLocation}
+//        child={child}
+//        setNextScreen={setNextScreen}/>
+//    )
+//}
+//}
 
 const styles = StyleSheet.create({
   gridView: {
@@ -92,4 +121,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center'
   }
-});
+})
+
+export default TransportationResourcesPage;
