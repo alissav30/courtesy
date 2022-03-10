@@ -192,14 +192,17 @@ export default function App() {
                 setSelectedCategory={setSelectedCategory}
               />}
             </Tab.Screen>
-            <Tab.Screen
-                name="Settings"
-                component={SettingsScreen}
-                firstName={firstName}
-                courtDate={courtDate}
-                courtLocation={courtLocation}
-                courtTime={courtTime}
-            />
+            <Tab.Screen name="Settings">
+                {props => <SettingsScreen
+                  {...props}
+                  mood={mood}
+                  firstName={firstName}
+                  courtDate={courtDate}
+                  setIsMoodPicker={setIsMoodPicker }
+                  courtTime={courtTime}
+                  courtLocation={courtLocation}
+                  />}
+            </Tab.Screen>
         </Tab.Navigator>
         </NavigationContainer>
     );

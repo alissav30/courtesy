@@ -12,10 +12,11 @@ import { CheckBox } from 'react-native-elements'
 const SettingsScreen = ({ navigation, childCare,
     courtDate, onChangeCourtDate,
     location, onChangeLocation,
-    notifSettings, onChangeNotifSettings,
+    notifSettings, onChangeNotifSettings, firstName
  }) => {
     // eventually replace w/ real data
-  const fakeName = "Jane";
+//   const fakeName = "Jane";
+  const name = firstName;
   const [weeklyReminders, setWeeklyReminders] = React.useState("false")
   const [notifyOnNewTask, setNotifyOnNewTask] = React.useState("false")
   const [notifyWeekBefore, setNotifyWeekBefore] = React.useState("false")
@@ -43,7 +44,7 @@ const SettingsScreen = ({ navigation, childCare,
 
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
-        <Text style={[styles.myPlanHeader]}>Hi, {fakeName}!</Text>
+        <Text style={[styles.myPlanHeader]}>Hi, {name}!</Text>
         {/* <ScrollView> */}
             <View style={styles.settingsContent}>
                 <View style={styles.row}>
