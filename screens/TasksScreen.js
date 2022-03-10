@@ -19,10 +19,9 @@ import TransportationTaskPage from "./TransportationTaskPage";
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlanTitle, onChangeTransportationPlanTitle, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime,courtLocation, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
 const [nextScreen, setNextScreen] = React.useState("")
-
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -58,17 +57,18 @@ const [nextScreen, setNextScreen] = React.useState("")
   }
     else {
         return (<TransportationTaskPage 
+            navigation={navigation}
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
             nextScreen={nextScreen}
-            transportationPlanTitle={transportationPlanTitle}
-            onChangeTransportationPlanTitle={onChangeTransportationPlanTitle}
+            transportationPlan={transportationPlan}
+            setTransportationPlan={setTransportationPlan}
             mood={mood} 
             setIsMoodPicker={setIsMoodPicker}
             courtDate={courtDate} 
             courtTime={courtTime} 
             courtLocation={courtLocation}
-            childCare={childCare}
+            child={child}
             setNextScreen={setNextScreen}/>)
     }
 

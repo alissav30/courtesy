@@ -17,13 +17,11 @@ const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportationPlanTitle, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
-  const [goToPlan, setGoToPlan] = React.useState(false)
   const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
-  if (goToPlan == false) {
-    return (
+  return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
             <View>
                 <TouchableOpacity style={[
@@ -41,8 +39,8 @@ const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportation
                 <Text style={styles.header}>TRANSPORTATION CHOICE:</Text>
                 <TextInput
                     style={[styles.titleBox, styles.dropShadow]}
-                    onChangeText={onChangeTransportationPlanTitle}
-                    value={transportationPlanTitle ? transportationPlanTitle : ""}
+                    onChangeText={setTransportationPlan}
+                    value={(transportationPlan == "Start your plan!") ?  " " : transportationPlan}
                 />
             </View>
             <View>
@@ -63,7 +61,7 @@ const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportation
                 styles.dropShadow,
                 { height: "20%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
             ]}
-            onPress={()=>setGoToPlan(true)}
+            onPress={()=>navigation.navigate(" ")}
             >
                 {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
                 <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> SET YOUR PLAN </Text>
@@ -72,21 +70,6 @@ const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportation
             </View>
         </View>
     );
-    }
-    else if (goToPlan == true) {
-        return (
-            <MyPlanScreen
-            mood={mood} 
-            setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate} 
-            courtTime={courtTime} 
-            courtLocation={courtLocation}
-            transportationPlan={transportationPlanTitle}
-            setTransportationPlan={onChangeTransportationPlanTitle}
-            transportationPlanDescription={transportationPlanDescription}
-            childCare={childCare}/>
-        )
-    }
 };
 
 const styles = StyleSheet.create({
