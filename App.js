@@ -198,9 +198,12 @@ export default function App() {
                   mood={mood}
                   firstName={firstName}
                   courtDate={courtDate}
+                  onChangeCourtDate={onChangeCourtDate}
                   setIsMoodPicker={setIsMoodPicker }
                   courtTime={courtTime}
+                  onChangeCourtTime={onChangeCourtTime}
                   courtLocation={courtLocation}
+                  onChangeLocation={onChangeLocation}
                   />}
             </Tab.Screen>
         </Tab.Navigator>

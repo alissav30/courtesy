@@ -12,7 +12,8 @@ import { CheckBox } from 'react-native-elements'
 const SettingsScreen = ({ navigation, childCare,
     courtDate, onChangeCourtDate,
     location, onChangeLocation,
-    notifSettings, onChangeNotifSettings, firstName
+    notifSettings, onChangeNotifSettings, firstName,
+    courtTime, onChangeCourtTime,
  }) => {
     // eventually replace w/ real data
 //   const fakeName = "Jane";
