@@ -20,6 +20,7 @@ const categories = ['court date information', 'contacting court', 'transportatio
 const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportationPlanTitle, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
   const [goToPlan, setGoToPlan] = React.useState(false)
+  const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
   if (goToPlan == false) {
     return (
@@ -49,8 +50,8 @@ const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportation
                 OR NOTES</Text>
                 <TextInput
                     style={[styles.descriptionBox, styles.dropShadow]}
-                    onChangeText={onChangeTransportationPlanTitle}
-                    value={transportationPlanTitle ? transportationPlanTitle : ""}
+                    onChangeText={onChangeTransportationPlanDescription}
+                    value={transportationPlanDescription ? transportationPlanDescription : ""}
                     textAlignVertical={'top'}
                     multiline
                 />
@@ -80,6 +81,9 @@ const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportation
             courtDate={courtDate} 
             courtTime={courtTime} 
             courtLocation={courtLocation}
+            transportationPlan={transportationPlanTitle}
+            setTransportationPlan={onChangeTransportationPlanTitle}
+            transportationPlanDescription={transportationPlanDescription}
             childCare={childCare}/>
         )
     }

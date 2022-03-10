@@ -19,7 +19,7 @@ import TransportationTaskPage from "./TransportationTaskPage";
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlanTitle, onChangeTransportationPlanTitle, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlanTitle, onChangeTransportationPlanTitle, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
 const [nextScreen, setNextScreen] = React.useState("")
 

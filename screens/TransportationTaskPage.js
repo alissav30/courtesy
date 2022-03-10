@@ -19,7 +19,7 @@ import MakeAPlan from './MakeAPlan';
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, nextScreen, setNextScreen, transportationPlanTitle, onChangeTransportationPlanTitle, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, nextScreen, setNextScreen, transportationPlanTitle, onChangeTransportationPlanTitle, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
