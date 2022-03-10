@@ -17,40 +17,31 @@ const swoopBackground = require("./home_background.png");
 const xCoordinates = [20, 150, 284, 30, 160, 284, 20, 150, 280, 20, 280];
 const yCoordinates = [30, -15, -185, -160, -195, -380, -350, -370, -550, -530, -640];
 
-const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setIsCustomMoodScreen }) => {
+const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, setIsCustomMoodScreen }) => {
   return (
     <TouchableOpacity onPress={() => {
       if (mood !== "other...") {
         setMood(mood.toLowerCase());
         setIsMoodPicker(false);
+        setisSignUpFlow(false)
       } else {
         setIsCustomMoodScreen(true);
+      //  setisSignUpFlow(false)
       }
     }}>
-      <View style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 100,
-        backgroundColor: '#8DA4A3',
-        width: 110,
-        height: 110,
-        left: xCoordinates[index],
-        top: yCoordinates[index],
-        position: 'fixed',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 0},
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-      }}>
-        <Text style={{ color: 'white', fontWeight: '500' }}> {mood} </Text>
+      <View style={[{left: xCoordinates[index],
+      top: yCoordinates[index],
+      position: 'fixed'}, mood == "other..." ? styles.otherBubble : styles.moodBubble
+      ]}>
+        <Text style={mood=="other..." ? styles.otherText : styles.moodText}> {mood} </Text>
       </View>
     </TouchableOpacity>
   );
 };
 
-const MoodPicker = ({ navigation, mood, setMood, setIsMoodPicker }) => {
-  const [isCustomMoodScreen, setIsCustomMoodScreen] = useState(false);
-  const [customMood, setCustomMood] = useState('');
+const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigation }) => {
+  const [isCustomMoodScreen, setIsCustomMoodScreen] = React.useState(false);
+  const [customMood, setCustomMood] = React.useState('');
 
   if (isCustomMoodScreen) {
     return (
@@ -79,13 +70,13 @@ const MoodPicker = ({ navigation, mood, setMood, setIsMoodPicker }) => {
   } else {
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-          <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60}}>How are you feeling today about court? </Text>
+          <Text style={{ color: 'white', fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60, marginBottom: -40}}>Would you like to share how you feel about your upcoming court summons today?</Text>
           {
             moods.map((mood, key) => {
-              return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
+              return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setisSignUpFlow={setisSignUpFlow} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
             })
           }
-          <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -620 }}>
+          <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -650 }}>
             <Text style={{ color: 'white', fontSize: 24 }} onPress={() => {
               setMood('default');
               setIsMoodPicker(false);
@@ -126,6 +117,48 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
+  
+  otherText: {
+    color: 'black',
+    fontWeight: "500",
+  },
+  moodText :{
+    color: 'white',
+    fontWeight: "500",
+  },
+  otherBubble : {
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 100,
+      backgroundColor: '#bad9d7',
+      width: 110,
+      height: 110,
+      shadowColor: '#000',
+      shadowOffset: {width: 0, height: 0},
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+  },
+  moodBubble: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 100,
+      backgroundColor: '#8DA4A3',
+      width: 110,
+      height: 110,
+      shadowColor: '#000',
+      shadowOffset: {width: 0, height: 0},
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+  },
+  moodTextContainer: {
+    position: 'absolute',
+    top: 60,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+  },
+  
 });
 
 export default MoodPicker;
