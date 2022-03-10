@@ -50,7 +50,7 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
           <Ionicons name={'arrow-back'} color={'white'} size={30} onPress={() => setIsCustomMoodScreen(false)}/>
           <Text style={{ color: 'white', fontSize: 24 }} onPress={() => setIsCustomMoodScreen(false)}> Back </Text>
         </View>
-        <Text style={{ color: 'white', fontSize: 26, fontWeight: '500', textAlign: 'center', marginTop: 210, marginLeft: 60, marginRight: 60}}>Would you like to share how you feel about your upcoming court summons today?</Text>
+        <Text style={{ color: 'white', fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 210, marginLeft: 60, marginRight: 60}}>Would you like to share how you feel about your upcoming court summons today?</Text>
         <TextInput
           style={{ borderWidth: 1.5, padding: 10, margin: 20, borderRadius: 8, borderColor: 'white', color: 'white', fontSize: 20 }}
           value={customMood}
@@ -63,24 +63,24 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
             setIsMoodPicker(false);
           }
         }}>
-          <Text> Continue </Text>
+          <Text style={customMood.length == 0 ? {color: '#768A89'} : {color: 'black'}}> Continue </Text>
         </TouchableOpacity>
       </View>
     );
   } else {
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-          <Text style={{ color: 'white', fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60, marginBottom: -40}}>Would you like to share how you feel about your upcoming court summons today?</Text>
+          <Text style={{ color: 'white', fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 100, marginLeft: 60, marginRight: 60, marginBottom: 0}}>Would you like to share how you feel about your upcoming court summons today?</Text>
           {
             moods.map((mood, key) => {
               return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setisSignUpFlow={setisSignUpFlow} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
             })
           }
-          <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -650 }}>
-            <Text style={{ color: 'white', fontSize: 24 }} onPress={() => {
-              setMood('default');
-              setIsMoodPicker(false);
-            }}> Skip </Text>
+          <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -650 }} onPress={() => {
+            setMood('default');
+            setIsMoodPicker(false);
+          }}>
+            <Text style={{ color: 'white', fontSize: 24 }}> Skip </Text>
             <Ionicons name={'arrow-forward'} color={'white'} size={30} onPress={() => {
               setMood('default');
               setIsMoodPicker(false);
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
-  
+
   otherText: {
     color: 'black',
     fontWeight: "500",
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
   },
-  
+
 });
 
 export default MoodPicker;

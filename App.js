@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
 
     const [firstName, onChangeFirstName] = useState("");
     const [courtDate, onChangeCourtDate] = useState("");
-    const [courtLocation, onChangeCourtLocation] = useState("");
+    const [courtLocation, onChangeCourtLocation] = useState('');
     const [courtTime, onChangeCourtTime] = useState("");
     const [childCare, onChangeChildCare] = useState("");
     const [selectedCategory, setSelectedCategory] = useState('none');

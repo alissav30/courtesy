@@ -10,16 +10,26 @@ import {
   SafeAreaView,
   ImageBackground,
   TextInput,
+  Modal,
 } from 'react-native';
-
+import { MaterialIcons } from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
 
+function isDateFormat(date) {
+  const date_regex = /^\d{2}\/\d{2}\/\d{2}$/;
+  return date_regex.test(date);
+}
+
+function isTimeFormat(time) {
+  const time_regex = /^ *(1[0-2]|[1-9]):[0-5][0-9] *(a|p|A|P)(m|M) *$/;
+  return time_regex.test(time);
+}
 
 const swoopBackground = require("./home_background.png");
 
 const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, childCare, onChangeChildCare, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 
-    const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
+    const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(0)
     //const [childCare, onChangeChildCare] = React.useState(false)
     //const [car, onChangeCar] = React.useState(false)
     //const [legalRep, onChangeLegalRep] = React.useState(false)
@@ -29,60 +39,98 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
 
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
+    if (signUpScreenNumber == 0) {
+      return (
+        <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
+            <View style={styles.welcomeTextContainer}>
+              <Text style={styles.welcomeText}>
+                {/* title */}
+                Welcome to Courtesy!
+              </Text>
+              <Text style={styles.subtitleText}>
+              We're excited to help you get ready for court!
+              </Text>
+              <View>
+                  <MaterialIcons style={styles.privacy} name="privacy-tip" size={40} color="white" onPress={() => setIsModalVisible(!isModalVisible)}/>
+              </View>
+              <Text style={styles.modalText}>We will not share your personal data or information with anyone. We are simply using these questions to guide your experience.</Text>
+            </View>
+            {/* submit button */}
+            <View style={styles.submitButton}>
+              <TouchableOpacity
+                  style={[
+                  styles.module,
+                  ]}
+                  onPress={() => onChangeSignUpScreenNumber(1)}
+              >
+                  <View>
+                      <Text style={styles.buttonText}>
+                          Get started
+                      </Text>
+                  </View>
+              </TouchableOpacity>
+              </View>
+          </View>
+          );
+    }
+
     if (signUpScreenNumber == 1) {
     return (
       <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
-          <View style={styles.welcomeTextContainer}>
-            <Text style={styles.welcomeText}>
+          <View style={styles.welcomeTextContainer2}>
+            <Text style={styles.welcomeText2}>
               {/* title */}
-              Welcome to Courtesy!
+              Courtesy
             </Text>
-            <Text style={styles.subtitleText}>
-            We're excited to help you get ready for court!
-            </Text>
-            {/*<View onPress={()=>setIsModalVisible(!isModalVisible)}>
-                <MaterialIcons style={styles.privacy} name="privacy-tip" size={40} color="white"/>
-            </View>*/}
-            {/*<Modal isVisible={isModalVisible}>
-                <View style={{ flex: 1 }} justifyContent="center">
-                    <Text style={styles.modalText}>We will not share your personal data or information with anyone. We are simply using these questions to guide your experience.</Text>
-                </View>
-            </Modal>*/}
             <Progress.Bar progress={0.2} width={200} color="white" />
           </View>
           <View style={styles.questionBox1}>
             <View style={styles.textContainer}>
                 {/* first name question */}
                 <View>
-                    <View justifyContent="center" alignItems="center">
-                        <Text style={styles.questionText}>
-                            What's your preferred first name?
-                        </Text>
-                        {/*<Ionicons name="information-circle-outline" size={30} color="white" paddingTop={30}/>*/}
-                    </View>
+                    <Text style={styles.questionText}>
+                        What's your preferred first name?
+                    </Text>
+                    <View style={styles.answerRow}>
                     <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeFirstName}
-                        value={firstName}
-                        placeholder=""
-                    />
+                      style={styles.input}
+                      //refInput={(ref) => courtDate = ref}
+                      value={firstName}
+                      onChangeText={onChangeFirstName}
+                  />
+                      {/*<Ionicons style={styles.icon} name="calendar-outline" size={45} color="white" />*/}
+                    </View>
                 </View>
             </View>
           </View>
           {/* submit button */}
-          <View style={styles.submitButton}>
-            <TouchableOpacity
-                style={[
-                styles.module,
-                ]}
-                onPress={() => onChangeSignUpScreenNumber(2)}
-            >
-                <View>
-                    <Text style={styles.buttonText}>
-                        Next
-                    </Text>
-                </View>
-            </TouchableOpacity>
+            <View style={styles.submitButton}>
+                <TouchableOpacity
+                    style={[
+                    styles.backModule,
+                    ]}
+                    onPress={() => onChangeSignUpScreenNumber(0)}
+                >
+                    <View>
+                        <Text style={styles.buttonText}>
+                            Back
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={firstName.length > 0 ? styles.nextModule : styles.disabledNextModule}
+                    onPress={() => {
+                      if (firstName.length > 0) {
+                        onChangeSignUpScreenNumber(2);
+                      }
+                    }}
+                >
+                    <View>
+                        <Text style={styles.buttonText}>
+                            Next
+                        </Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
         );
@@ -95,9 +143,6 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                     {/* title */}
                     Courtesy
                   </Text>
-                  {/*<Text style={styles.subtitleText}>
-                  We're excited to help you get ready for court!
-                  </Text>*/}
                   <Progress.Bar progress={0.4} width={200} color="white" />
                 </View>
                 <View style={styles.questionBox1}>
@@ -106,6 +151,9 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       <View>
                           <Text style={styles.questionText}>
                               When's your court date?
+                          </Text>
+                          <Text style={styles.questionHelperText}>
+                              Format: MM/DD/YY
                           </Text>
                           <View style={styles.answerRow}>
                           <TextInput
@@ -120,6 +168,13 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </View>
                 </View>
                 {/* submit button */}
+                  { (courtDate.length > 0 && !isDateFormat(courtDate)) &&
+                    <View style={styles.errorMessageContainer}>
+                      <Text style={styles.errorMessageText}>
+                        please fix the formatting of your date
+                      </Text>
+                    </View>
+                  }
                   <View style={styles.submitButton}>
                       <TouchableOpacity
                           style={[
@@ -134,10 +189,12 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={[
-                          styles.nextModule,
-                          ]}
-                          onPress={() => onChangeSignUpScreenNumber(3)}
+                          style={ isDateFormat(courtDate) ? styles.nextModule : styles.disabledNextModule }
+                          onPress={() => {
+                            if (isDateFormat(courtDate)) {
+                              onChangeSignUpScreenNumber(3);
+                            }
+                          }}
                       >
                           <View>
                               <Text style={styles.buttonText}>
@@ -169,6 +226,9 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           <Text style={styles.questionText}>
                               What time is your court appointment?
                           </Text>
+                          <Text style={styles.questionHelperText}>
+                              * include AM/PM
+                          </Text>
                           <View style={styles.answerRow}>
                                 <TextInput
                                     style={styles.input}
@@ -182,6 +242,14 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </View>
                 </View>
                 {/* submit button */}
+                { (courtTime.length > 0 && !isTimeFormat(courtTime)) &&
+                  <View style={styles.errorMessageContainer}>
+                    <Text style={styles.errorMessageText}>
+                      please fix the formatting of your time
+                      HH:MM AM/PM
+                    </Text>
+                  </View>
+                }
                   <View style={styles.submitButton}>
                       <TouchableOpacity
                           style={[
@@ -196,10 +264,12 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={[
-                          styles.nextModule,
-                          ]}
-                          onPress={() => onChangeSignUpScreenNumber(4)}
+                        style={ isTimeFormat(courtTime) ? styles.nextModule : styles.disabledNextModule }
+                        onPress={() => {
+                          if (isTimeFormat(courtTime)) {
+                            onChangeSignUpScreenNumber(4);
+                          }
+                        }}
                       >
                           <View>
                               <Text style={styles.buttonText}>
@@ -233,15 +303,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </Text>
                           <View style={styles.answerRow}>
                               <TextInput
-                                  style={styles.input}
-                                  //type={'datetime'}
-                                  onChangeText={onChangeCourtLocation}
-                                  //options={{
-                                      //format: 'DD-MM-YYYY HH:mm:ss'
-                                  //}}
-                                  //defaultValue={moment().format("yyyy-mm-dd")}
-                                  value={courtLocation}
-                                  placeholder=""
+                                style={styles.input}
+                                onChangeText={onChangeCourtLocation}
+                                value={courtLocation}
+                                placeholder=""
                               />
                           </View>
                       </View>
@@ -394,14 +459,18 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#FFFFFF",
         paddingTop: 30,
+        marginBottom: 20,
+        marginTop: 60,
     },
     modalText: {
         fontFamily: "Avenir",
         fontWeight: "bold",
-        fontSize: 24,
+        fontSize: 18,
         textAlign: "center",
         color: "#FFFFFF",
-        paddingTop: 30,
+        paddingTop: 0,
+        fontWeight: '300',
+        width: '80%',
     },
     welcomeText2: {
         fontFamily: "Avenir",
@@ -414,7 +483,7 @@ const styles = StyleSheet.create({
     },
     subtitleText: {
         fontFamily: "Avenir",
-        fontWeight: "bold",
+        fontWeight: "500",
         fontSize: 26,
         lineHeight: 29,
         padding: 20,
@@ -433,6 +502,7 @@ const styles = StyleSheet.create({
         borderColor: "#FFFFFF",
         fontSize:20,
         textAlign: "center",
+        borderRadius: 5,
     },
     secondInput: {
         height: 40,
@@ -457,6 +527,26 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         paddingTop: 30,
     },
+    questionHelperText:{
+        fontFamily: "Avenir",
+        fontSize: 18,
+        textAlign: "center",
+        color: "#FFFFFF",
+        paddingTop: 10,
+    },
+    errorMessageText:{
+      fontFamily: "Avenir",
+      fontSize: 18,
+      textAlign: "center",
+      color: "#FFF",
+    },
+    errorMessageContainer: {
+      backgroundColor: '#A15353',
+      width: '80%',
+      marginTop: -120,
+      borderRadius: 50,
+      alignSelf: 'center',
+    },
     questionBox1: {
         paddingTop: '70%',
         paddingBottom: '70%',
@@ -472,7 +562,7 @@ const styles = StyleSheet.create({
     },
     welcomeTextContainer: {
         position: 'absolute',
-        top: 50,
+        top: 100,
         left: 0,
         right: 0,
         bottom: 50,
@@ -593,6 +683,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderWidth: 4,
     borderColor: "#FFFFFF",
+    position: 'absolute',
+    //width: '90%',
+    //height: "90%",
+    left: 220,
+    //right: 20,
+    bottom: 40,
+    borderRadius: 10,
+    //backgroundColor: "#FFFFFF",
+    //borderRadius: 50,
+    width: 160,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    //textAlign: "center",
+    //marginRight: 30,
+    //marginLeft: 30,
+  },
+  disabledNextModule: {
+    backgroundColor: "#A7CBC8",
+    borderWidth: 4,
+    borderColor: "#A7CBC8",
     position: 'absolute',
     //width: '90%',
     //height: "90%",
