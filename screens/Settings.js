@@ -5,11 +5,9 @@ import {
   Text,
   TextInput,
   Alert,
-  ScrollView
 } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'
 import { CheckBox } from 'react-native-elements'
-import { set } from 'react-native-reanimated';
 
 const SettingsScreen = ({ navigation, childCare,
     courtDate, onChangeCourtDate,
@@ -19,8 +17,11 @@ const SettingsScreen = ({ navigation, childCare,
     // eventually replace w/ real data
   const fakeName = "Jane";
   const [weeklyReminders, setWeeklyReminders] = React.useState("false")
+  const [notifyOnNewTask, setNotifyOnNewTask] = React.useState("false")
+  const [notifyWeekBefore, setNotifyWeekBefore] = React.useState("false")
+  const [notifyDayBefore, setNotifyDayBefore] = React.useState("false")
 
-  const showConfirmDialog = (weeklyReminders, setWeeklyReminders) => {
+  const showConfirmDialog = (toChange, setToChange) => {
     return Alert.alert(
       "\"courtesy\" Would Like to Send You Notifications",
       `Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.`,
@@ -33,7 +34,7 @@ const SettingsScreen = ({ navigation, childCare,
         {
             text: "Allow",
             onPress: () => {
-                setWeeklyReminders(!weeklyReminders)
+                setToChange(!toChange)
             },
         },
       ]
@@ -105,13 +106,13 @@ const SettingsScreen = ({ navigation, childCare,
                             <CheckBox
                                 //center
                                 title="Notify me when I have a new task"
-                                checked={weeklyReminders}
+                                checked={notifyOnNewTask}
                                 onPress={() => {
-                                    if (weeklyReminders) {
-                                        setWeeklyReminders(!weeklyReminders)
+                                    if (notifyOnNewTask) {
+                                        setNotifyOnNewTask(!notifyOnNewTask)
                                     }
-                                    if (!weeklyReminders) {
-                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    if (!notifyOnNewTask) {
+                                        showConfirmDialog(notifyOnNewTask, setNotifyOnNewTask);
                                     }
                                 }}
                                 style={styles.checkbox}
@@ -128,13 +129,13 @@ const SettingsScreen = ({ navigation, childCare,
                             <CheckBox
                                 //center
                                 title="Remind me a week before my court date"
-                                checked={weeklyReminders}
+                                checked={notifyWeekBefore}
                                 onPress={() => {
-                                    if (weeklyReminders) {
-                                        setWeeklyReminders(!weeklyReminders)
+                                    if (notifyWeekBefore) {
+                                        setNotifyWeekBefore(!notifyWeekBefore)
                                     }
-                                    if (!weeklyReminders) {
-                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    if (!notifyWeekBefore) {
+                                        showConfirmDialog(notifyWeekBefore, setNotifyWeekBefore);
                                     }
                                 }}
                                 style={styles.checkbox}
@@ -151,13 +152,13 @@ const SettingsScreen = ({ navigation, childCare,
                             <CheckBox
                                 //center
                                 title="Remind me the day before my court date"
-                                checked={weeklyReminders}
+                                checked={notifyDayBefore}
                                 onPress={() => {
-                                    if (weeklyReminders) {
-                                        setWeeklyReminders(!weeklyReminders)
+                                    if (notifyDayBefore) {
+                                        setNotifyDayBefore(!notifyDayBefore)
                                     }
-                                    if (!weeklyReminders) {
-                                        showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                    if (!notifyDayBefore) {
+                                        showConfirmDialog(notifyDayBefore, setNotifyDayBefore);
                                     }
                                 }}
                                 style={styles.checkbox}

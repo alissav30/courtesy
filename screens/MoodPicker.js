@@ -14,7 +14,9 @@ import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 
 const swoopBackground = require("./home_background.png");
 
-const xCoordinates = [20, 150, 284, 30, 160, 284, 20, 150, 280, 20, 280];
+const xCoordinatesOld = [20, 150, 284, 30, 160, 284, 20, 150, 280, 20, 280];
+const xCoordinates =    [3, 35, 65, 4.93, 33.279999999999994, 65, 3, 35, 65, 3, 65];
+
 const yCoordinates = [30, -15, -185, -160, -195, -380, -350, -370, -550, -530, -640];
 
 const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, setIsCustomMoodScreen }) => {
@@ -29,7 +31,7 @@ const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, se
       //  setisSignUpFlow(false)
       }
     }}>
-      <View style={[{left: xCoordinates[index],
+      <View style={[{left: `${xCoordinates[index]}%`,
       top: yCoordinates[index],
       position: 'fixed'}, mood == "other..." ? styles.otherBubble : styles.moodBubble
       ]}>
