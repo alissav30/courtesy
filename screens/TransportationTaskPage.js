@@ -19,7 +19,7 @@ import MakeAPlan from './MakeAPlan';
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, nextScreen, setNextScreen }) => {
+const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, nextScreen, setNextScreen, transportationPlanTitle, onChangeTransportationPlanTitle, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -66,7 +66,16 @@ const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSele
 }
 else if (nextScreen == "makePlan") {
     return (
-        <MakeAPlan/>
+        <MakeAPlan
+        transportationPlanTitle={transportationPlanTitle}
+        onChangeTransportationPlanTitle={onChangeTransportationPlanTitle}
+        mood={mood} 
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate} 
+        courtTime={courtTime} 
+        courtLocation={courtLocation}
+        childCare={childCare}
+        />
     )
 }
 

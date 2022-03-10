@@ -10,63 +10,79 @@ import {
 import { CheckBox } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons';
 import { TextInputMask } from 'react-native-masked-text'
+import MyPlanScreen from './MyPlanScreen';
 
 
 const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-
-const MakeAPlan = ({ navigation, childCare, postTitle, onChangePostTitle }) => {
+const MakeAPlan = ({ navigation, transportationPlanTitle, onChangeTransportationPlanTitle, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
+  const [goToPlan, setGoToPlan] = React.useState(false)
 
-  return (
-      <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-        <View>
+  if (goToPlan == false) {
+    return (
+        <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
+            <View>
+                <TouchableOpacity style={[
+                    { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
+                ]}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+            <View>
+                <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>TRANSPORTATION PLAN</Text>
+            </View>
+            <View>
+                <Text style={styles.header}>TRANSPORTATION CHOICE:</Text>
+                <TextInput
+                    style={[styles.titleBox, styles.dropShadow]}
+                    onChangeText={onChangeTransportationPlanTitle}
+                    value={transportationPlanTitle ? transportationPlanTitle : ""}
+                />
+            </View>
+            <View>
+                <Text style={[styles.header, styles.descriptionHeader]}>(OPTIONAL) ADDITIONAL DESCRIPTION 
+                OR NOTES</Text>
+                <TextInput
+                    style={[styles.descriptionBox, styles.dropShadow]}
+                    onChangeText={onChangeTransportationPlanTitle}
+                    value={transportationPlanTitle ? transportationPlanTitle : ""}
+                    textAlignVertical={'top'}
+                    multiline
+                />
+            </View>
+
+            <View>
             <TouchableOpacity style={[
-                { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
-            ]}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
-                </View>
+                styles.postButton,
+                styles.dropShadow,
+                { height: "20%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
+            ]}
+            onPress={()=>setGoToPlan(true)}
+            >
+                {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
+                <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> SET YOUR PLAN </Text>
+                {/*</View>*/}
             </TouchableOpacity>
+            </View>
         </View>
-        <View>
-            <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>TRANSPORTATION PLAN</Text>
-        </View>
-        <View>
-            <Text style={styles.header}>TRANSPORTATION CHOICE:</Text>
-            <TextInput
-                style={[styles.titleBox, styles.dropShadow]}
-                onChangeText={onChangePostTitle}
-                value={postTitle ? postTitle : ""}
-            />
-        </View>
-        <View>
-            <Text style={[styles.header, styles.descriptionHeader]}>(OPTIONAL) ADDITIONAL DESCRIPTION 
-            OR NOTES</Text>
-            <TextInput
-                style={[styles.descriptionBox, styles.dropShadow]}
-                onChangeText={onChangePostTitle}
-                value={postTitle ? postTitle : ""}
-                textAlignVertical={'top'}
-                multiline
-            />
-        </View>
-
-        <View>
-        <TouchableOpacity style={[
-            styles.postButton,
-            styles.dropShadow,
-            { height: "20%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
-          ]}>
-            {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
-              <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> SET YOUR PLAN </Text>
-            {/*</View>*/}
-          </TouchableOpacity>
-        </View>
-      </View>
-  );
+    );
+    }
+    else if (goToPlan == true) {
+        return (
+            <MyPlanScreen
+            mood={mood} 
+            setIsMoodPicker={setIsMoodPicker}
+            courtDate={courtDate} 
+            courtTime={courtTime} 
+            courtLocation={courtLocation}
+            childCare={childCare}/>
+        )
+    }
 };
 
 const styles = StyleSheet.create({
