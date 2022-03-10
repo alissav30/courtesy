@@ -26,10 +26,7 @@ const swoopBackground = require("./home_background.png");
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      longitude: 0,
-      latitude: 0
-    };
+    this.state = {};
   }
 
   async componentDidMount() {
@@ -51,12 +48,12 @@ class HomeScreen extends React.Component {
         console.error(error);
       }
     );
-    this.setState({ longitude: coordinates.lng, latitude: coordinates.lat });
+    this.props.setLongitude(coordinates.lng);
+    this.props.setLatitude(coordinates.lat);
   }
 
   render() {
-    const { navigation, mood, firstName, courtDate, courtStreet, courtCity, courtState, setIsMoodPicker } = this.props;
-    const { latitude, longitude } = this.state;
+    const { navigation, mood, firstName, courtDate, courtStreet, courtCity, courtState, setIsMoodPicker, longitude, latitude, setLongitude, setLatitude } = this.props;
 
     const fakeDataCourtDate = new Date(courtDate);
     const name = firstName;
@@ -66,7 +63,7 @@ class HomeScreen extends React.Component {
       moodKey = "other";
     }
 
-    if (longitude == 0) {
+    if (longitude == 0 || latitude == 0) {
       return (null);
     }
 

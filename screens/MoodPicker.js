@@ -81,11 +81,17 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
           <View style={{ flexDirection: "row", alignItems: 'center', alignSelf: 'center', top: -650 }} onPress={() => {
             setMood('default');
             setIsMoodPicker(false);
+            setisSignUpFlow(false);
           }}>
-            <Text style={{ color: 'white', fontSize: 24 }}> Skip </Text>
+            <Text style={{ color: 'white', fontSize: 24 }} onPress={() => {
+              setMood('default');
+              setIsMoodPicker(false);
+              setisSignUpFlow(false);
+            }}> Skip </Text>
             <Ionicons name={'arrow-forward'} color={'white'} size={30} onPress={() => {
               setMood('default');
               setIsMoodPicker(false);
+              setisSignUpFlow(false);
             }}/>
           </View>
         </View>
