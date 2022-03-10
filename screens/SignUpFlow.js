@@ -13,6 +13,7 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
@@ -156,32 +157,21 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
             </View>
           </View>
           {/* submit button */}
-            <View style={styles.submitButton}>
-                <TouchableOpacity
-                    style={[
-                    styles.backModule,
-                    ]}
-                    onPress={() => onChangeSignUpScreenNumber(0)}
-                >
-                    <View>
-                        <Text style={styles.buttonText}>
-                            Back
-                        </Text>
-                    </View>
+            <View style={styles.actionButtons}>
+                <TouchableOpacity style={styles.finalButton} onPress={() => onChangeSignUpScreenNumber(0)}>
+                  <Text style={styles.buttonText}> Back </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={firstName.length > 0 ? styles.nextModule : styles.disabledNextModule}
+                    style={firstName.length > 0 ? styles.finalButton : styles.finalButtonDisabled}
                     onPress={() => {
                       if (firstName.length > 0) {
                         onChangeSignUpScreenNumber(2);
                       }
                     }}
                 >
-                    <View>
                         <Text style={styles.buttonText}>
                             Next
                         </Text>
-                    </View>
                 </TouchableOpacity>
             </View>
         </View>
@@ -229,11 +219,9 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       </Text>
                     </View>
                   }
-                  <View style={styles.submitButton}>
+                  <View style={styles.actionButtons}>
                       <TouchableOpacity
-                          style={[
-                          styles.backModule,
-                          ]}
+                          style={styles.finalButton}
                           onPress={() => onChangeSignUpScreenNumber(1)}
                       >
                           <View>
@@ -243,7 +231,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={ (isDateFormat(courtDate) === null) ? styles.nextModule : styles.disabledNextModule }
+                          style={ (isDateFormat(courtDate) === null) ? styles.finalButton : styles.finalButtonDisabled }
                           onPress={() => {
                             if (isDateFormat(courtDate) === null) {
                               onChangeSignUpScreenNumber(3);
@@ -306,10 +294,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                     </Text>
                   </View>
                 }
-                  <View style={styles.submitButton}>
+                  <View style={styles.actionButtons}>
                       <TouchableOpacity
                           style={[
-                          styles.backModule,
+                          styles.finalButton,
                           ]}
                           onPress={() => onChangeSignUpScreenNumber(2)}
                       >
@@ -320,7 +308,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                        style={ isTimeFormat(courtTime) ? styles.nextModule : styles.disabledNextModule }
+                        style={ isTimeFormat(courtTime) ? styles.finalButton : styles.finalButtonDisabled }
                         onPress={() => {
                           if (isTimeFormat(courtTime)) {
                             onChangeSignUpScreenNumber(4);
@@ -396,10 +384,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </View>
                 </View>
                 {/* submit button */}
-                  <View style={styles.submitButton}>
+                  <View style={styles.actionButtons}>
                       <TouchableOpacity
                           style={[
-                          styles.backModule,
+                          styles.finalButton,
                           ]}
                           onPress={() => onChangeSignUpScreenNumber(3)}
                       >
@@ -410,7 +398,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={(courtStreet.length > 0 && courtCity.length > 0 && courtState.length > 0) ? styles.nextModule : styles.disabledNextModule}
+                          style={(courtStreet.length > 0 && courtCity.length > 0 && courtState.length > 0) ? styles.finalButton : styles.finalButtonDisabled}
                           onPress={() => {
                             if (courtStreet.length > 0 && courtCity.length > 0 && courtState.length > 0) {
                               onChangeSignUpScreenNumber(5);
@@ -502,10 +490,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </View>
                 </View>
                 {/* submit button */}
-                  <View style={styles.submitButton}>
+                  <View style={styles.actionButtons}>
                       <TouchableOpacity
                           style={[
-                          styles.backModule,
+                          styles.finalButton,
                           ]}
                           onPress={() => onChangeSignUpScreenNumber(4)}
                       >
@@ -517,7 +505,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       </TouchableOpacity>
                       <TouchableOpacity
                           style={[
-                          styles.nextModule,
+                          styles.finalButton,
                           ]}
                           onPress={() => onChangeSignUpScreenNumber(6)}
                       >
@@ -674,13 +662,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       submitButton: {
-        position: 'absolute',
-        bottom:0,
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: "center",
+        // flex: 1,
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        // alignSelf: 'center',
+        alignContent: 'space-between',
+        left: 0,
+        width: Dimensions.get('window').width,
+        // alignItems: 'center',
+        // textAlign: "center",
       },
       buttonText: {
         color: '#85B0AE',
@@ -760,9 +750,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     //width: '90%',
     //height: "90%",
-    left: 30,
+    // left: 30,
     //right: 40,
-    bottom: 40,
+    // bottom: 40,
     borderRadius: 10,
     //backgroundColor: "#FFFFFF",
     //borderRadius: 50,
@@ -781,9 +771,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     //width: '90%',
     //height: "90%",
-    left: 220,
+    // left: 220,
     //right: 20,
-    bottom: 40,
+    // bottom: 40,
     borderRadius: 10,
     //backgroundColor: "#FFFFFF",
     //borderRadius: 50,
@@ -796,20 +786,22 @@ const styles = StyleSheet.create({
     //marginLeft: 30,
   },
   disabledNextModule: {
+    flex: 1,
     backgroundColor: "#A7CBC8",
     borderWidth: 4,
     borderColor: "#A7CBC8",
     position: 'absolute',
     //width: '90%',
     //height: "90%",
-    left: 220,
+    // left: 220,
     //right: 20,
-    bottom: 40,
+    // bottom: 40,
     borderRadius: 10,
     //backgroundColor: "#FFFFFF",
     //borderRadius: 50,
     width: 140,
     height: 60,
+    // marginLeft: 140,
     alignItems: 'center',
     justifyContent: 'center',
     //textAlign: "center",
@@ -836,6 +828,29 @@ checkboxContainer: {
   },
   privacy: {
       marginBottom: 20
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    width: '85%',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+    bottom: 30,
+  },
+  finalButton: {
+    backgroundColor: 'white',
+    width: 140,
+    height: 60,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  finalButtonDisabled: {
+    backgroundColor: '#A7CBC8',
+    width: 140,
+    height: 60,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 

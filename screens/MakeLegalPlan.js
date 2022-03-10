@@ -20,7 +20,11 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
+<<<<<<< HEAD
 const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+=======
+const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalRepPlan, setLegalRepPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+>>>>>>> cc28bb07c33de0ae99581e507e05f6a86feb2ca5
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
@@ -44,11 +48,11 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                     <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>legal plan</Text>
                 </View>
                 <View>
-                    <Text style={styles.header}>Transportation Choice:</Text>
+                    <Text style={styles.header}>Representation Choice:</Text>
                     <TextInput
                         style={[styles.titleBox, styles.dropShadow]}
-                        onChangeText={setLegalPlan}
-                        value={(legalPlan == "Start your plan!") ?  "" : legalPlan}
+                        onChangeText={setLegalRepPlan}
+                        value={(legalRepPlan == "Start your plan!") ?  "" : legalRepPlan}
                         maxLength = {50}
                         placeholder={'Type your choice here.'}
                         placeholderTextColor={'#dae8e7'}

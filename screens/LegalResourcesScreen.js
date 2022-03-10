@@ -15,9 +15,9 @@ const LegalResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCat
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'info on self-representing', code: '#fff', nextScreen: 'public transport options', url: "https://www.courts.ca.gov/1076.htm?rdeLocaleAttr=en" },
-    { name: 'pro bono (free) legal resources', code: '#fff', nextScreen: 'car-for-hire', url: "https://www.americanbar.org/groups/legal_services/flh-home/flh-free-legal-help/"},
-    { name: 'find a lawyer near you', code: '#fff', nextScreen: 'discounts', url: "https://lawyers.findlaw.com/"},
+    { name: 'info on self-representing', code: '#fff', nextScreen: 'SRL', url: "https://www.courts.ca.gov/1076.htm?rdeLocaleAttr=en" },
+    { name: 'pro bono (free) legal resources', code: '#fff', nextScreen: 'ProBono', url: "https://www.americanbar.org/groups/legal_services/flh-home/flh-free-legal-help/"},
+    { name: 'find a lawyer near you', code: '#fff', nextScreen: 'FindLawyer', url: "https://lawyers.findlaw.com/"},
     ]);
 
   const showConfirmDialog = (url) => {
