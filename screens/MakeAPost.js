@@ -87,7 +87,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
             <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>make a post</Text>
         </View>
         <View style={styles.topic}>
-            <Text style={styles.header}>TOPIC</Text>
+            <Text style={styles.header}>What is your post about?</Text>
             <View  style={styles.dropdown}>
                 <SelectDropdown
                   data={categories}
@@ -120,7 +120,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
             </View>
         </View>
         <View>
-            <Text style={styles.header}>GIVE YOUR POST A TITLE</Text>
+            <Text style={styles.header}>Give your post a title!</Text>
             <TextInput
                 style={[styles.titleBox, styles.dropShadow]}
                 onChangeText={setPostTitle}
@@ -128,7 +128,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
             />
         </View>
         <View>
-            <Text style={[styles.header, styles.descriptionHeader]}>DESCRIPTION</Text>
+            <Text style={[styles.header, styles.descriptionHeader]}>Write your thoughts here.</Text>
             <TextInput
                 style={[styles.descriptionBox, styles.dropShadow]}
                 onChangeText={setPostDescription}
