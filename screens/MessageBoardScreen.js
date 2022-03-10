@@ -22,6 +22,8 @@ const categories = ['court date information', 'contacting court', 'transportatio
 
 function getPosts(category) {
   switch (category) {
+    case 'my posts':
+      return myPosts;
     case 'court date information':
       return courtDatePosts;
     case 'contacting court':
@@ -32,8 +34,6 @@ function getPosts(category) {
       return transportationPosts;
     case 'testimonials':
       return testimonialPosts;
-    case 'my posts':
-      return myPosts;
     default:
       return otherPosts;
   }
@@ -86,7 +86,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
               {
                 categories.map((category) => {
                   return (
-                    <TouchableOpacity style={styles.categoryModule} onPress={() => {
+                    <TouchableOpacity style={category=="my posts" ? styles.myPostsModule : styles.categoryModule} onPress={() => {
                       setSelectedCategory(category);
                       setSearchTerm(category);
                     }} key={category}>
@@ -239,6 +239,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 30
   },
+  myPostsModule: {
+    backgroundColor: "#A7CBC8",
+    borderWidth: 1,
+    borderColor: "rgba(118, 138, 137, 0.5)",
+    shadowColor: '#000',
+    shadowOffset: {width: 1, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 14,
+    height: 80,
+    width: '90%',
+    justifyContent: 'center',
+    marginBottom: 30
+  },
   categoryText: {
     color: 'white',
     fontSize: 20,
@@ -250,7 +264,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderRadius: 100,
     height: '100%',
-    width: '64%',
+    width: '55%',
     padding: 10,
     color: 'white',
     fontSize: 16,
@@ -284,6 +298,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 10,
     paddingLeft: 6,
     paddingRight: 6,
     flexDirection: 'row',
