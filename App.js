@@ -83,7 +83,7 @@ export default function App() {
         );
     } else if (isMoodPicker) {
       return (
-        <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setMood={setMood} />
+        <MoodPicker mood={mood} setIsMoodPicker={setIsMoodPicker} setisSignUpFlow={setisSignUpFlow} setMood={setMood} />
       );
     } else {
     return (
@@ -175,7 +175,7 @@ export default function App() {
             <Tab.Screen name=" ">
               {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
                         courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
-                        child={child} car={car} legalRep={legalRep} transportationPlan={transportationPlan} 
+                        child={child} car={car} legalRep={legalRep} transportationPlan={transportationPlan}
                         setTransportationPlan={setTransportationPlan} childCarePlan={childCarePlan}
                         setChildCarePlan={setChildCarePlan} legalRepPlan={legalRepPlan}
                         setLegalRepPlan={setLegalRepPlan} />}
