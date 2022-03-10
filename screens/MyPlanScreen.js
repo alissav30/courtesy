@@ -37,6 +37,20 @@ import CarForHire from './CarForHireResourcesScreen';
 
 const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, setSelectedCategory, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
 
+      
+    const [foundTransportation, setFoundTransportation] = React.useState(false)
+    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
+    const [foundChildcare, setFoundChildCare] = React.useState(false)
+    //const [checkTransportation, setCheckTransportation] = React.useState("")
+    //const [navScreen, setNavScreen] = React.useState("my plan")
+    const courtLocation = `${courtStreet}, ${courtCity}, ${courtState}`;
+
+    const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
+    const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
+    const [childCarePlanDescription, onChangeChildCarePlanDescription] = React.useState("")
+    const [currLegalScreen, setCurrLegalScreen] = React.useState("legal task")
+
+    
     const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescripption, category) => {
         return Alert.alert(
           "Clear Your Plan",
@@ -58,18 +72,6 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
           ]
         );
       };
-      
-    const [foundTransportation, setFoundTransportation] = React.useState(false)
-    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
-    const [foundChildcare, setFoundChildCare] = React.useState(false)
-    //const [checkTransportation, setCheckTransportation] = React.useState("")
-    //const [navScreen, setNavScreen] = React.useState("my plan")
-    const courtLocation = `${courtStreet}, ${courtCity}, ${courtState}`;
-
-    const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
-    const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
-    const [childCarePlanDescription, onChangeChildCarePlanDescription] = React.useState("")
-    const [currLegalScreen, setCurrLegalScreen] = React.useState("legal task")
 
     let progress = 3;
     let total = 4;
