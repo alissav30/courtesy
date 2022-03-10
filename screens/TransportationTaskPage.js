@@ -19,7 +19,7 @@ import MakeAPlan from './MakeAPlan';
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, nextScreen, setNextScreen, transportationPlanTitle, onChangeTransportationPlanTitle, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, nextScreen, setNextScreen, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime,courtLocation, child }) => {
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -53,11 +53,7 @@ const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSele
         );
   }
   else if (nextScreen == "messageBoard") {
-      return (
-          <MessageBoardScreen
-          selectedCategory={'transportation'}
-          setSelectedCategory={setSelectedCategory}/>
-      )
+      navigation.navigate('Forum')
   }
   else if (nextScreen == "resources") {
     return (
@@ -67,14 +63,15 @@ const TransportationTasksScreen = ({ navigation, mood, selectedCategory, setSele
 else if (nextScreen == "makePlan") {
     return (
         <MakeAPlan
-        transportationPlanTitle={transportationPlanTitle}
-        onChangeTransportationPlanTitle={onChangeTransportationPlanTitle}
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
         mood={mood} 
         setIsMoodPicker={setIsMoodPicker}
         courtDate={courtDate} 
         courtTime={courtTime} 
         courtLocation={courtLocation}
-        childCare={childCare}
+        child={child}
         />
     )
 }

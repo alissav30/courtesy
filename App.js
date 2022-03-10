@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(true);
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -39,7 +39,7 @@ export default function App() {
     const [car, onChangeCar] = React.useState(false)
     const [legalRep, onChangeLegalRep] = React.useState(false)
 
-    const [transportationPlanTitle, onChangeTransportationPlanTitle] = React.useState("")
+    //const [transportationPlanTitle, onChangeTransportationPlanTitle] = React.useState("")
 
     const [transportationPlan, setTransportationPlan] = React.useState("Start your plan!")
     const [childCarePlan, setChildCarePlan] = React.useState("Start your plan!")
@@ -168,8 +168,8 @@ export default function App() {
                 mood={mood}
                 setSelectedCategory={setSelectedCategory}
                 selectedCategory={selectedCategory}
-                transportationPlanTitle={transportationPlanTitle}
-                onChangeTransportationPlanTitle={onChangeTransportationPlanTitle}
+                transportationPlan={transportationPlan}
+                setTransportationPlan={setTransportationPlan}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">

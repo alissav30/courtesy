@@ -21,6 +21,8 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState('false')
     const [foundChildcare, setFoundChildCare] = React.useState('false')
     const [checkTransportation, setCheckTransportation] = React.useState("")
+    console.log("transportation plan", transportationPlan)
+
 
     //if (car == true) {
     //    setTransportationPlan("Have a car!")
@@ -131,12 +133,35 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
 }
 if (checkTransportation == "view") {
     return (
-        <MakeAPlan/>
+        <MakeAPlan
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood} 
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate} 
+        courtTime={courtTime} 
+        courtLocation={courtLocation}
+        child={child}
+        />
     )
 }
 if (checkTransportation == "explore") {
     return (
-        <TransportationTaskPage/>
+        <TransportationTaskPage
+        navigation={navigation}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+        nextScreen={nextScreen}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood} 
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate} 
+        courtTime={courtTime} 
+        courtLocation={courtLocation}
+        child={child}
+        setNextScreen={setNextScreen}/>
     )
 }
 
