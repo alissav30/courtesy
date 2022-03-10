@@ -75,7 +75,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
     return (
         <View style={{ flex: 1 }}>
           <ImageBackground source={swoopBackground} style={{ width: '102%', height: '103%', left: -1 }}>
-            <Text style={{ top: 65, color: 'white', fontSize: 26, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> MESSAGE BOARD </Text>
+            <Text style={{ top: 65, color: 'white', fontSize: 26, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Message Board </Text>
             <View style={{ width: '90%', top: 90, height: 40, alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
               <View style={styles.searchBar}>
                 <TextInput

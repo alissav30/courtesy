@@ -4,9 +4,6 @@ import {
     StyleSheet,
     View,
     Text,
-    SafeAreaView,
-    ImageBackground,
-    Dimensions,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import TransportationTaskPage from "./TransportationTaskPage";
@@ -17,10 +14,10 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'Public Transport Options', code: '#fff', nextScreen: 'public transport options' },
-    { name: 'Car-For-Hire resources', code: '#fff', nextScreen: 'car-for-hire' },
-    { name: 'Discounts / Promotions', code: '#fff', nextScreen: 'discounts' },
-    { name: 'Compare Pricing of Options', code: '#fff', nextScreen: 'compare pricing' },
+    { name: 'public transport options', code: '#fff', nextScreen: 'public transport options' },
+    { name: 'car-for-hire resources', code: '#fff', nextScreen: 'car-for-hire' },
+    { name: 'discounts & promotions', code: '#fff', nextScreen: 'discounts' },
+    { name: 'compare pricing of options', code: '#fff', nextScreen: 'compare pricing' },
   ]);
 
   return (
@@ -32,9 +29,9 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
             </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> Transportation Resources </Text>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> transportation resources </Text>
         <View style={{ flex: 0.75 }}>
-        <View style={{ flex: 1, marginTop: 120, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
+        <View style={{ flex: 1, marginTop: 120, justifyContent: 'space-between', alignItems: 'center' }}>
             <FlatGrid
                 itemDimension={130}
                 data={items}
@@ -42,6 +39,7 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
                 // staticDimension={300}
                 // fixed
                 spacing={10}
+                scrollEnabled={false}
                 renderItem={({ item }) => (
                     <TouchableOpacity
                     onPress={() => setCurrScreen(item.nextScreen)}
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     justifyContent: 'center',
-    borderRadius: 5,
+    borderRadius: 10,
     padding: 15,
     height: 130,
     marginBottom: 40,
@@ -82,7 +80,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     color: '#779391',
-    fontWeight: '600',
+    fontWeight: '500',
     textAlign: 'center'
   },
   itemCode: {
