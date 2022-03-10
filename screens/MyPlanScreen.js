@@ -12,22 +12,26 @@ import {
 
 const swoopBackground = require("./plan_background.png");
 
+import MakeAPlan from "./MakeAPlan"
+import TransportationTaskPage from "./TransportationTaskPage"
 
-const MyPlanScreen = ({ navigation, childCare }) => {
-    // eventually replace w/ real data
-  const fakeDataCourtDate = new Date('04/27/22');
-  const fakeDataCourtTime = "5:00 PM PST";
-  const fakeDataLocation = "Palo Alto Courthouse";
-  const fakeDataTransportation = "Start your plan!";
-  const fakeDataLegalRep = "Start your plan!";
-  const fakeDataChildCare = "Found babysitter";
-  const fakeFoundTransportation = false;
-  const fakeFoundLegalTransportation = false;
-  const fakeFoundChildcare = true;
-  const fakeNeedsChildCare = true;
 
-//   {childCare ? "edit / view" : "explore"}
+const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+    const [foundTransportation, setFoundTransportation] = React.useState('false')
+    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState('false')
+    const [foundChildcare, setFoundChildCare] = React.useState('false')
+    const [checkTransportation, setCheckTransportation] = React.useState("")
 
+    //if (car == true) {
+    //    setTransportationPlan("Have a car!")
+    //}
+    //if (child == false) {
+    //    setChildCarePlan("No child!")
+    //}
+    //if (legalRep == true) {
+    //    setLegalRepPlan("I know what legal representation I'll use.")
+    //}
+    if (checkTransportation == "") {
   return (
       <View style={{ flex: 1, padding: 0 }}>
         <ImageBackground source={swoopBackground} style={{width: '100%', height: '105%'}}>
@@ -39,7 +43,7 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         <Text style={[styles.planHeader]}> COURT DATE </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {Moment(fakeDataCourtDate).format('MM/DD/YYYY')} </Text>
+                                <Text numberOfLines={1} style={styles.planContentText}> {courtDate} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
@@ -52,7 +56,7 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         <Text style={[styles.planHeader]}> COURT TIME </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataCourtTime} </Text>
+                                <Text numberOfLines={1} style={styles.planContentText}> {courtTime} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
@@ -65,7 +69,7 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         <Text style={[styles.planHeader]}> LOCATION </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataLocation} </Text>
+                                <Text numberOfLines={1} style={styles.planContentText}> {courtLocation} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                     <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
@@ -78,10 +82,12 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         <Text style={[styles.planHeader]}> TRANSPORTATION </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataTransportation} </Text>
-                                <TouchableOpacity style={styles.editButton}>
+                                <Text numberOfLines={1} style={styles.planContentText}> {transportationPlan} </Text>
+                                <TouchableOpacity style={styles.editButton}
+                                onPress={()=> {foundTransportation ?  setCheckTransportation("view") : setCheckTransportation("explore")}}
+                                >
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
-                                    <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {fakeFoundTransportation ? "view / edit" : "explore!"} </Text>
+                                    <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {foundTransportation ? "view / edit" : "explore!"} </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -91,24 +97,24 @@ const MyPlanScreen = ({ navigation, childCare }) => {
                         <Text style={[styles.planHeader]}> LEGAL REPRESENTATION </Text>
                         <View style={[styles.planContentBox, styles.dropShadow]}>
                             <View style={styles.planContent}>
-                                <Text numberOfLines={1} style={styles.planContentText}> {fakeDataLegalRep} </Text>
+                                <Text numberOfLines={1} style={styles.planContentText}> {legalRepPlan} </Text>
                                 <TouchableOpacity style={styles.editButton}>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
-                                    <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}>{fakeFoundLegalTransportation ? "view / edit" : "explore!"} </Text>
+                                    <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}>{foundLegalRepresentation ? "view / edit" : "explore!"} </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
                         </View>
                     </View>
-                    {fakeNeedsChildCare ?
+                    {child ?
                         <View style={[styles.planItem]}>
                             <Text style={[styles.planHeader]}> CHILDCARE </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
-                                    <Text numberOfLines={1} style={styles.planContentText}> {fakeDataChildCare} </Text>
+                                    <Text numberOfLines={1} style={styles.planContentText}> {childCarePlan} </Text>
                                     <TouchableOpacity style={styles.editButton}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
-                                        <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {fakeFoundChildcare ? "view / edit" : "explore!"} </Text>
+                                        <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {foundChildcare ? "view / edit" : "explore!"} </Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -122,6 +128,18 @@ const MyPlanScreen = ({ navigation, childCare }) => {
         </ImageBackground>
       </View>
   );
+}
+if (checkTransportation == "view") {
+    return (
+        <MakeAPlan/>
+    )
+}
+if (checkTransportation == "explore") {
+    return (
+        <TransportationTaskPage/>
+    )
+}
+
 };
 
 const styles = StyleSheet.create({

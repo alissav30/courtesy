@@ -17,7 +17,7 @@ import { CheckBox } from 'react-native-elements'
 
 const swoopBackground = require("./home_background.png");
 
-const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, childCare, onChangeChildCare, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
+const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, child, onChangeChild, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(1)
     //const [childCare, onChangeChildCare] = React.useState(false)
@@ -301,8 +301,8 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                               <CheckBox
                                   //center
                                   title="I have children"
-                                  checked={childCare}
-                                  onPress={() => onChangeChildCare(!childCare)}
+                                  checked={child}
+                                  onPress={() => onChangeChild(!child)}
                                   //value={childCare}
                                   //onValueChange={onChangeChildCare}
                                   style={styles.checkbox}

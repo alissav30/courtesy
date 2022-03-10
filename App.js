@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -33,11 +33,28 @@ export default function App() {
     const [courtDate, onChangeCourtDate] = useState("");
     const [courtLocation, onChangeCourtLocation] = useState("");
     const [courtTime, onChangeCourtTime] = useState("");
-    const [childCare, onChangeChildCare] = useState("");
+    const [child, onChangeChild] = useState("");
     const [selectedCategory, setSelectedCategory] = useState('none');
 
     const [car, onChangeCar] = React.useState(false)
     const [legalRep, onChangeLegalRep] = React.useState(false)
+
+    const [transportationPlanTitle, onChangeTransportationPlanTitle] = React.useState("")
+
+    const [transportationPlan, setTransportationPlan] = React.useState("Start your plan!")
+    const [childCarePlan, setChildCarePlan] = React.useState("Start your plan!")
+    const [legalRepPlan, setLegalRepPlan] = React.useState("Start your plan!")
+
+    //if (car == true) {
+    //    setTransportationPlan("Have a car!")
+    //}
+    //if (child == false) {
+    //    setChildCarePlan("No child!")
+    //}
+    //if (legalRep == true) {
+    //    setLegalRepPlan("I know what legal representation I'll use.")
+    //}
+
 
 
     if (isSignUpFlow) {
@@ -56,8 +73,8 @@ export default function App() {
             setIsMoodPicker={setIsMoodPicker}
             mood={mood}
             setMood={setMood}
-            childCare={childCare}
-            onChangeChildCare={onChangeChildCare}
+            child={child}
+            onChangeChild={onChangeChild}
             car={car}
             onChangeCar={onChangeCar}
             legalRep={legalRep}
@@ -151,12 +168,17 @@ export default function App() {
                 mood={mood}
                 setSelectedCategory={setSelectedCategory}
                 selectedCategory={selectedCategory}
+                transportationPlanTitle={transportationPlanTitle}
+                onChangeTransportationPlanTitle={onChangeTransportationPlanTitle}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">
               {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
                         courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
-                        childCare={childCare} />}
+                        child={child} car={car} legalRep={legalRep} transportationPlan={transportationPlan} 
+                        setTransportationPlan={setTransportationPlan} childCarePlan={childCarePlan}
+                        setChildCarePlan={setChildCarePlan} legalRepPlan={legalRepPlan}
+                        setLegalRepPlan={setLegalRepPlan} />}
             </Tab.Screen>
             <Tab.Screen name="Forum">
               {props => <MessageBoardScreen
