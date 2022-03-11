@@ -8,6 +8,8 @@ import {
   TextInput,
   ScrollView,
   Share,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import MessageModule from './MessageModule';
 import MakeAPost from './MakeAPost';
@@ -17,6 +19,12 @@ import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts,
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other', 'my posts'];
 
 const allPosts = courtDatePosts.concat(contactCourtPosts).concat(legalHelpPosts).concat(transportationPosts).concat(testimonialPosts).concat(otherPosts);
+
+const HideKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 function getSearchedPosts(searchTerm) {
   let searchedPosts = [];
@@ -72,6 +80,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
 
   if (selectedCategory === 'none' && postToDisplay === '') {
     return (
+      <HideKeyboard>
         <View style={{ flex: 1 }}>
           <ImageBackground source={forumBackground} style={{ width: '102%', height: '103%', left: -1 }}>
             <Text style={{ top: 65, color: 'white', fontSize: 26, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Message Board </Text>
@@ -116,6 +125,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
             </ScrollView>
           </ImageBackground>
         </View>
+      </HideKeyboard>
     );
   }
 
@@ -123,7 +133,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
     const posts = getPosts(selectedCategory);
     return (
       <View style={{ flex: 1 }}>
-        <ImageBackground source={swoopBackground} style={{ width: '102%', height: '103%', left: -1 }}>
+        <ImageBackground source={forumBackground} style={{ width: '102%', height: '103%', left: -1 }}>
           <View style={{ flexDirection: 'row', top: 80, justifyContent: 'space-between', width: '90%', alignSelf: 'center' }}>
             <TouchableOpacity style={{ flexDirection: 'row', alignSelf: 'center' }} onPress={() => {
               setSelectedCategory('none');
