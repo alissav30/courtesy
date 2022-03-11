@@ -636,7 +636,7 @@ const styles = StyleSheet.create({
       // marginTop: -180,
       position: 'relative',
       marginTop: -52,
-      bottom: 50,
+      bottom: 140,
       borderRadius: 50,
       alignSelf: 'center',
     },
@@ -844,7 +844,7 @@ checkboxContainer: {
     width: '85%',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    bottom: 30,
+    bottom: 100,
   },
   finalButton: {
     backgroundColor: 'white',
