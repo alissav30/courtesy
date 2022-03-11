@@ -10,23 +10,51 @@ import {
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import TransportationTaskPage from "./TransportationTaskPage";
+import { BarChart } from 'react-native-chart-kit';
+
 
 
 const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
+
   return (
-    <View style={{ flex: 1 }}>
-    <View style={{width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
+    <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
-                    { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
-                ]} onPress={() => setCurrScreen("resources")}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
-                    </View>
-            </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> compare pricing</Text>
-    </View>
+                { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
+            ]} onPress={() => setCurrScreen("resources")}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
+                </View>
+        </TouchableOpacity>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:10, marginLeft: 10, marginTop: 20 }}> Compare Pricing </Text>
+        <View style={{top: 120, justifyContent: "center", alignItems: 'center'}}>
+            <BarChart
+            style={{ flex: 1, margin: 10}}
+            data={{
+                labels: ["Uber", "Lyft", "Bus", "Bike", "Subway"],
+                datasets: [{
+                    data: [19, 15, 10, 3, 5]}]
+                }}
+            width={370}
+            spacing={0.2}
+            height={400}
+            yAxisLabel="$"
+            gridMin={0}
+            contentInset={{ top: 10, bottom: 10 }}
+            chartConfig={{ 
+                backgroundColor: "transparent",
+                backgroundGradientTo: "white",
+                backgroundGradientFromOpacity: 0,
+                backgroundGradientFrom: "white",
+                backgroundGradientToOpacity: 0,
+                color: (opacity = 0.1) => `#FFFFFF`,
+                barPercentage: 0.8,
+                barRadius : 10,  
+               }}
+            verticalLabelRotation={50}
+            />
+        </View>
     </View>
   );
 }
