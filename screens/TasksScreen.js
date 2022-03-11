@@ -30,7 +30,7 @@ import {
 //import MessageBoardScreen from './screens/MessageBoardScreen';
 
 
-const swoopBackground = require("./tasks_background.png");
+const tasksBackground = require("./tasks_background.png");
 
 const TasksScreen = ({ navigation, currScreen, setCurrScreen, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)

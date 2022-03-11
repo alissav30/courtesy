@@ -6,9 +6,17 @@ import {
   View,
   Text,
   TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 
 const swoopBackground = require("./tasks_background.png");
+
+const HideKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
@@ -17,6 +25,7 @@ const MakeTransportationPlan = ({ navigation, navScreen, setNavScreen, currScree
 //  const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
   return (
+    <HideKeyboard>
         <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
             <View>
                 <TouchableOpacity style={[
@@ -78,6 +87,7 @@ const MakeTransportationPlan = ({ navigation, navScreen, setNavScreen, currScree
                 </View>
             </View>
         </View>
+      </HideKeyboard>
     );
 };
 
