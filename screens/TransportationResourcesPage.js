@@ -17,37 +17,40 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'PUBLIC TRANSPORT OPTIONS', code: '#fff' },
-    { name: 'CAR-FOR-HIRE RESOURCES', code: '#fff' },
-    { name: 'DISCOUNTS / PROMOTIONS', code: '#fff' },
-    { name: 'COMPARE PRICING OF OPTIONS', code: '#fff' },
+    { name: 'Public Transport Options', code: '#fff', nextScreen: 'public transport options' },
+    { name: 'Car-For-Hire resources', code: '#fff', nextScreen: 'car-for-hire' },
+    { name: 'Discounts / Promotions', code: '#fff', nextScreen: 'discounts' },
+    { name: 'Compare Pricing of Options', code: '#fff', nextScreen: 'compare pricing' },
   ]);
 
   return (
     <View style={{ flex: 1 }}>
     <View style={{width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
-                    { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25}
+                    { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
                 ]} onPress={() => setCurrScreen("transportation task")}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
             </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out how
-        you’ll get to court!</Text>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> Transportation Resources </Text>
         <View style={{ flex: 0.75 }}>
         <View style={{ flex: 1, marginTop: 120, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
             <FlatGrid
                 itemDimension={130}
                 data={items}
-                style={styles.gridView}
+                style={[styles.gridView, styles.dropShadow]}
                 // staticDimension={300}
                 // fixed
                 spacing={10}
                 renderItem={({ item }) => (
+                    <TouchableOpacity
+                    onPress={() => setCurrScreen(item.nextScreen)}
+                    >
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                     <Text style={styles.itemName}>{item.name}</Text>
                     </View>
+                    </TouchableOpacity>
                 )}
                 />
             </View>
@@ -81,13 +84,20 @@ const styles = StyleSheet.create({
   gridView: {
     marginTop: 10,
     flex: 1,
+    borderRadius: 20
+  },
+  dropShadow:  {
+    shadowColor: '#171717',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
   },
   itemContainer: {
     justifyContent: 'center',
     borderRadius: 5,
     padding: 15,
     height: 130,
-    // marginBottom: 40,
+    marginBottom: 40,
     marginLeft: 10,
     marginRight: 10
   },

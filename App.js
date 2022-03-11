@@ -203,7 +203,7 @@ export default function App() {
                   courtTime={courtTime}
                   onChangeCourtTime={onChangeCourtTime}
                   courtLocation={courtLocation}
-                  onChangeLocation={onChangeLocation}
+                  onChangeCourtLocation={onChangeCourtLocation}
                   />}
             </Tab.Screen>
         </Tab.Navigator>

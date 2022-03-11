@@ -17,7 +17,7 @@ const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const MakeAPlan = ({ navigation, currScreen, setCurrScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
   const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
@@ -26,7 +26,9 @@ const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood
             <View>
                 <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
-                ]}>
+                ]}
+                onPress={()=> setCurrScreen("resources")}
+                >
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
