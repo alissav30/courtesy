@@ -235,8 +235,8 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                                     <TouchableOpacity
                                     onPress={()=>{
                                         setFoundLegalRepresentation(false)
-                                        setLegalRepresentationPlan("Start your plan!")
-                                        onChangeLegalRepresentationPlanDescription("")
+                                        setLegalRepPlan("Start your plan!")
+                                        onChangeLegalPlanDescription("")
                                     }}
                                     >
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
@@ -358,6 +358,8 @@ else if (navScreen == "legalView") {
         courtDate={courtDate}
         courtTime={courtTime}
         child={child}
+        legalRepPlan={legalRepPlan}
+        setLegalRepPlan={setLegalRepPlan}
         legalPlanDescription={legalPlanDescription}
         onChangeLegalPlanDescription={onChangeLegalPlanDescription}
         foundLegalRepresentation={foundLegalRepresentation}
