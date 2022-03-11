@@ -18,10 +18,10 @@ const SettingsScreen = ({ navigation, childCare,
     // eventually replace w/ real data
 //   const fakeName = "Jane";
   const name = firstName;
-  const [weeklyReminders, setWeeklyReminders] = React.useState("false")
-  const [notifyOnNewTask, setNotifyOnNewTask] = React.useState("false")
-  const [notifyWeekBefore, setNotifyWeekBefore] = React.useState("false")
-  const [notifyDayBefore, setNotifyDayBefore] = React.useState("false")
+  const [weeklyReminders, setWeeklyReminders] = React.useState(false)
+  const [notifyOnNewTask, setNotifyOnNewTask] = React.useState(false)
+  const [notifyWeekBefore, setNotifyWeekBefore] = React.useState(false)
+  const [notifyDayBefore, setNotifyDayBefore] = React.useState(false)
 
   const showConfirmDialog = (toChange, setToChange) => {
     return Alert.alert(
