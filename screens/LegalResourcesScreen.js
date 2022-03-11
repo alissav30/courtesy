@@ -14,10 +14,10 @@ const LegalResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCat
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'info on self-representing', code: '#fff', nextScreen: 'public transport options' },
-    { name: 'pro bono (free) legal resources', code: '#fff', nextScreen: 'car-for-hire' },
-    { name: 'find a lawyer near you', code: '#fff', nextScreen: 'discounts' },
-    { name: 'compare pricing of options', code: '#fff', nextScreen: 'compare pricing' },
+    { name: 'info on self-representing', code: '#fff', nextScreen: 'SRL' },
+    { name: 'pro bono (free) legal resources', code: '#fff', nextScreen: 'ProBono' },
+    { name: 'find a lawyer near you', code: '#fff', nextScreen: 'FindLawyer' },
+    { name: 'compare pricing of options', code: '#fff', nextScreen: 'comparePricing' },
   ]);
 
   return (
@@ -42,7 +42,7 @@ const LegalResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCat
                 scrollEnabled={false}
                 renderItem={({ item }) => (
                     <TouchableOpacity
-                    onPress={() => setCurrScreen(item.nextScreen)}
+                    onPress={() => setNavScreen(item.nextScreen)}
                     >
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                     <Text style={styles.itemName}>{item.name}</Text>
