@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
         color: '#779391',
         textAlign: 'center',
         letterSpacing: 0.4,
-        marginTop: 60,
+        marginTop: 80,
         marginBottom: 20,
     },
     inputFields: {
