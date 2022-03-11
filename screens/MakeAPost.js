@@ -166,7 +166,7 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
             title="Make this post anonymous"
             style={styles.checkbox}
             checkedColor="#fff"
-            containerStyle={{ borderWidth: 0, backgroundColor: '#768A89', marginBottom: 80 }}
+            containerStyle={{ borderWidth: 0, backgroundColor: '#768A89', marginBottom: 35 }}
             textStyle={{
                 color: '#DEE2E6',
                 fontSize: 18,
