@@ -20,6 +20,18 @@ import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts,
 const swoopBackground = require("./Message_Board_Background.png");
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other', 'my posts'];
 
+const allPosts = courtDatePosts.concat(contactCourtPosts).concat(legalHelpPosts).concat(transportationPosts).concat(testimonialPosts).concat(otherPosts);
+
+function getSearchedPosts(searchTerm) {
+  let searchedPosts = [];
+  for (let i = 0; i < allPosts.length; i++) {
+    if (allPosts[i].title.toLowerCase().includes(searchTerm.toLowerCase())) {
+      searchedPosts.push(allPosts[i]);
+    }
+  }
+  return searchedPosts;
+}
+
 function getPosts(category) {
   switch (category) {
     case 'my posts':
@@ -70,11 +82,15 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
             <View style={{ width: '90%', top: 90, height: 40, alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
               <View style={styles.searchBar}>
                 <TextInput
-                  style={{ color: 'white', fontSize: 16, height: '100%' }}
+                  style={{ color: 'white', fontSize: 16, height: '100%', width: '90%', paddingLeft: 3 }}
                   onChangeText={setSearchTerm}
                   value={searchTerm}
                 />
-                <MaterialCommunityIcons name={'magnify'} color={'white'} size={20} />
+                <MaterialCommunityIcons name={searchTerm ? 'close' : 'magnify'} color={'white'} size={20} onPress={() => {
+                  if (searchTerm) {
+                    setSearchTerm('');
+                  }
+                }} />
               </View>
               <TouchableOpacity style={styles.makePostButton} onPress={() => setMakeNewPost(true)}>
                 <Text style={{ color: 'white', fontWeight: 'bold'}}> MAKE A POST </Text>
@@ -82,8 +98,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
               </TouchableOpacity>
             </View>
             <ScrollView style={{ top: 130, marginBottom: 150 }} contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }} scrollEnabled>
-            {/*<View style={{ flex: 1, marginTop: 120, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>*/}
-              {
+              { !searchTerm ?
                 categories.map((category) => {
                   return (
                     <TouchableOpacity style={category=="my posts" ? styles.myPostsModule : styles.categoryModule} onPress={() => {
@@ -92,6 +107,11 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
                     }} key={category}>
                       <Text style={styles.categoryText}> {category} </Text>
                     </TouchableOpacity>
+                  )
+                }) :
+                getSearchedPosts(searchTerm).map((post) => {
+                  return (
+                    <MessageModule key={post.title} post={post} setPostToDisplay={setPostToDisplay}/>
                   )
                 })
               }

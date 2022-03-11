@@ -285,36 +285,6 @@ export let otherPosts = [
     description: 'Hi everyone. It\'s starting to look like I might not be able to make it to my court appointment. Does anyone know what the consequences are if I don\'t show up?',
     upvotes: 1,
     comments: []
-  },
-  {
-    title: 'Just got back from my court appointment and want to share my experience!',
-    description: '',
-    upvotes: 21,
-    comments: []
-  },
-  {
-    title: 'Want to share some words of support and advice to everyone going through this process',
-    description: '',
-    upvotes: 33,
-    comments: []
-  },
-  {
-    title: 'Hang in there guys!',
-    description: '',
-    upvotes: 19,
-    comments: []
-  },
-  {
-    title: 'Sending everyone love and support as they go through this :)',
-    description: '',
-    upvotes: 7,
-    comments: []
-  },
-  {
-    title: 'My court story - hopefully you guys can learn from my experience!',
-    description: '',
-    upvotes: 12,
-    comments: []
   }
 ];
 
