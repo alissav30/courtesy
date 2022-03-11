@@ -32,6 +32,7 @@ import ComparePricing from "./ComparePricingScreen"
 import PubTranOptsScreen from './PubTranOptsScreen';
 import Discounts from './DiscountsScreen';
 import CarForHire from './CarForHireResourcesScreen';
+import ChildCareResourcesScreen from './ChildCareResourcesScreen'
 
 
 
@@ -553,6 +554,28 @@ else if (navScreen == "legalResources"){
     child={child}
     //setNextScreen={setNextScreen}
     />
+    )
+}
+else if (navScreen == "childCareResources") {
+    return (
+        <ChildCareResourcesScreen
+        navigation={navigation}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+        navScreen={navScreen}
+        //nextScreen={nextScreen}
+        setNavScreen={setNavScreen}
+        childCarePlan={childCarePlan}
+        setChildCarePlan={setChildCarePlan}
+        mood={mood}
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate}
+        courtTime={courtTime}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        child={child}
+        //setNextScreen={setNextScreen}
+        />
     )
 }
 

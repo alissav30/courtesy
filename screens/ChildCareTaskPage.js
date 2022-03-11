@@ -46,9 +46,8 @@ const ChildCareTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen,
                 <View style={{ flex: 0.8 }}>
                 <View style={{ flex: 1, marginTop: 50, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                         <TouchableOpacity style={styles.categoryModule}
-                        //onPress={() => {
-                        //    setSelectedCategory("transportationView")
-                        //    setCurrScreen("resources")}}
+                        onPress={() => {
+                            setNavScreen("childCareResources")}}
                         >
                         <Text style={styles.categoryText}> access resources to help you get child care.</Text>
                         </TouchableOpacity>
