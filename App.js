@@ -8,7 +8,7 @@ import SignUpFlow from './screens/SignUpFlow';
 import MoodPicker from './screens/MoodPicker';
 import MyPlanScreen from './screens/MyPlanScreen';
 import MessageBoardScreen from './screens/MessageBoardScreen';
-import TaskScreen from './screens/TasksScreen';
+import TasksScreen from './screens/TasksScreen';
 import MakeAPost from './screens/MakeAPost';
 import SettingsScreen from './screens/Settings';
 

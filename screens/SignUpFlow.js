@@ -345,7 +345,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                             Where is your court appointment?
                           </Text>
                           <Text style={[styles.locationHelperText, { marginTop: 10 }]}>
-                              Street name:
+                              Street address:
                           </Text>
                           <View style={styles.locationInput}>
                               <TextInput
