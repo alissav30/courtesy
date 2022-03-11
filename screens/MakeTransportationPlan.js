@@ -91,7 +91,7 @@ const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTrans
                 </TouchableOpacity>
                 </View>
                 {
-                    transportationPlan != "Start your plan!" ?
+                    foundTransportation ?
                     <View>
                         <TouchableOpacity style={styles.explore}
                         onPress={()=>{

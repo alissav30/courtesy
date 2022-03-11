@@ -52,7 +52,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
     const [currLegalScreen, setCurrLegalScreen] = React.useState("legal task")
 
 
-    const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescripption, category) => {
+    const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescription, category) => {
         return Alert.alert(
           "Clear Your Plan",
           `Are you sure you want to clear your ${category} plan?`,
@@ -65,9 +65,9 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
             {
                 text: "Delete",
                 onPress: () => {
-                    setFoundTransportation(false)
-                    setTransportationPlan("Start your plan!")
-                    onChangeTransportationPlanDescription("")
+                    setFoundResource(false)
+                    setResourcePlan("Start your plan!")
+                    onChangeResourcePlanDescription("")
                 },
             },
           ]
@@ -176,7 +176,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                             <Text style={[styles.planHeader]}> Transportation </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
-                                    <Text numberOfLines={1} style={styles.planContentText}> {transportationPlan} </Text>
+                                    <Text numberOfLines={1} style={styles.planContentText}> {foundTransportation ? transportationPlan : "Start your plan!"} </Text>
                                     <TouchableOpacity style={styles.editButton}
                                     onPress={()=> {
                                         if (foundTransportation) {
@@ -213,7 +213,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                             <Text style={[styles.planHeader]}> Legal Representation </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
-                                    <Text numberOfLines={1} style={styles.planContentText}> {legalRepPlan} </Text>
+                                    <Text numberOfLines={1} style={styles.planContentText}> {foundLegalRepresentation ? legalRepPlan : "Start your plan!"} </Text>
                                     <TouchableOpacity style={styles.editButton}
                                     onPress={()=>{
                                         if (foundLegalRepresentation) {
@@ -237,9 +237,8 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                                 <View style={styles.bin}>
                                     <TouchableOpacity
                                     onPress={()=>{
-                                        setFoundLegalRepresentation(false)
-                                        setLegalRepPlan("Start your plan!")
-                                        onChangeLegalPlanDescription("")
+                                        showConfirmDialog(setFoundLegalRepresentation, setLegalRepPlan, onChangeLegalPlanDescription, "legal representation")
+                                    
                                     }}
                                     >
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
@@ -256,7 +255,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                             <Text style={[styles.planHeader]}> Childcare </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
-                                    <Text numberOfLines={1} style={styles.planContentText}> {childCarePlan} </Text>
+                                    <Text numberOfLines={1} style={styles.planContentText}> {foundChildcare ? childCarePlan : "Start your plan!"} </Text>
                                     <TouchableOpacity style={styles.editButton}
                                     onPress={()=>{
                                         if (foundChildcare) {
@@ -280,10 +279,8 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                                 <View style={styles.bin}>
                                     <TouchableOpacity
                                     onPress={()=>{
-                                        setFoundChildCare(false)
-                                        setChildCarePlan("Start your plan!")
-                                        onChangeChildCarePlanDescription("")
-                                    }}
+                                        showConfirmDialog(setFoundChildCare, setChildCarePlan, onChangeChildCarePlanDescription, "childcare")}}
+                            
                                     >
                                     <Ionicons name={'trash-bin'} color={'white'} size={22}/>
                                     </TouchableOpacity>

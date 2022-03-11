@@ -88,7 +88,7 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                 </TouchableOpacity>
                 </View>
                 {
-                    legalRepPlan != "Start your plan!" ?
+                    foundLegalRepresentation ?
                     <View>
                         <TouchableOpacity style={styles.explore}
                         onPress={()=> {
