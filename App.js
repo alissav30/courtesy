@@ -174,7 +174,7 @@ export default function App() {
               {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setIsMoodPicker={setIsMoodPicker } longitude={longitude} latitude={latitude} setLongitude={setLongitude} setLatitude={setLatitude} />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
-            {props => <TaskScreen {...props}
+            {props => <TasksScreen {...props}
                 mood={mood}
                 setSelectedCategory={setSelectedCategory}
                 selectedCategory={selectedCategory}
