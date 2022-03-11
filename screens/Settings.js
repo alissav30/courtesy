@@ -11,7 +11,7 @@ import { CheckBox } from 'react-native-elements'
 
 const SettingsScreen = ({ navigation, childCare,
     courtDate, onChangeCourtDate,
-    location, onChangeLocation,
+    courtLocation, onChangeCourtLocation,
     notifSettings, onChangeNotifSettings, firstName,
     courtTime, onChangeCourtTime,
  }) => {
@@ -65,16 +65,16 @@ const SettingsScreen = ({ navigation, childCare,
                     <Text style={styles.settingsHeader}>edit court time: </Text>
                     <TextInput
                         style={[styles.input, styles.dropShadow]}
-                        onChangeText={onChangeLocation}
-                        value={location}
+                        onChangeText={onChangeCourtTime}
+                        value={courtTime}
                     />
                 </View>
                 <View style={styles.rowLong}>
                     <Text style={styles.settingsHeader}>edit court location: </Text>
                     <TextInput
                         style={[styles.locationInput, styles.dropShadow]}
-                        onChangeText={onChangeLocation}
-                        value={location}
+                        onChangeText={onChangeCourtLocation}
+                        value={courtLocation}
                     />
                 </View>
                 <View>

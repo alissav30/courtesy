@@ -27,7 +27,7 @@ const MakeAPlan = ({ navigation, currScreen, setCurrScreen, transportationPlan, 
                 <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
                 ]}
-                onPress={()=> setCurrScreen("resources")}
+                onPress={()=> setCurrScreen("transportation task")}
                 >
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
