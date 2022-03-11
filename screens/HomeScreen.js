@@ -98,7 +98,7 @@ class HomeScreen extends React.Component {
                   style={styles.moodWordText}
                   onPress={() => setIsMoodPicker(true)}
                 > {mood.toLowerCase() + ' '}</Text>
-                <Text style={styles.moodText}> {homeScreenMoods[moodKey].headerText} </Text>
+                <Text style={styles.moodText}>{homeScreenMoods[moodKey].headerText} </Text>
               </View>
             </View>
             }

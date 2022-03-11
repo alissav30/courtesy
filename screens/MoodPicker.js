@@ -66,6 +66,7 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
             onChangeText={setCustomMood}
             placeholder={'enter a mood here...'}
             placeholderTextColor={'#96ABAA'}
+            maxLength={12}
           />
           <TouchableOpacity style={customMood.length == 0 ? styles.disabledButton : styles.button} onPress={() => {
             if (customMood.length != 0) {
