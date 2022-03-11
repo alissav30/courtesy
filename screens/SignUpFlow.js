@@ -144,7 +144,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
               {/* title */}
               Courtesy
             </Text>
-            <Progress.Bar progress={0.2} width={200} color="white" />
+            <Progress.Bar progress={0} width={200} color="white" />
           </View>
           <View style={styles.questionBox1}>
             <View style={styles.textContainer}>
@@ -196,7 +196,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                     {/* title */}
                     Courtesy
                   </Text>
-                  <Progress.Bar progress={0.4} width={200} color="white" />
+                  <Progress.Bar progress={0.25} width={200} color="white" />
                 </View>
                 <View style={styles.questionBox1}>
                   <View style={styles.textContainer}>
@@ -270,7 +270,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   {/*<Text style={styles.subtitleText}>
                   We're excited to help you get ready for court!
                   </Text>*/}
-                  <Progress.Bar progress={0.6} width={200} color="white" />
+                  <Progress.Bar progress={0.5} width={200} color="white" />
                 </View>
                 <View style={styles.questionBox1}>
                   <View style={styles.textContainer}>
@@ -347,7 +347,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   {/*<Text style={styles.subtitleText}>
                   We're excited to help you get ready for court!
                   </Text>*/}
-                  <Progress.Bar progress={0.8} width={200} color="white" />
+                  <Progress.Bar progress={0.75} width={200} color="white" />
                 </View>
                 <View style={{ paddingTop: '80%', paddingBottom: '50%' }}>
                   <View style={styles.textContainer}>
