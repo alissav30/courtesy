@@ -40,7 +40,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
 
       
     const [foundTransportation, setFoundTransportation] = React.useState(false)
-    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
+    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(legalRep)
     const [foundChildcare, setFoundChildCare] = React.useState(false)
     //const [checkTransportation, setCheckTransportation] = React.useState("")
     //const [navScreen, setNavScreen] = React.useState("my plan")
@@ -50,8 +50,13 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
     const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
     const [childCarePlanDescription, onChangeChildCarePlanDescription] = React.useState("")
     const [currLegalScreen, setCurrLegalScreen] = React.useState("legal task")
+    const [progress, setProgress] = React.useState(3)
 
-    
+    if (legalRep) {
+        setLegalRepPlan("Known")
+    }
+
+
     const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescripption, category) => {
         return Alert.alert(
           "Clear Your Plan",
@@ -74,25 +79,25 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
         );
       };
 
-    let progress = 3;
-    let total = 4;
-    if (car) {
-        if (foundTransportation) {
-            progress++;
-        }
-    }
-    if (child) {
-        if (foundChildcare) {
-            progress++;
-        }
-        total++;
-    }
-    if (legalRep) {
-        if (foundLegalRepresentation) {
-            progress++;
-        }
-        total++;
-    }
+    //let progress = 3;
+    //let total = 4;
+    //if (car) {
+    //    if (foundTransportation) {
+    //        progress++;
+    //    }
+    //}
+    //if (child) {
+    //    if (foundChildcare) {
+    //        progress++;
+    //    }
+    //    total++;
+    //}
+    //if (legalRep) {
+    //    if (foundLegalRepresentation) {
+    //        progress++;
+    //    }
+    //    total++;
+    //}
 
     // if (car == true) {
     //    setTransportationPlan("Have a car!")
@@ -111,7 +116,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
             <Text style={[styles.myPlanHeader]}>My Plan</Text>
             <ScrollView>
                 <View style={styles.progressBar}>
-                    <Progress.Bar progress={0.5} width={200} color="white"/>
+                    <Progress.Bar progress={( progress / 6)} width={200} color="white"/>
                 </View>
                 <View style={styles.inputFields}>
                     <View style={[styles.planItemWithBin]}>
@@ -322,6 +327,8 @@ else if (navScreen == "transportationView") {
         setNavScreen={setNavScreen}
         foundTransportation={foundTransportation}
         setFoundTransportation={setFoundTransportation}
+        progress={progress}
+        setProgress={setProgress}
         />
     )
 }
@@ -369,6 +376,8 @@ else if (navScreen == "legalView") {
         setFoundLegalRepresentation={setFoundLegalRepresentation}
         navScreen={navScreen}
         setNavScreen={setNavScreen}
+        progress={progress}
+        setProgress={setProgress}
         />
     )
 }
@@ -411,6 +420,8 @@ else if (navScreen == "childView") {
         setFoundChildCare={setFoundChildCare}
         navScreen={navScreen}
         setNavScreen={setNavScreen}
+        progress={progress}
+        setProgress={setProgress}
         />
     )
 }

@@ -20,7 +20,7 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalRepPlan, setLegalRepPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeLegalPlan = ({ navigation, progress, setProgress, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalRepPlan, setLegalRepPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
@@ -80,6 +80,7 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                     navigation.navigate(" ")
                     setNavScreen("my plan")
                     setFoundLegalRepresentation(true)
+                    setProgress(progress + 1)
                 }}
                 >
                     {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
@@ -92,7 +93,7 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                     <View>
                         <TouchableOpacity style={styles.explore}
                         onPress={()=> {
-                            setNavScreen("legalResources")
+                            setNavScreen("legalExplore")
                         }}
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>

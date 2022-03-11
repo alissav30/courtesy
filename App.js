@@ -43,7 +43,7 @@ export default function App() {
     const [selectedCategory, setSelectedCategory] = useState('none');
 
     const [car, onChangeCar] = React.useState(false)
-    const [legalRep, onChangeLegalRep] = React.useState(false)
+    const [legalRep, onChangeLegalRep] = React.useState(true)
 
     //const [transportationPlanTitle, onChangeTransportationPlanTitle] = React.useState("")
 
@@ -55,6 +55,7 @@ export default function App() {
     const [navScreen, setNavScreen] = React.useState("my plan")
     const [currScreen, setCurrScreen] = React.useState("tasks")
     const [fromTasks, setFromTasks] = React.useState(false)
+    
 
 
     //if (car == true) {
