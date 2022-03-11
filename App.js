@@ -54,6 +54,8 @@ export default function App() {
     const [taskCompleted, setTaskCompleted] = React.useState(false);
     const [navScreen, setNavScreen] = React.useState("my plan")
     const [currScreen, setCurrScreen] = React.useState("tasks")
+    const [fromTasks, setFromTasks] = React.useState(false)
+
 
     //if (car == true) {
     //    setTransportationPlan("Have a car!")
@@ -201,6 +203,8 @@ export default function App() {
                 setNavScreen={setNavScreen}
                 currScreen={currScreen}
                 setCurrScreen={setCurrScreen}
+                fromTasks={fromTasks}
+                setFromTasks={setFromTasks}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">
@@ -214,6 +218,8 @@ export default function App() {
                         navScreen={navScreen} setNavScreen={setNavScreen}
                         selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                         currScreen={currScreen} setCurrScreen={setCurrScreen}
+                        fromTasks={fromTasks}
+                        setFromTasks={setFromTasks}
                          />}
             </Tab.Screen>
             <Tab.Screen name="Forum">

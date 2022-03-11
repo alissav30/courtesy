@@ -9,21 +9,23 @@ import { FlatGrid } from 'react-native-super-grid';
 
 
 
-const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
+const TransportationResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'public transport options', code: '#fff', nextScreen: 'public transport options' },
-    { name: 'car-for-hire resources', code: '#fff', nextScreen: 'car-for-hire' },
-    { name: 'discounts & promotions', code: '#fff', nextScreen: 'discounts' },
-    { name: 'compare pricing of options', code: '#fff', nextScreen: 'compare pricing' },
+    { name: 'public transport options', code: '#fff', nextScreen: "transportationPublicTransportOptions" },
+    { name: 'car-for-hire resources', code: '#fff', nextScreen: "transportationCar-For-Hire" },
+    { name: 'discounts & promotions', code: '#fff', nextScreen: "transportationDiscounts" },
+    { name: 'compare pricing of options', code: '#fff', nextScreen: "transportationComparePricing" },
   ]);
 
   return (
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
-                ]} onPress={() => setCurrScreen("transportation task")}>
+                ]} onPress={() => {
+                    setNavScreen("transportationExplore")}
+                }>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
@@ -41,7 +43,9 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
                 scrollEnabled={false}
                 renderItem={({ item }) => (
                     <TouchableOpacity
-                    onPress={() => setCurrScreen(item.nextScreen)}
+                    onPress={() => {
+                        setNavScreen(item.nextScreen)}
+                    }
                     >
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                     <Text style={styles.itemName}>{item.name}</Text>
