@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -55,7 +55,7 @@ export default function App() {
     const [navScreen, setNavScreen] = React.useState("my plan")
     const [currScreen, setCurrScreen] = React.useState("tasks")
     const [fromTasks, setFromTasks] = React.useState(false)
-    
+
 
 
     //if (car == true) {
