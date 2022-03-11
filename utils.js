@@ -259,7 +259,7 @@ export let otherPosts = [
   {
     title: 'Is it ok to bring my kids with me to court?',
     description: 'Hi guys! I have two kids (ages 5 and 7) and I cannot find anyone to watch them during my court appointment tomorrow. Is it ok to bring them with me?',
-    upvotes: 4,
+    upvotes: 5,
     comments: []
   },
   {
@@ -284,6 +284,12 @@ export let otherPosts = [
     title: 'What happens if I can\'t make it to my appointment?',
     description: 'Hi everyone. It\'s starting to look like I might not be able to make it to my court appointment. Does anyone know what the consequences are if I don\'t show up?',
     upvotes: 1,
+    comments: []
+  },
+  {
+    title: 'Anyone else have court this week',
+    description: '',
+    upvotes: 3,
     comments: []
   }
 ];

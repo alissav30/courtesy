@@ -78,7 +78,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
     );
   }
 
-  if (selectedCategory === 'none' && postToDisplay === '') {
+  if ((selectedCategory === 'none' && postToDisplay === '') || (!categories.includes(searchTerm) && postToDisplay === '')) {
     return (
       <HideKeyboard>
         <View style={{ flex: 1 }}>
@@ -161,7 +161,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
           <ScrollView style={{ top: 140, marginBottom: 150 }} contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }} scrollEnabled>
           { posts.sort((a, b) => a.upvotes < b.upvotes ? 1 : -1).map((post) => {
               return (
-                <MessageModule key={post.title} post={post} setPostToDisplay={setPostToDisplay}/>
+                <MessageModule key={Math.random()} post={post} setPostToDisplay={setPostToDisplay}/>
               )
             })
           }
@@ -223,7 +223,7 @@ const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, set
           {
             postToDisplay.comments.map((comment, index) => {
               return (
-                <View style={{ marginBottom: 15, backgroundColor: '#E2E2E2', padding: 8, alignSelf: 'flex-start', marginLeft: 20, borderRadius: 15,  }}>
+                <View style={{ marginBottom: 15, backgroundColor: '#E2E2E2', padding: 8, alignSelf: 'flex-start', marginLeft: 20, borderRadius: 15 }} key={Math.random()}>
                   <Text style={{ color: '#596362', fontSize: 16, marginLeft: 4, marginRight: 4 }}>{comment}</Text>
                 </View>
               )
