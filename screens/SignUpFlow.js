@@ -11,6 +11,8 @@ import {
   ImageBackground,
   TextInput,
   Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
@@ -70,6 +72,12 @@ function isTimeFormat(time) {
   return time_regex.test(time);
 }
 
+const HideKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
+
 const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtStreet, onChangeCourtStreet, courtCity, onChangeCourtCity, courtState, onChangeCourtState, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, child, onChangeChild, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(0)
@@ -119,6 +127,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
 
     if (signUpScreenNumber == 1) {
     return (
+      <HideKeyboard>
       <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
           <View style={styles.welcomeTextContainer2}>
             <Text style={styles.welcomeText2}>
@@ -140,7 +149,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       //refInput={(ref) => courtDate = ref}
                       value={firstName}
                       onChangeText={onChangeFirstName}
-                  />
+                    />
                       {/*<Ionicons style={styles.icon} name="calendar-outline" size={45} color="white" />*/}
                     </View>
                 </View>
@@ -176,10 +185,12 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                 </TouchableOpacity>
             </View>
         </View>
+        </HideKeyboard>
         );
     }
     if (signUpScreenNumber == 2) {
         return (
+          <HideKeyboard>
             <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
                 <View style={styles.welcomeTextContainer2}>
                   <Text style={styles.welcomeText2}>
@@ -247,10 +258,12 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       </TouchableOpacity>
                   </View>
               </View>
+            </HideKeyboard>
         );
     }
     if (signUpScreenNumber == 3) {
         return (
+          <HideKeyboard>
             <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
                 <View style={styles.welcomeTextContainer2}>
                   <Text style={styles.welcomeText2}>
@@ -322,10 +335,12 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       </TouchableOpacity>
                   </View>
               </View>
+            </HideKeyboard>
         );
     }
     if (signUpScreenNumber == 4) {
         return (
+          <HideKeyboard>
             <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
                 <View style={styles.welcomeTextContainer2}>
                   <Text style={styles.welcomeText2}>
@@ -409,6 +424,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                       </TouchableOpacity>
                   </View>
               </View>
+            </HideKeyboard>
         );
     }
     if (signUpScreenNumber == 5) {

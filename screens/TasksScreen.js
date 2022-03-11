@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
         lineHeight: 28,
-        color: '#779391',
+        color: '#6B7E7E',
         textAlign: 'center',
         letterSpacing: 0.4,
         marginTop: 70,
