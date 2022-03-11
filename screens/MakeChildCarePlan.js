@@ -43,7 +43,7 @@ const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare
                     <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>child care plan</Text>
                 </View>
                 <View>
-                    <Text style={styles.header}>Child Care Choice:</Text>
+                    <Text style={styles.header}>Childcare Choice:</Text>
                     <TextInput
                         style={[styles.titleBox, styles.dropShadow]}
                         onChangeText={setChildCarePlan}

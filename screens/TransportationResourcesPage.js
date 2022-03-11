@@ -4,6 +4,8 @@ import {
     StyleSheet,
     View,
     Text,
+    Alert,
+    Linking
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 
@@ -15,9 +17,28 @@ const TransportationResourcesPage = ({navigation, navScreen, setNavScreen, setSe
   const [items, setItems] = React.useState([
     { name: 'public transport options', code: '#fff', nextScreen: "transportationPublicTransportOptions" },
     { name: 'car-for-hire resources', code: '#fff', nextScreen: "transportationCar-For-Hire" },
-    { name: 'discounts & promotions', code: '#fff', nextScreen: "transportationDiscounts" },
     { name: 'compare pricing of options', code: '#fff', nextScreen: "transportationComparePricing" },
   ]);
+
+  const showConfirmDialog = (url) => {
+    return Alert.alert(
+      "Courtesy would like to access another app.",
+      `Are you sure you want to navigate away from courtesy?`,
+      [
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+        {
+            text: "Yes",
+            onPress: () => {
+              Linking.openURL(url)
+            },
+        },
+      ]
+    );
+  };
 
   return (
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
@@ -44,7 +65,12 @@ const TransportationResourcesPage = ({navigation, navScreen, setNavScreen, setSe
                 renderItem={({ item }) => (
                     <TouchableOpacity
                     onPress={() => {
-                        setNavScreen(item.nextScreen)}
+                        if (item.name == "public transport options") {
+                          showConfirmDialog("https://www.google.com/maps")
+                        }
+                        else {
+                          setNavScreen(item.nextScreen)}
+                        }
                     }
                     >
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>

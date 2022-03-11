@@ -20,11 +20,7 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-<<<<<<< HEAD
-const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
-=======
 const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresentation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalRepPlan, setLegalRepPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
->>>>>>> cc28bb07c33de0ae99581e507e05f6a86feb2ca5
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
@@ -92,7 +88,7 @@ const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresen
                 </TouchableOpacity>
                 </View>
                 {
-                    legalPlan != "Start your plan!" ?
+                    legalRepPlan != "Start your plan!" ?
                     <View>
                         <TouchableOpacity style={styles.explore}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>
