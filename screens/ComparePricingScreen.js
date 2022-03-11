@@ -14,7 +14,7 @@ import { BarChart } from 'react-native-chart-kit';
 
 
 
-const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
+const ComparePricing = ({navigation, navScreen, setNavScreen, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
 
@@ -22,7 +22,7 @@ const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPl
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
                 { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
-            ]} onPress={() => setCurrScreen("resources")}>
+            ]} onPress={() => setNavScreen("transportationResources")}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                 </View>

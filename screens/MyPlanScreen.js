@@ -22,9 +22,19 @@ import MakeChildCarePlan from './MakeChildCarePlan';
 import ChildCareTasksScreen from './ChildCareTaskPage';
 import { Ionicons } from '@expo/vector-icons';
 
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
+import { getCountdownDays, homeScreenMoods, moods } from '../utils';
+import LegalResourcesPage from './LegalResourcesScreen';
+import TransportationResourcesPage from './TransportationResourcesPage';
+import ComparePricing from "./ComparePricingScreen"
+import PubTranOptsScreen from './PubTranOptsScreen';
+import Discounts from './DiscountsScreen';
+import CarForHire from './CarForHireResourcesScreen';
 
 
-const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+
+const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, setSelectedCategory, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
     const [foundTransportation, setFoundTransportation] = React.useState(false)
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
     const [foundChildcare, setFoundChildCare] = React.useState(false)
@@ -146,6 +156,7 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                                             setNavScreen("transportationView")
                                          }
                                          else {
+                                             setFromTasks(false)
                                              setNavScreen("transportationExplore")}
                                          }}
                                     >
@@ -225,10 +236,10 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                                     <TouchableOpacity style={styles.editButton}
                                     onPress={()=>{
                                         if (foundChildcare) {
-                                            setNavScreen("legalView")
+                                            setNavScreen("childView")
                                         }
                                         else {
-                                            setNavScreen("legalExplore")
+                                            setNavScreen("childExplore")
                                         }
                                     }
                                     }
@@ -310,6 +321,8 @@ else if (navScreen == "transportationExplore") {
             setNavScreen={setNavScreen}
             foundTransportation={foundTransportation}
             setFoundTransportation={setFoundTransportation}
+            fromTasks={fromTasks}
+            setFromTasks={setFromTasks}
         />
     )
 }
@@ -328,6 +341,8 @@ else if (navScreen == "legalView") {
         onChangeLegalPlanDescription={onChangeLegalPlanDescription}
         foundLegalRepresentation={foundLegalRepresentation}
         setFoundLegalRepresentation={setFoundLegalRepresentation}
+        navScreen={navScreen}
+        setNavScreen={setNavScreen}
         />
     )
 }
@@ -348,6 +363,8 @@ else if (navScreen == "legalExplore") {
         child={child}
         foundLegalRepresentation={foundLegalRepresentation}
         setFoundLegalRepresentation={setFoundLegalRepresentation}
+        navScreen={navScreen}
+        setNavScreen={setNavScreen}
         />
     )
 }
@@ -366,6 +383,8 @@ else if (navScreen == "childView") {
         onChangeChildCarePlanDescription={onChangeChildCarePlanDescription}
         foundChildcare={foundChildcare}
         setFoundChildCare={setFoundChildCare}
+        navScreen={navScreen}
+        setNavScreen={setNavScreen}
         />
     )
 }
@@ -386,9 +405,132 @@ else if (navScreen == "childExplore") {
         child={child}
         foundChildcare={foundChildcare}
         setFoundChildCare={setFoundChildCare}
+        navScreen={navScreen}
+        setNavScreen={setNavScreen}
         />
     )
 }
+
+else if (navScreen == "transportationResources") {
+    return (
+        <TransportationResourcesPage
+        navigation={navigation}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+        navScreen={navScreen}
+        //nextScreen={nextScreen}
+        setNavScreen={setNavScreen}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood}
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate}
+        courtTime={courtTime}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        child={child}
+        //setNextScreen={setNextScreen}
+        />
+    )
+}
+
+else if (navScreen == "transportationComparePricing") {
+    return (
+        <ComparePricing
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood}
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate}
+        courtTime={courtTime}
+        child={child}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        navScreen={navScreen}
+        setNavScreen={setNavScreen}
+        />
+    )
+}
+else if (navScreen == "transportationPublicTransportOptions") {
+    return (
+        <PubTranOptsScreen
+    navigation={navigation}
+    transportationPlan={transportationPlan}
+    setTransportationPlan={setTransportationPlan}
+    mood={mood}
+    setIsMoodPicker={setIsMoodPicker}
+    courtDate={courtDate}
+    courtTime={courtTime}
+    child={child}
+    currScreen={currScreen}
+    setCurrScreen={setCurrScreen}
+    navScreen={navScreen}
+    setNavScreen={setNavScreen}
+    />
+    )
+}
+else if (navScreen == "transportationDiscounts") {
+    return (
+    <Discounts
+    navigation={navigation}
+    transportationPlan={transportationPlan}
+    setTransportationPlan={setTransportationPlan}
+    mood={mood}
+    setIsMoodPicker={setIsMoodPicker}
+    courtDate={courtDate}
+    courtTime={courtTime}
+    child={child}
+    currScreen={currScreen}
+    setCurrScreen={setCurrScreen}
+    navScreen={navScreen}
+    setNavScreen={setNavScreen}
+    />
+    )
+}
+else if (navScreen == "transportationCar-For-Hire") {
+    return (
+    <CarForHire
+    navigation={navigation}
+    transportationPlan={transportationPlan}
+    setTransportationPlan={setTransportationPlan}
+    mood={mood}
+    setIsMoodPicker={setIsMoodPicker}
+    courtDate={courtDate}
+    courtTime={courtTime}
+    child={child}
+    currScreen={currScreen}
+    setCurrScreen={setCurrScreen}
+    selectedCategory={selectedCategory}
+    setSelectedCategory={setSelectedCategory}
+    navScreen={navScreen}
+    setNavScreen={setNavScreen}
+    />
+    )
+}
+else if (navScreen == "legalResources"){
+    return (
+    <LegalResourcesPage
+    navigation={navigation}
+    setSelectedCategory={setSelectedCategory}
+    selectedCategory={selectedCategory}
+    navScreen={navScreen}
+    //nextScreen={nextScreen}
+    setNavScreen={setNavScreen}
+    legalRepPlan={legalRepPlan}
+    setLegalRepPlan={setLegalRepPlan}
+    mood={mood}
+    setIsMoodPicker={setIsMoodPicker}
+    courtDate={courtDate}
+    courtTime={courtTime}
+    currScreen={currScreen}
+    setCurrScreen={setCurrScreen}
+    child={child}
+    //setNextScreen={setNextScreen}
+    />
+    )
+}
+
 
 }
 

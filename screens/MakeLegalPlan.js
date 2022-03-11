@@ -20,7 +20,7 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeLegalPlan = ({ navigation, foundLegalRepresentation, setFoundLegalRepresetnation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeLegalPlan = ({ navigation, navScreen, setNavScreen, foundLegalRepresentation, setFoundLegalRepresetnation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
@@ -31,8 +31,9 @@ const MakeLegalPlan = ({ navigation, foundLegalRepresentation, setFoundLegalRepr
                 <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
                 ]}
-                onPress={()=> navigation.navigate(" ")}
-                >
+                onPress={() => {
+                    setNavScreen("my plan")
+                }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
@@ -75,7 +76,11 @@ const MakeLegalPlan = ({ navigation, foundLegalRepresentation, setFoundLegalRepr
                     styles.dropShadow,
                     { height: "25%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
                 ]}
-                onPress={()=>navigation.navigate(" ")}
+                onPress={()=>{
+                    navigation.navigate(" ")
+                    setNavScreen("my plan")
+                    setFoundLegalRepresetnation(true)
+                }}
                 >
                     {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
                     <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> set your plan! </Text>

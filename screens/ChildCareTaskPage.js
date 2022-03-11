@@ -33,7 +33,7 @@ const ChildCareTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen,
                 <View>
                 <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
-                ]} onPress={() => setCurrScreen("tasks")}>
+                ]} onPress={() => setNavScreen("my plan")}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
@@ -54,14 +54,15 @@ const ChildCareTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen,
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                             onPress={() => {
-                                navigation.navigate("Forum")}
+                                navigation.navigate("Forum")
+                                setNavScreen("my plan")
+                            }
                             }>
                         <Text style={styles.categoryText}> discuss childcare options with other courtesy users.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                         onPress={() => {
-                            navigation.navigate(" ")
-                            setNavScreen("transportation")
+                            setNavScreen("childView")
                         }}>
                         <Text style={styles.categoryText}> make your plan! </Text>
                         </TouchableOpacity>

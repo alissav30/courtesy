@@ -32,16 +32,16 @@ import {
 
 const tasksBackground = require("./tasks_background.png");
 
-const TasksScreen = ({ navigation, currScreen, setCurrScreen, taskCompleted, setTaskCompleted, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TasksScreen = ({ navigation, fromTasks, setFromTasks, currScreen, setCurrScreen, taskCompleted, setTaskCompleted, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
+//const [fromTasks, setFromTasks] = React.useState(false)
 //const [currScreen, setCurrScreen] = React.useState("tasks")
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
     moodKey = "other";
   }
-  if (currScreen == "tasks") {
-    return (
+  return (
     <View style={{ flex: 1, padding: 0 }}>
         <ImageBackground source={tasksBackground} style={{width: '100%', height: '110%'}}>
             <Text style={[styles.taskHeader]}>Tasks</Text>
@@ -67,8 +67,10 @@ const [isTransportationTask, setIsTransportationTask] = React.useState(false)
                                     </View>
                                     <TouchableOpacity style={styles.exploreButton}
                                     onPress={() => {
-                                      setCurrScreen("transportation task");
-                                      setTaskCompleted(true);
+                                        navigation.navigate(" ")
+                                        setNavScreen("transportationExplore");
+                                        setTaskCompleted(true);
+                                        setFromTasks(true)
                                     }}>
                                         <View>
                                             <Text style={[{ fontSize: 16, fontWeight: 'bold', alignSelf: 'center', color:"#fff" }, styles.underline]}> EXPLORE OPTIONS → </Text>
@@ -99,131 +101,130 @@ const [isTransportationTask, setIsTransportationTask] = React.useState(false)
         </ImageBackground>
       </View>
     );
-  }
-    else if (currScreen == "transportation task"){
-        return (
-        <TransportationTaskPage
-            navigation={navigation}
-            setSelectedCategory={setSelectedCategory}
-            selectedCategory={selectedCategory}
-            //nextScreen={nextScreen}
-            setCurrScreen={setCurrScreen}
-            currScreen={currScreen}
-            transportationPlan={transportationPlan}
-            setTransportationPlan={setTransportationPlan}
-            mood={mood}
-            setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate}
-            courtTime={courtTime}
-            child={child}
-            navScreen={navScreen}
-            setNavScreen={setNavScreen}
-            //setNextScreen={setNextScreen}
-            />
-        )
-    }
-    else if (currScreen == "resources") {
-        return (
-            <TransportationResourcesPage
-            navigation={navigation}
-            setSelectedCategory={setSelectedCategory}
-            selectedCategory={selectedCategory}
-            //nextScreen={nextScreen}
-            transportationPlan={transportationPlan}
-            setTransportationPlan={setTransportationPlan}
-            mood={mood}
-            setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate}
-            courtTime={courtTime}
-            currScreen={currScreen}
-            setCurrScreen={setCurrScreen}
-            child={child}
-            //setNextScreen={setNextScreen}
-            />
-        )
-    }
-    else if (currScreen == "makePlan") {
-        return (
-            <MakeAPlan
-            navigation={navigation}
-            transportationPlan={transportationPlan}
-            setTransportationPlan={setTransportationPlan}
-            mood={mood}
-            setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate}
-            courtTime={courtTime}
-            child={child}
-            currScreen={currScreen}
-            setCurrScreen={setCurrScreen}
-            />
-        )
-    }
-    else if (currScreen == "compare pricing") {
-        return (
-            <ComparePricing
-            navigation={navigation}
-            transportationPlan={transportationPlan}
-            setTransportationPlan={setTransportationPlan}
-            mood={mood}
-            setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate}
-            courtTime={courtTime}
-            child={child}
-            currScreen={currScreen}
-            setCurrScreen={setCurrScreen}
-            />
-        )
-    }
-    else if (currScreen == "public transport options") {
-        return (
-            <PubTranOptsScreen
-        navigation={navigation}
-        transportationPlan={transportationPlan}
-        setTransportationPlan={setTransportationPlan}
-        mood={mood}
-        setIsMoodPicker={setIsMoodPicker}
-        courtDate={courtDate}
-        courtTime={courtTime}
-        child={child}
-        currScreen={currScreen}
-        setCurrScreen={setCurrScreen}
-        />
-        )
-    }
-    else if (currScreen == "discounts") {
-        return (
-        <Discounts
-        navigation={navigation}
-        transportationPlan={transportationPlan}
-        setTransportationPlan={setTransportationPlan}
-        mood={mood}
-        setIsMoodPicker={setIsMoodPicker}
-        courtDate={courtDate}
-        courtTime={courtTime}
-        child={child}
-        currScreen={currScreen}
-        setCurrScreen={setCurrScreen}
-        />
-        )
-    }
-    else if (currScreen == "car-for-hire") {
-        return (
-        <CarForHire
-        navigation={navigation}
-        transportationPlan={transportationPlan}
-        setTransportationPlan={setTransportationPlan}
-        mood={mood}
-        setIsMoodPicker={setIsMoodPicker}
-        courtDate={courtDate}
-        courtTime={courtTime}
-        child={child}
-        currScreen={currScreen}
-        setCurrScreen={setCurrScreen}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        />
-        )
-    }
+    //else if (currScreen == "transportation task"){
+    //    return (
+    //    <TransportationTaskPage
+    //        navigation={navigation}
+    //        setSelectedCategory={setSelectedCategory}
+    //        selectedCategory={selectedCategory}
+    //        //nextScreen={nextScreen}
+    //        setCurrScreen={setCurrScreen}
+    //        currScreen={currScreen}
+    //        transportationPlan={transportationPlan}
+    //        setTransportationPlan={setTransportationPlan}
+    //        mood={mood}
+    //        setIsMoodPicker={setIsMoodPicker}
+    //        courtDate={courtDate}
+    //        courtTime={courtTime}
+    //        child={child}
+    //        navScreen={navScreen}
+    //        setNavScreen={setNavScreen}
+    //        //setNextScreen={setNextScreen}
+    //        />
+    //    )
+    //}
+    //else if (currScreen == "resources") {
+    //    return (
+    //        <TransportationResourcesPage
+    //        navigation={navigation}
+    //        setSelectedCategory={setSelectedCategory}
+    //        selectedCategory={selectedCategory}
+    //        //nextScreen={nextScreen}
+    //        transportationPlan={transportationPlan}
+    //        setTransportationPlan={setTransportationPlan}
+    //        mood={mood}
+    //        setIsMoodPicker={setIsMoodPicker}
+    //        courtDate={courtDate}
+    //        courtTime={courtTime}
+    //        currScreen={currScreen}
+    //        setCurrScreen={setCurrScreen}
+    //        child={child}
+    //        //setNextScreen={setNextScreen}
+    //        />
+    //    )
+    //}
+    //else if (currScreen == "makePlan") {
+    //    return (
+    //        <MakeAPlan
+    //        navigation={navigation}
+    //        transportationPlan={transportationPlan}
+    //        setTransportationPlan={setTransportationPlan}
+    //        mood={mood}
+    //        setIsMoodPicker={setIsMoodPicker}
+    //        courtDate={courtDate}
+    //        courtTime={courtTime}
+    //        child={child}
+    //        currScreen={currScreen}
+    //        setCurrScreen={setCurrScreen}
+    //        />
+    //    )
+    //}
+    //else if (currScreen == "compare pricing") {
+    //    return (
+    //        <ComparePricing
+    //        navigation={navigation}
+    //        transportationPlan={transportationPlan}
+    //        setTransportationPlan={setTransportationPlan}
+    //        mood={mood}
+    //        setIsMoodPicker={setIsMoodPicker}
+    //        courtDate={courtDate}
+    //        courtTime={courtTime}
+    //        child={child}
+    //        currScreen={currScreen}
+    //        setCurrScreen={setCurrScreen}
+    //        />
+    //    )
+    //}
+    //else if (currScreen == "public transport options") {
+    //    return (
+    //        <PubTranOptsScreen
+    //    navigation={navigation}
+    //    transportationPlan={transportationPlan}
+    //    setTransportationPlan={setTransportationPlan}
+    //    mood={mood}
+    //    setIsMoodPicker={setIsMoodPicker}
+    //    courtDate={courtDate}
+    //    courtTime={courtTime}
+    //    child={child}
+    //    currScreen={currScreen}
+    //    setCurrScreen={setCurrScreen}
+    //    />
+    //    )
+    //}
+    //else if (currScreen == "discounts") {
+    //    return (
+    //    <Discounts
+    //    navigation={navigation}
+    //    transportationPlan={transportationPlan}
+    //    setTransportationPlan={setTransportationPlan}
+    //    mood={mood}
+    //    setIsMoodPicker={setIsMoodPicker}
+    //    courtDate={courtDate}
+    //    courtTime={courtTime}
+    //    child={child}
+    //    currScreen={currScreen}
+    //    setCurrScreen={setCurrScreen}
+    //    />
+    //    )
+    //}
+    //else if (currScreen == "car-for-hire") {
+    //    return (
+    //    <CarForHire
+    //    navigation={navigation}
+    //    transportationPlan={transportationPlan}
+    //    setTransportationPlan={setTransportationPlan}
+    //    mood={mood}
+    //    setIsMoodPicker={setIsMoodPicker}
+    //    courtDate={courtDate}
+    //    courtTime={courtTime}
+    //    child={child}
+    //    currScreen={currScreen}
+    //    setCurrScreen={setCurrScreen}
+    //    selectedCategory={selectedCategory}
+    //    setSelectedCategory={setSelectedCategory}
+    //    />
+    //    )
+    //}
 
 };
 

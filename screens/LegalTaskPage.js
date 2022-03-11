@@ -10,7 +10,7 @@ import {
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const LegalTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, legalRepPlan, setLegalRepPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const LegalTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, legalRepPlan, setLegalRepPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 
   return (
             <View style={{ flex: 1 }}>
@@ -31,18 +31,20 @@ const LegalTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selecte
                 <View style={{ flex: 0.8 }}>
                 <View style={{ flex: 1, marginTop: 50, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                         <TouchableOpacity style={styles.categoryModule}
-                        onPress={() => setCurrScreen("resources")}>
+                        onPress={() => setNavScreen("legalResources")}>
                         <Text style={styles.categoryText}> access resources to help you get legal representation.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                             onPress={() => {
                                 setSelectedCategory("legal")
+                                setNavScreen("my plan")
                                 navigation.navigate("Forum")}
                             }>
                         <Text style={styles.categoryText}> discuss representation options with other courtesy users.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
-                        onPress={() => setCurrScreen("makePlan")}>
+                        onPress={() => 
+                            setNavScreen("legalView")}>
                         <Text style={styles.categoryText}> make your plan! </Text>
                         </TouchableOpacity>
                     </View>

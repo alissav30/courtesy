@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 import {Linking} from 'react-native'
 
 
-const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCategory, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
+const CarForHire = ({navigation, navScreen, setNavScreen, setCurrScreen, setSelectedCategory, selectedCategory, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
     const showConfirmDialog = (url) => {
@@ -40,7 +40,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
                 { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
-            ]} onPress={() => setCurrScreen("resources")}>
+            ]} onPress={() => setNavScreen("transportationResources")}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                 </View>
@@ -86,6 +86,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 onPress={()=>{
                     navigation.navigate("Forum")
                     setSelectedCategory("transportation")
+                    setNavScreen("my plan")
                 }}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>

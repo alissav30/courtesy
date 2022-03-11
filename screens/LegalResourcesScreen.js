@@ -10,7 +10,7 @@ import LegalTaskPage from "./LegalTaskPage";
 
 
 
-const LegalResourcesPage = ({navigation, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, legalRepPlan, setLegalRepPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
+const LegalResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, legalRepPlan, setLegalRepPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
@@ -24,7 +24,7 @@ const LegalResourcesPage = ({navigation, setSelectedCategory, setCurrScreen, cur
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
-                ]} onPress={() => setCurrScreen("legal task")}>
+                ]} onPress={() => setNavScreen("legalExplore")}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>

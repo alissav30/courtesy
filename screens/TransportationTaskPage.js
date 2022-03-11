@@ -20,7 +20,7 @@ import TaskScreen from './TasksScreen';
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TransportationTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TransportationTasksScreen = ({ navigation, fromTasks, setFromTasks, navScreen, setNavScreen, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -33,7 +33,14 @@ const TransportationTasksScreen = ({ navigation, navScreen, setNavScreen, currSc
                 <View>
                 <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
-                ]} onPress={() => setCurrScreen("tasks")}>
+                ]} 
+                onPress={() => {
+                    setNavScreen("my plan")
+                    if (fromTasks == true) {
+                        navigation.navigate("Tasks")
+                        setNavScreen("my plan")
+                    }
+                }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
@@ -46,7 +53,9 @@ const TransportationTasksScreen = ({ navigation, navScreen, setNavScreen, currSc
                 <View style={{ flex: 0.8 }}>
                 <View style={{ flex: 1, marginTop: 50, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                         <TouchableOpacity style={styles.categoryModule}
-                        onPress={() => setCurrScreen("resources")}>
+                        onPress={() => 
+                        setNavScreen("transportationResources")
+                        }>
                         <Text style={styles.categoryText}> access resources to help you get transportation.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
