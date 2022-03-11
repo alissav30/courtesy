@@ -22,6 +22,7 @@ import ComparePricing from "./ComparePricingScreen"
 import PubTranOptsScreen from './PubTranOptsScreen';
 import Discounts from './DiscountsScreen';
 import CarForHire from './CarForHireResourcesScreen';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import {
     Card,
@@ -31,9 +32,9 @@ import {
 
 const swoopBackground = require("./tasks_background_final.png");
 
-const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
-const [isTransportationTask, setIsTransportationTask] = React.useState(false)
-const [currScreen, setCurrScreen] = React.useState("tasks")
+const TasksScreen = ({ navigation, setTaskCompleted, taskCompleted, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const [isTransportationTask, setIsTransportationTask] = React.useState(false);
+const [currScreen, setCurrScreen] = React.useState("tasks");
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -55,17 +56,20 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                             </View>
                             <View style={styles.bottomHalf}>
                                 <View style={styles.taskCardContentWrapper}>
-                                    <View style={styles.taskCardContent}>
-                                        <View style={[styles.checkbox, {top: 5}]}></View>
+                                  <View style={styles.taskCardContent}>
+                                        <MaterialCommunityIcons name={taskCompleted ? 'checkbox-marked-outline' : 'checkbox-blank-outline'} color={'white'} size={24}/>
                                         {/* <CheckBox /> */}
                                         <View style={[styles.task]}>
-                                            <Text style={[{color: "#fff", fontSize: 18,}]}>
+                                            <Text style={taskCompleted ? styles.completedTaskText : styles.taskText}>
                                                 Take some time to explore transportation options
                                             </Text>
                                         </View>
                                     </View>
                                     <TouchableOpacity style={styles.exploreButton}
-                                    onPress={() => setCurrScreen("transportation task")}>
+                                    onPress={() => {
+                                      setCurrScreen("transportation task");
+                                      setTaskCompleted(true);
+                                    }}>
                                         <View>
                                             <Text style={[{ fontSize: 16, fontWeight: 'bold', alignSelf: 'center', color:"#fff" }, styles.underline]}> EXPLORE OPTIONS → </Text>
                                         </View>
@@ -79,13 +83,13 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                     <View style={[styles.card, styles.dropShadow,]}>
                             <View style={styles.topHalfPast}>
                                 <View styles={[styles.cardTitleContainer]}>
-                                        <Text style={[styles.cardTitle, {color: "#fff"}]}>past tasks</Text>
+                                        <Text style={[styles.cardTitle, {color: "#fff"}]}>previous tasks</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomHalf}>
                                 <View style={styles.taskCardContentWrapper}>
                                     <View style={[styles.taskCardContent, { justifyContent: 'center' }]}>
-                                        <Text style={{ color: 'white', fontStyle: 'italic', fontSize: 16 }}> No completed tasks yet </Text>
+                                        <Text style={{ color: 'white', fontStyle: 'italic', fontSize: 16 }}> No past tasks yet </Text>
                                     </View>
                                 </View>
                         </View>
@@ -361,7 +365,13 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.3,
         shadowRadius: 3,
-      },
+    },
+    taskText: {
+      color: "#fff", fontSize: 18,
+    },
+    completedTaskText: {
+      color: "#fff", fontSize: 18, textDecorationLine: 'line-through',
+    }
 });
 
 export default TasksScreen;

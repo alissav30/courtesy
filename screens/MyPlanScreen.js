@@ -20,7 +20,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+const MyPlanScreen = ({ navigation, setTaskCompleted, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
     const [foundTransportation, setFoundTransportation] = React.useState('false')
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState('false')
     const [foundChildcare, setFoundChildCare] = React.useState('false')
@@ -129,8 +129,14 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {transportationPlan} </Text>
                                     <TouchableOpacity style={styles.editButton}
-                                    onPress={()=> {foundTransportation ?  setCheckTransportation("view") : setCheckTransportation("explore")}}
-                                    >
+                                    onPress={() => {
+                                      if (foundTransportation) {
+                                        setCheckTransportation("view");
+                                      } else {
+                                        setCheckTransportation("explore");
+                                      }
+                                      setTaskCompleted(true);
+                                    }}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {foundTransportation ? "view / edit" : "explore!"} </Text>
                                         </View>
