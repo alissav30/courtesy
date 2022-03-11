@@ -59,7 +59,7 @@ const TransportationTasksScreen = ({ navigation, navScreen, setNavScreen, currSc
                         <TouchableOpacity style={styles.categoryModule}
                         onPress={() => {
                             navigation.navigate(" ")
-                            setNavScreen("transportation")
+                            setNavScreen("transportationView")
                         }}>
                         <Text style={styles.categoryText}> make your plan! </Text>
                         </TouchableOpacity>

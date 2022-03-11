@@ -141,7 +141,13 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {transportationPlan} </Text>
                                     <TouchableOpacity style={styles.editButton}
-                                    onPress={()=> {foundTransportation ?  setNavScreen("transportationView") : setNavScreen("transportationExplore")}}
+                                    onPress={()=> {
+                                        if (foundTransportation) {
+                                            setNavScreen("transportationView")
+                                         }
+                                         else {
+                                             setNavScreen("transportationExplore")}
+                                         }}
                                     >
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {foundTransportation ? "view / edit" : "explore!"} </Text>
@@ -153,7 +159,13 @@ const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currS
                         {
                             foundTransportation ?
                                 <View style={styles.bin}>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity
+                                    onPress={()=>{
+                                        setFoundTransportation(false)
+                                        setTransportationPlan("Start your plan!")
+                                        onChangeTransportationPlanDescription("")
+                                    }}
+                                    >
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
                                     </TouchableOpacity>
                                 </View>
@@ -257,10 +269,12 @@ else if (navScreen == "transportationView") {
         child={child}
         transportationPlanDescription={transportationPlanDescription}
         onChangeTransportationPlanDescription={onChangeTransportationPlanDescription}
-        currScreen={currScreen}
+        currScreen={"makePlan"}
         setCurrScreen={setCurrScreen}
         navScreen={navScreen}
         setNavScreen={setNavScreen}
+        foundTransportation={foundTransportation}
+        setFoundTransportation={setFoundTransportation}
         />
     )
 }
@@ -282,7 +296,9 @@ else if (navScreen == "transportationExplore") {
             child={child}
             navScreen={navScreen}
             setNavScreen={setNavScreen}
-            />
+            foundTransportation={foundTransportation}
+            setFoundTransportation={setFoundTransportation}
+        />
     )
 }
 else if (navScreen == "legalView") {
@@ -298,6 +314,8 @@ else if (navScreen == "legalView") {
         child={child}
         legalPlanDescription={legalPlanDescription}
         onChangeLegalPlanDescription={onChangeLegalPlanDescription}
+        foundLegalRepresentation={foundLegalRepresentation}
+        setFoundLegalRepresentation={setFoundLegalRepresentation}
         />
     )
 }
@@ -316,6 +334,8 @@ else if (navScreen == "legalExplore") {
         courtDate={courtDate}
         courtTime={courtTime}
         child={child}
+        foundLegalRepresentation={foundLegalRepresentation}
+        setFoundLegalRepresentation={setFoundLegalRepresentation}
         />
     )
 }
@@ -332,6 +352,8 @@ else if (navScreen == "childView") {
         child={child}
         childCarePlanDescription={childCarePlanDescription}
         onChangeChildCarePlanDescription={onChangeChildCarePlanDescription}
+        foundChildcare={foundChildcare}
+        setFoundChildCare={setFoundChildCare}
         />
     )
 }
@@ -350,6 +372,8 @@ else if (navScreen == "childExplore") {
         courtDate={courtDate}
         courtTime={courtTime}
         child={child}
+        foundChildcare={foundChildcare}
+        setFoundChildCare={setFoundChildCare}
         />
     )
 }

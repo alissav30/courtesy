@@ -20,12 +20,9 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeTransportationPlan = ({ navigation, navScreen, setNavScreen, currScreen, transportationPlanDescription, onChangeTransportationPlanDescription, setCurrScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTransportation, navScreen, setNavScreen, currScreen, transportationPlanDescription, onChangeTransportationPlanDescription, setCurrScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
-
-console.log("currScreen", currScreen)
-console.log("navScreen", navScreen)
 
   return (
     <HideKeyboard>
@@ -81,7 +78,11 @@ console.log("navScreen", navScreen)
                     styles.dropShadow,
                     { height: "25%", width:'37%', borderRadius: '20px', justifyContent: 'center', backgroundColor: 'white' }
                 ]}
-                onPress={()=>navigation.navigate(" ")}
+                onPress={()=>{
+                    navigation.navigate(" ")
+                    setNavScreen("my plan")
+                    setFoundTransportation(true)
+                }}
                 >
                     {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
                     <Text style={{ color: '#768A89', fontSize: 14, fontWeight: 'bold', alignSelf: 'center', alignItems: 'center' }}> set your plan! </Text>
