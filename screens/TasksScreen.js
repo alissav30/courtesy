@@ -34,13 +34,7 @@ const tasksBackground = require("./tasks_background.png");
 
 const TasksScreen = ({ navigation, fromTasks, setFromTasks, currScreen, setCurrScreen, taskCompleted, setTaskCompleted, navScreen, setNavScreen, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
-//const [fromTasks, setFromTasks] = React.useState(false)
-//const [currScreen, setCurrScreen] = React.useState("tasks")
 
-  let moodKey = mood;
-  if (moods.indexOf(mood) == -1) {
-    moodKey = "other";
-  }
   return (
     <View style={{ flex: 1, padding: 0 }}>
         <ImageBackground source={tasksBackground} style={{width: '100%', height: '110%'}}>
