@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(true);
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -47,6 +47,8 @@ export default function App() {
     const [transportationPlan, setTransportationPlan] = React.useState("Start your plan!")
     const [childCarePlan, setChildCarePlan] = React.useState("Start your plan!")
     const [legalRepPlan, setLegalRepPlan] = React.useState("Start your plan!")
+
+    const [taskCompleted, setTaskCompleted] = React.useState(false);
 
     //if (car == true) {
     //    setTransportationPlan("Have a car!")
@@ -187,6 +189,8 @@ export default function App() {
                 courtDate={courtDate}
                 courtTime={courtTime}
                 child={child}
+                taskCompleted={taskCompleted}
+                setTaskCompleted={setTaskCompleted}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">
@@ -196,7 +200,7 @@ export default function App() {
                         setTransportationPlan={setTransportationPlan} childCarePlan={childCarePlan}
                         setChildCarePlan={setChildCarePlan} legalRepPlan={legalRepPlan}
                         setLegalRepPlan={setLegalRepPlan}
-                        courtStreet={courtStreet} courtCity={courtCity} courtState={courtState}
+                        courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setTaskCompleted={setTaskCompleted}
                          />}
             </Tab.Screen>
             <Tab.Screen name="Forum">
