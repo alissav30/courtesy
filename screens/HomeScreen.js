@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   },
   module: {
     backgroundColor: "#85B0AE",
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "#779391",
     position: 'absolute',
     width: '90%',

@@ -12,9 +12,10 @@ import { moods } from '../utils';
 const swoopBackground = require("./home_background.png");
 
 const xCoordinatesOld = [20, 150, 284, 30, 160, 284, 20, 150, 280, 20, 280];
-const xCoordinates =    [3, 35, 65, 4.93, 33.279999999999994, 65, 3, 35, 65, 3, 65];
+const xCoordinates =    [4, 36, 66, 5.93, 34.279999999999994, 66, 4, 36, 66, 4, 66];
 
-const yCoordinates = [30, -15, -185, -160, -195, -380, -350, -370, -550, -530, -640];
+const yCoordinatesOld = [30, -15, -185, -160, -195, -380, -350, -370, -550, -530, -640];
+const yCoordinates = [30, 35, 30, 50, 55, 50, 70, 75, 70, 80, 80];
 
 const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, setIsCustomMoodScreen }) => {
   return (
@@ -28,8 +29,8 @@ const MoodBubble = ({ mood, index, setMood, setIsMoodPicker, setisSignUpFlow, se
       //  setisSignUpFlow(false)
       }
     }}>
-      <View style={[{left: `${xCoordinates[index]}%`,
-      top: yCoordinates[index],
+      <View style={[{left: `${xCoordinates[index] + 1}%`,
+      top: yCoordinatesOld[index],
       position: 'fixed'}, mood == "other..." ? styles.otherBubble : styles.moodBubble
       ]}>
         <Text style={mood=="other..." ? styles.otherText : styles.moodText}> {mood} </Text>
@@ -72,7 +73,7 @@ const MoodPicker = ({ setMood, setIsMoodPicker, setisSignUpFlow, mood, navigatio
   } else {
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#768A89' }}>
-          <Text style={{ color: 'white', fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 70, marginLeft: 50, marginRight: 50, marginBottom: 0}}>Would you like to share how you feel today about your upcoming court summons?</Text>
+          <Text style={{ color: 'white', fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: '22%', marginLeft: 50, marginRight: 50, marginBottom: 0}}>Would you like to share how you feel today about your upcoming court summons?</Text>
           {
             moods.map((mood, key) => {
               return (<MoodBubble mood={mood} key={key} index={key} setMood={setMood} setisSignUpFlow={setisSignUpFlow} setIsMoodPicker={setIsMoodPicker} setIsCustomMoodScreen={setIsCustomMoodScreen}/>)
