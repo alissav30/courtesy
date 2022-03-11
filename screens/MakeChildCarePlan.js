@@ -20,7 +20,7 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare, setFoundChildCare, currScreen, setCurrScreen, childCarePlanDescription, onChangeChildCarePlanDescription, childCarePlan, setChildCarePlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeChildCarePlan = ({ navigation, progress, setProgress, navScreen, setNavScreen, foundChildCare, setFoundChildCare, currScreen, setCurrScreen, childCarePlanDescription, onChangeChildCarePlanDescription, childCarePlan, setChildCarePlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
@@ -79,6 +79,7 @@ const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare
                     navigation.navigate(" ")
                     setNavScreen("my plan")
                     setFoundChildCare(true)
+                    setProgress(progress + 1)
                 }}
                 >
                     {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
@@ -90,9 +91,9 @@ const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare
                     foundChildCare != "Start your plan!" ?
                     <View>
                         <TouchableOpacity style={styles.explore}
-                            //onPress={()=> {
-                            //    setNavScreen("legalResources")
-                            //}}
+                            onPress={()=> {
+                                setNavScreen("childCareExplore")
+                            }}
                             >
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>
                                 <Text style={[{ color: "white", fontSize: 14, fontWeight: '500', fontStyle: 'italic' }, styles.underline]}> want to explore resources again? </Text>

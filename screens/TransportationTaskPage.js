@@ -58,7 +58,7 @@ const TransportationTasksScreen = ({ navigation, fromTasks, setFromTasks, navScr
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                             onPress={() => {
-                                setSelectedCategory("transportationView")
+                                setSelectedCategory('transportation')
                                 navigation.navigate("Forum")}
                             }>
                         <Text style={styles.categoryText}> discuss transportation options with other courtesy users.</Text>

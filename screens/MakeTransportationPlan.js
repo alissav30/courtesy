@@ -20,7 +20,7 @@ const HideKeyboard = ({ children }) => (
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTransportation, navScreen, setNavScreen, currScreen, transportationPlanDescription, onChangeTransportationPlanDescription, setCurrScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeTransportationPlan = ({ navigation, progress, setProgress, foundTransportation, setFoundTransportation, navScreen, setNavScreen, currScreen, transportationPlanDescription, onChangeTransportationPlanDescription, setCurrScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
@@ -83,6 +83,7 @@ const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTrans
                     navigation.navigate(" ")
                     setNavScreen("my plan")
                     setFoundTransportation(true)
+                    setProgress(progress + 1)
                 }}
                 >
                     {/*<View style={{ flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>*/}
@@ -95,7 +96,7 @@ const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTrans
                     <View>
                         <TouchableOpacity style={styles.explore}
                         onPress={()=>{
-                            setNavScreen("transportationResources")
+                            setNavScreen("transportationExplore")
                         }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>
                                 <Text style={[{ color: "white", fontSize: 14, fontWeight: '500', fontStyle: 'italic' }, styles.underline]}> want to explore resources again? </Text>
