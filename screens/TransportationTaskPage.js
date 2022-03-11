@@ -14,13 +14,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import MessageBoardScreen from './MessageBoardScreen';
 import TransportationResourcesPage from './TransportationResourcesPage';
-import MakeAPlan from './MakeAPlan';
+import MakeAPlan from './MakeTransportationPlan';
 import TaskScreen from './TasksScreen';
 
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TransportationTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -51,13 +51,16 @@ const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                             onPress={() => {
-                                setSelectedCategory("transportation")
+                                setSelectedCategory("transportationView")
                                 navigation.navigate("Forum")}
                             }>
                         <Text style={styles.categoryText}> discuss transportation options with other courtesy users.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
-                        onPress={() => setCurrScreen("makePlan")}>
+                        onPress={() => {
+                            navigation.navigate(" ")
+                            setNavScreen("transportation")
+                        }}>
                         <Text style={styles.categoryText}> make your plan! </Text>
                         </TouchableOpacity>
                     </View>
