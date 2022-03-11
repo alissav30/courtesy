@@ -39,11 +39,11 @@ export default function App() {
     const [courtCity, onChangeCourtCity] = useState('');
     const [courtState, onChangeCourtState] = useState('');
     const [courtTime, onChangeCourtTime] = useState("");
-    const [child, onChangeChild] = useState(true);
+    const [child, onChangeChild] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('none');
 
     const [car, onChangeCar] = React.useState(false)
-    const [legalRep, onChangeLegalRep] = React.useState(true)
+    const [legalRep, onChangeLegalRep] = React.useState(false)
 
     //const [transportationPlanTitle, onChangeTransportationPlanTitle] = React.useState("")
 
