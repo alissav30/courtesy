@@ -69,7 +69,7 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                     </View>
                 </View>
 
-                <View style={[styles.container, styles.dropShadow]}>
+                <View style={[styles.container]}>
                     <View style={[styles.card, styles.dropShadow,]}>
                             <View style={styles.topHalfPast}>
                                 <View styles={[styles.cardTitleContainer]}>
@@ -78,14 +78,8 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
                             </View>
                             <View style={styles.bottomHalf}>
                                 <View style={styles.taskCardContentWrapper}>
-                                    <View style={styles.taskCardContent}>
-                                        <View style={[styles.checkbox]}></View>
-                                        {/* <CheckBox /> */}
-                                        <View style={[styles.task]}>
-                                            <Text style={[{color: "#fff"}]}>
-                                            Contact the court to confirm court date and location
-                                            </Text>
-                                        </View>
+                                    <View style={[styles.taskCardContent, { justifyContent: 'center' }]}>
+                                        <Text style={{ color: 'white', fontStyle: 'italic' }}> No completed tasks yet </Text>
                                     </View>
                                 </View>
                         </View>
@@ -162,7 +156,7 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 1, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    borderRadius: 14,
+    borderRadius: 10,
     height: 155,
     width: '90%',
     justifyContent: 'center',
@@ -172,10 +166,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(118, 138, 137, 0.5)",
     shadowColor: '#000',
-    shadowOffset: {width: 1, height: 2},
+    shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    borderRadius: 14,
+    borderRadius: 10,
     height: 135,
     width: '90%',
     justifyContent: 'center',
@@ -219,7 +213,8 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20,
         marginBottom: 30,
-        marginTop: 30
+        marginTop: 30,
+        width: '85%',
         //padding: 10,
         //borderRadius: 30,
         //backgroundColor: '#fff'
