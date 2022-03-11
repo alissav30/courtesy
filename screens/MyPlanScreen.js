@@ -38,7 +38,7 @@ import ChildCareResourcesScreen from './ChildCareResourcesScreen'
 
 const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, setSelectedCategory, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
 
-      
+
     const [foundTransportation, setFoundTransportation] = React.useState(false)
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
     const [foundChildcare, setFoundChildCare] = React.useState(false)
@@ -51,7 +51,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
     const [childCarePlanDescription, onChangeChildCarePlanDescription] = React.useState("")
     const [currLegalScreen, setCurrLegalScreen] = React.useState("legal task")
 
-    
+
     const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescripption, category) => {
         return Alert.alert(
           "Clear Your Plan",
@@ -284,7 +284,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
                                         setChildCarePlan("Start your plan!")
                                         onChangeChildCarePlanDescription("")
                                     }}
-                                    >                                        
+                                    >
                                     <Ionicons name={'trash-bin'} color={'white'} size={22}/>
                                     </TouchableOpacity>
                                 </View>
@@ -628,7 +628,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     planItem: {
-        width: '80%',
+        width: '83%',
         height: 60,
         marginBottom: 50,
         borderRadius: 5,
