@@ -89,7 +89,11 @@ const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare
                 {
                     childCarePlan != "Start your plan!" ?
                     <View>
-                        <TouchableOpacity style={styles.explore}>
+                        <TouchableOpacity style={styles.explore}
+                            //onPress={()=> {
+                            //    setNavScreen("legalResources")
+                            //}}
+                            >
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10, marginTop: 20}}>
                                 <Text style={[{ color: "white", fontSize: 14, fontWeight: '500', fontStyle: 'italic' }, styles.underline]}> want to explore resources again? </Text>
                             </View>
