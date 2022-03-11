@@ -16,6 +16,9 @@ const MakeTransportationPlan = ({ navigation, navScreen, setNavScreen, currScree
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
+console.log("currScreen", currScreen)
+console.log("navScreen", navScreen)
+
   return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
             <View>
@@ -23,7 +26,7 @@ const MakeTransportationPlan = ({ navigation, navScreen, setNavScreen, currScree
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
                 ]}
                 onPress={()=> {
-                    setCurrScreen("transportation task")
+                    //setCurrScreen("transportation task")
                     setNavScreen("my plan")
                 }}
                 >
