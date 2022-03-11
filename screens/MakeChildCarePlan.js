@@ -88,7 +88,7 @@ const MakeChildCarePlan = ({ navigation, progress, setProgress, navScreen, setNa
                 </TouchableOpacity>
                 </View>
                 {
-                    foundChildCare != "Start your plan!" ?
+                    foundChildCare ?
                     <View>
                         <TouchableOpacity style={styles.explore}
                             onPress={()=> {

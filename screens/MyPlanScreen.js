@@ -57,7 +57,7 @@ const MyPlanScreen = ({ navigation, fromTasks, setFromTasks, selectedCategory, s
     }
 
 
-    const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescripption, category) => {
+    const showConfirmDialog = (setFoundResource, setResourcePlan, onChangeResourcePlanDescription, category) => {
         return Alert.alert(
           "Clear Your Plan",
           `Are you sure you want to clear your ${category} plan?`,
