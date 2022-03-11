@@ -122,8 +122,25 @@ const MakeAPost = ({ navigation, setMakeNewPost }) => {
                   }}
                   dropdownIconPosition={"right"}
                   dropdownStyle={styles.dropdown1DropdownStyle}
-                  rowStyle={styles.dropdown1RowStyle}
+                  // rowStyle={styles.dropdown1RowStyle}
                   rowTextStyle={styles.dropdown1RowTxtStyle}
+                  renderCustomizedRowChild={(item, index) => {
+                    if (item !== 'other') {
+                      return (
+                        <View style={styles.dropdown1RowStyle}>
+                          <Text style={styles.dropdown1RowTxtStyle}>{item}</Text>
+                        </View>
+                      );
+                    } else {
+                      return (
+                        <View style={styles.dropdown1FinalRowStyle}>
+                          <Text style={styles.dropdown1RowTxtStyle}>{item}</Text>
+                        </View>
+                      );
+                    }
+                  }}
+                  dropdownBackgroundColor='#495152'
+
                 />
             </View>
         </View>
@@ -274,12 +291,22 @@ const styles = StyleSheet.create({
       borderColor: "#DEE2E6",
     },
     dropdown1BtnTxtStyle: { color: "#DEE2E6", textAlign: "left" },
-    dropdown1DropdownStyle: { backgroundColor: "#EFEFEF" },
+    dropdown1DropdownStyle: { backgroundColor: "#EFEFEF", borderWidth: 0 },
     dropdown1RowStyle: {
       backgroundColor: "#EFEFEF",
       borderBottomColor: "#C5C5C5",
+      height: '100%',
+      justifyContent: 'center',
     },
-    dropdown1RowTxtStyle: { color: "#444", textAlign: "left" },
+    dropdown1FinalRowStyle: {
+      backgroundColor: "#EFEFEF",
+      borderBottomColor: "#495152",
+      height: '100%',
+      justifyContent: 'center',
+      borderBottomLeftRadius: 14,
+      borderBottomRightRadius: 14,
+    },
+    dropdown1RowTxtStyle: { color: "#444", textAlign: "left", paddingLeft: 10 },
     disabledButton: {
       backgroundColor: '#819897',
       width: 130,
