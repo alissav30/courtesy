@@ -14,6 +14,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
+  KeyboardAvoidingView,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
@@ -73,8 +74,11 @@ function isTimeFormat(time) {
   return time_regex.test(time);
 }
 
-const HideKeyboard = ({ children }) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+const HideKeyboard = ({ children, setShiftBoxesUp }) => (
+  <TouchableWithoutFeedback onPress={() => {
+    Keyboard.dismiss();
+    setShiftBoxesUp(false);
+  }}>
     {children}
   </TouchableWithoutFeedback>
 );
@@ -87,6 +91,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
     //const [legalRep, onChangeLegalRep] = React.useState(false)
 
     const [isModalVisible, setIsModalVisible] = React.useState(false);
+    const [shiftBoxesUp, setShiftBoxesUp] = React.useState(false);
 
 
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
@@ -128,7 +133,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
 
     if (signUpScreenNumber == 1) {
     return (
-      <HideKeyboard>
+      <HideKeyboard setShiftBoxesUp={setShiftBoxesUp}>
       <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
           <View style={styles.welcomeTextContainer2}>
             <Text style={styles.welcomeText2}>
@@ -180,7 +185,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
     }
     if (signUpScreenNumber == 2) {
         return (
-          <HideKeyboard>
+          <HideKeyboard setShiftBoxesUp={setShiftBoxesUp}>
             <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
                 <View style={styles.welcomeTextContainer2}>
                   <Text style={styles.welcomeText2}>
@@ -251,7 +256,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
     }
     if (signUpScreenNumber == 3) {
         return (
-          <HideKeyboard>
+          <HideKeyboard setShiftBoxesUp={setShiftBoxesUp}>
             <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
                 <View style={styles.welcomeTextContainer2}>
                   <Text style={styles.welcomeText2}>
@@ -328,8 +333,8 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
     }
     if (signUpScreenNumber == 4) {
         return (
-          <HideKeyboard>
-            <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
+          <HideKeyboard setShiftBoxesUp={setShiftBoxesUp}>
+            <View style={shiftBoxesUp ? styles.shiftedBackground : styles.normalBackground }>
                 <View style={styles.welcomeTextContainer2}>
                   <Text style={styles.welcomeText2}>
                     {/* title */}
@@ -340,7 +345,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </Text>*/}
                   <Progress.Bar progress={0.8} width={200} color="white" />
                 </View>
-                <View style={styles.questionBox1}>
+                <View style={{ paddingTop: '80%', paddingBottom: '50%' }}>
                   <View style={styles.textContainer}>
                       {/* court date question */}
                       <View>
@@ -367,6 +372,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                                 onChangeText={onChangeCourtCity}
                                 value={courtCity}
                                 placeholder=""
+                                onFocus={() => setShiftBoxesUp(true)}
                               />
                           </View>
                           <Text style={styles.locationHelperText}>
@@ -378,6 +384,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                                 onChangeText={onChangeCourtState}
                                 value={courtState}
                                 placeholder=""
+                                onFocus={() => setShiftBoxesUp(true)}
                               />
                           </View>
                       </View>
@@ -626,7 +633,10 @@ const styles = StyleSheet.create({
     errorMessageContainer: {
       backgroundColor: '#A15353',
       width: '80%',
-      marginTop: -180,
+      // marginTop: -180,
+      position: 'relative',
+      marginTop: -52,
+      bottom: 50,
       borderRadius: 50,
       alignSelf: 'center',
     },
@@ -662,13 +672,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       submitButton: {
-        // flex: 1,
-        flexDirection: 'row',
+        flex: 1,
+        flexDirection: 'column',
         // justifyContent: 'space-between',
         // alignSelf: 'center',
-        alignContent: 'space-between',
+        // alignContent: 'space-between',
         left: 0,
-        width: Dimensions.get('window').width,
+        // width: Dimensions.get('window').width,
         // alignItems: 'center',
         // textAlign: "center",
       },
@@ -851,6 +861,19 @@ checkboxContainer: {
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  normalBackground: {
+    flex: 1,
+    paddingTop: 0,
+    backgroundColor: "#85B0AE",
+    alignContent:"flex-start",
+  },
+  shiftedBackground: {
+    flex: 1,
+    paddingTop: 0,
+    backgroundColor: "#85B0AE",
+    alignContent:"flex-start",
+    top: -120,
   }
 });
 
