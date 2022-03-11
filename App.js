@@ -180,6 +180,8 @@ export default function App() {
                 selectedCategory={selectedCategory}
                 transportationPlan={transportationPlan}
                 setTransportationPlan={setTransportationPlan}
+                legalRepPlan={legalRepPlan}
+                setLegalRepPlan={setLegalRepPlan}
                 setIsMoodPicker={setIsMoodPicker}
                 courtLocation={courtLocation}
                 courtDate={courtDate}

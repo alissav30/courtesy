@@ -13,6 +13,8 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 import { getCountdownDays, homeScreenMoods, moods } from '../utils';
+import LegalTasksScreen from './LegalTaskPage';
+import LegalResourcesPage from './LegalResourcesScreen';
 import TransportationTaskPage from "./TransportationTaskPage";
 import TransportationResourcesPage from './TransportationResourcesPage';
 import MakeAPlan from './MakeAPlan';
@@ -29,7 +31,7 @@ import {
 
 const swoopBackground = require("./tasks_background.png");
 
-const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, legalPlan, setLegalPlan, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
 const [currScreen, setCurrScreen] = React.useState("tasks")
 

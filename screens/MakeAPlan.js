@@ -7,11 +7,6 @@ import {
   Text,
   TextInput,
 } from 'react-native';
-import { CheckBox } from 'react-native-elements'
-import { FontAwesome } from '@expo/vector-icons';
-import { TextInputMask } from 'react-native-masked-text'
-import MyPlanScreen from './MyPlanScreen';
-
 
 const swoopBackground = require("./tasks_background.png");
 
@@ -43,7 +38,10 @@ const MakeAPlan = ({ navigation, currScreen, setCurrScreen, transportationPlan, 
                     <TextInput
                         style={[styles.titleBox, styles.dropShadow]}
                         onChangeText={setTransportationPlan}
-                        value={(transportationPlan == "Start your plan!") ?  " " : transportationPlan}
+                        value={(transportationPlan == "Start your plan!") ?  "" : transportationPlan}
+                        maxLength = {50}
+                        placeholder={'Type your choice here.'}
+                        placeholderTextColor={'#dae8e7'}
                     />
                 </View>
                 <View>
@@ -53,9 +51,12 @@ const MakeAPlan = ({ navigation, currScreen, setCurrScreen, transportationPlan, 
                     <TextInput
                         style={[styles.descriptionBox, styles.dropShadow]}
                         onChangeText={onChangeTransportationPlanDescription}
-                        value={transportationPlanDescription ? transportationPlanDescription : ""}
+                        value={!transportationPlanDescription ? "" : transportationPlanDescription}
                         textAlignVertical={'top'}
                         multiline
+                        maxLength = {2000}
+                        placeholder={'Ex. My babysitter\'s number is 123-456-7890'}
+                        placeholderTextColor={'#dae8e7'}
                     />
                 </View>
 

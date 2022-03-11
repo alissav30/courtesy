@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   Alert,
+  ScrollView
 } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'
 import { CheckBox } from 'react-native-elements'
@@ -18,6 +19,7 @@ const SettingsScreen = ({ navigation, childCare,
     // eventually replace w/ real data
 //   const fakeName = "Jane";
   const name = firstName;
+  const [anyCheck, setAnyCheck] = React.useState(false)
   const [weeklyReminders, setWeeklyReminders] = React.useState(false)
   const [notifyOnNewTask, setNotifyOnNewTask] = React.useState(false)
   const [notifyWeekBefore, setNotifyWeekBefore] = React.useState(false)
@@ -48,8 +50,9 @@ const SettingsScreen = ({ navigation, childCare,
   return (
       <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
         <Text style={[styles.myPlanHeader]}>Hi, {name}!</Text>
-        {/* <ScrollView> */}
             <View style={styles.settingsContent}>
+            <ScrollView>
+
                 <View style={styles.row}>
                     <Text style={styles.settingsHeader}>edit court date: </Text>
                     <TextInputMask
@@ -71,33 +74,33 @@ const SettingsScreen = ({ navigation, childCare,
                         value={courtTime}
                     />
                 </View>
-                <View style={styles.row}>
+                <View style={styles.rowLong}>
                     <Text style={styles.settingsHeader}>edit courthouse street: </Text>
                     <TextInput
-                        style={[styles.input, styles.dropShadow]}
+                        style={[styles.locationInput, styles.dropShadow]}
                         onChangeText={onChangeCourtStreet}
                         value={courtStreet}
                     />
                 </View>
-                <View style={styles.row}>
+                <View style={styles.rowLong}>
                     <Text style={styles.settingsHeader}>edit courthouse city: </Text>
                     <TextInput
-                        style={[styles.input, styles.dropShadow]}
+                        style={[styles.locationInput, styles.dropShadow]}
                         onChangeText={onChangeCourtCity}
                         value={courtCity}
                     />
                 </View>
-                <View style={styles.row}>
+                <View style={styles.rowLong}>
                     <Text style={styles.settingsHeader}>edit courthouse state: </Text>
                     <TextInput
-                        style={[styles.input, styles.dropShadow]}
+                        style={[styles.locationInput, styles.dropShadow]}
                         onChangeText={onChangeCourtState}
                         value={courtState}
                     />
                 </View>
                 <View>
                     <Text style={styles.settingsHeader}>edit notification settings: </Text>
-                    {/* <View style={styles.checkboxes}> */}
+                    <View style={styles.checkboxes}>
                     <View>
                         <View style={[styles.checkboxContainer]}>
                             <CheckBox
@@ -108,8 +111,12 @@ const SettingsScreen = ({ navigation, childCare,
                                     if (weeklyReminders) {
                                         setWeeklyReminders(!weeklyReminders)
                                     }
-                                    if (!weeklyReminders) {
+                                    if (!weeklyReminders && !anyCheck) {
                                         showConfirmDialog(weeklyReminders, setWeeklyReminders);
+                                        setAnyCheck(true)
+                                    }
+                                    else if (!weeklyReminders) {
+                                        setWeeklyReminders(!weeklyReminders)
                                     }
                                 }}
                                 style={styles.checkbox}
@@ -131,8 +138,12 @@ const SettingsScreen = ({ navigation, childCare,
                                     if (notifyOnNewTask) {
                                         setNotifyOnNewTask(!notifyOnNewTask)
                                     }
-                                    if (!notifyOnNewTask) {
+                                    if (!notifyOnNewTask && !anyCheck) {
                                         showConfirmDialog(notifyOnNewTask, setNotifyOnNewTask);
+                                        setAnyCheck(true)
+                                    }
+                                    else if (!notifyOnNewTask) {
+                                        setNotifyOnNewTask(!notifyOnNewTask)
                                     }
                                 }}
                                 style={styles.checkbox}
@@ -154,8 +165,12 @@ const SettingsScreen = ({ navigation, childCare,
                                     if (notifyWeekBefore) {
                                         setNotifyWeekBefore(!notifyWeekBefore)
                                     }
-                                    if (!notifyWeekBefore) {
+                                    if (!notifyWeekBefore && !anyCheck) {
                                         showConfirmDialog(notifyWeekBefore, setNotifyWeekBefore);
+                                        setAnyCheck(true)
+                                    }
+                                    else if (!notifyWeekBefore) {
+                                        setNotifyWeekBefore(!notifyWeekBefore)
                                     }
                                 }}
                                 style={styles.checkbox}
@@ -177,8 +192,12 @@ const SettingsScreen = ({ navigation, childCare,
                                     if (notifyDayBefore) {
                                         setNotifyDayBefore(!notifyDayBefore)
                                     }
-                                    if (!notifyDayBefore) {
+                                    if (!notifyDayBefore && !anyCheck) {
                                         showConfirmDialog(notifyDayBefore, setNotifyDayBefore);
+                                        setAnyCheck(true)
+                                    }
+                                    else if (!notifyDayBefore) {
+                                        setNotifyDayBefore(!notifyDayBefore)
                                     }
                                 }}
                                 style={styles.checkbox}
@@ -192,10 +211,10 @@ const SettingsScreen = ({ navigation, childCare,
                             />
                         </View>
                     </View>
-
+                    </View>
                 </View>
+                </ScrollView>
             </View>
-        {/* </ScrollView> */}
       </View>
   );
 };
@@ -248,7 +267,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
       },
     input: {
-        width: 180,
+        width: '44%',
         borderRadius: 6,
         marginBottom: 10,
         marginLeft: 25,
@@ -258,10 +277,10 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     locationInput: {
-        width: '90%',
+        width: '75%',
         borderRadius: 6,
-        marginBottom: 25,
-        left: 20,
+        marginBottom: 10,
+        left: 70,
         // marginLeft: 20,
         top: 12,
         height: 30,
@@ -279,6 +298,7 @@ const styles = StyleSheet.create({
         left: 20,
         marginRight: 30,
         fontSize: 16,
+        paddingBottom: 180,
     },
     underline: {textDecorationLine: 'underline'},
 });

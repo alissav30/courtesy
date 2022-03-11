@@ -4,9 +4,7 @@ import {
     StyleSheet,
     View,
     Text,
-    SafeAreaView,
-    ImageBackground,
-    Dimensions,
+    Alert,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import TransportationTaskPage from "./TransportationTaskPage";
@@ -17,6 +15,27 @@ import {Linking} from 'react-native'
 const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCategory, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
+    const showConfirmDialog = (url) => {
+      return Alert.alert(
+        "Courtesy would like to access another app.",
+        `Are you sure you want to navigate away from courtesy?`,
+        [
+          // The "No" button
+          // Does nothing but dismiss the dialog when tapped
+          {
+            text: "No",
+          },
+          {
+              text: "Yes",
+              onPress: () => {
+                Linking.openURL(url)
+              },
+          },
+        ]
+      );
+    };
+  
+
   return (
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
@@ -26,7 +45,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                 </View>
         </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> Car-For-Hire Resources </Text>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> car-for-hire resources </Text>
         <View style={{flex: 0.5, justifyContent: 'space-between'}}>
             <TouchableOpacity
                 style={[
@@ -34,10 +53,13 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 styles.dropShadow,
                 { top: 140, height: 90, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
-                onPress={()=>{Linking.openURL('https://m.uber.com/ul/')}}
+                onPress={()=>{
+                  showConfirmDialog("https://m.uber.com/ul/")
+                  // Linking.openURL('https://m.uber.com/ul/')
+                }}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}> Check Uber </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}> schedule an Uber </Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -46,10 +68,13 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 styles.dropShadow,
                 { top: 140, height: 90, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
-                onPress={()=>{Linking.openURL('lyft://')}}
+                onPress={()=>{
+                  showConfirmDialog('lyft://')
+                  // Linking.openURL('lyft://')
+                }}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}> Try Lyft </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}> schedule a Lyft </Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -64,7 +89,7 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 }}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center', textAlign: 'center' }}> Ask Someone for a Ride in the Message Board </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center', textAlign: 'center' }}> ask for a ride in the Forum </Text>
                 </View>
             </TouchableOpacity>
         </View>

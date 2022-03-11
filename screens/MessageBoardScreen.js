@@ -4,11 +4,8 @@ import {
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
   ImageBackground,
-  Dimensions,
   TextInput,
-  BackHandler,
   ScrollView,
   Share,
 } from 'react-native';
@@ -78,13 +75,15 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
     return (
         <View style={{ flex: 1 }}>
           <ImageBackground source={swoopBackground} style={{ width: '102%', height: '103%', left: -1 }}>
-            <Text style={{ top: 65, color: 'white', fontSize: 26, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> MESSAGE BOARD </Text>
+            <Text style={{ top: 65, color: 'white', fontSize: 26, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Message Board </Text>
             <View style={{ width: '90%', top: 90, height: 40, alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
               <View style={styles.searchBar}>
                 <TextInput
                   style={{ color: 'white', fontSize: 16, height: '100%', width: '90%', paddingLeft: 3 }}
                   onChangeText={setSearchTerm}
                   value={searchTerm}
+                  placeholder={'search'}
+                  placeholderTextColor={'#dae8e7'}
                 />
                 <MaterialCommunityIcons name={searchTerm ? 'close' : 'magnify'} color={'white'} size={20} onPress={() => {
                   if (searchTerm) {
@@ -144,6 +143,8 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
               style={{ color: 'white', fontSize: 16, height: '100%', width: '90%', paddingLeft: 12 }}
               onChangeText={setSearchTerm}
               value={searchTerm}
+              placeholder={'search'}
+              placeholderTextColor={'#dae8e7'}  
             />
             <MaterialCommunityIcons name={'magnify'} color={'white'} size={20} />
           </View>
@@ -228,6 +229,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
               value={newComment}
               placeholder={'add a comment...'}
               placeholderTextColor={'white'}
+              maxLength = {200}
             />
           </View>
           <TouchableOpacity>
