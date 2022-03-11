@@ -10,7 +10,7 @@ import MyPlanScreen from './screens/MyPlanScreen';
 import MessageBoardScreen from './screens/MessageBoardScreen';
 import TaskScreen from './screens/TasksScreen';
 import MakeAPost from './screens/MakeAPost';
-import SettingsScreen from './screens/Settings'
+import SettingsScreen from './screens/Settings';
 
 const styles = StyleSheet.create({
   dropShadow:  {
@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   }
-})
+});
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -57,8 +57,8 @@ export default function App() {
     //if (legalRep == true) {
     //    setLegalRepPlan("I know what legal representation I'll use.")
     //}
-
-
+    const [longitude, setLongitude] = React.useState(0);
+    const [latitude, setLatitude] = React.useState(0);
 
     if (isSignUpFlow) {
         return  (
@@ -171,7 +171,7 @@ export default function App() {
             })}
         >
             <Tab.Screen name="Home">
-              {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setIsMoodPicker={setIsMoodPicker } />}
+              {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setIsMoodPicker={setIsMoodPicker } longitude={longitude} latitude={latitude} setLongitude={setLongitude} setLatitude={setLatitude} />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
             {props => <TaskScreen {...props}
