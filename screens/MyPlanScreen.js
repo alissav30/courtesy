@@ -24,7 +24,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-const MyPlanScreen = ({ navigation, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+const MyPlanScreen = ({ navigation, selectedCategory, setSelectedCategory, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
     const [foundTransportation, setFoundTransportation] = React.useState(false)
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
     const [foundChildcare, setFoundChildCare] = React.useState(false)
