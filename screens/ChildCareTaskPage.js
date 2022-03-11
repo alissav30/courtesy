@@ -56,7 +56,7 @@ const ChildCareTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen,
                             onPress={() => {
                                 navigation.navigate("Forum")}
                             }>
-                        <Text style={styles.categoryText}> discuss transportation options with other courtesy users.</Text>
+                        <Text style={styles.categoryText}> discuss childcare options with other courtesy users.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                         onPress={() => {

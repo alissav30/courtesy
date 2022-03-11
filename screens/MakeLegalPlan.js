@@ -12,7 +12,7 @@ const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeLegalPlan = ({ navigation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
+const MakeLegalPlan = ({ navigation, foundLegalRepresentation, setFoundLegalRepresetnation, currScreen, setCurrScreen, legalPlanDescription, onChangeLegalPlanDescription, legalPlan, setLegalPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
 //  const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
 
