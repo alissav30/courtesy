@@ -27,40 +27,36 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 </View>
         </TouchableOpacity>
         <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> Car-For-Hire Resources </Text>
-        <View>
+        <View style={{flex: 0.5, justifyContent: 'space-between'}}>
             <TouchableOpacity
                 style={[
                 styles.module,
                 styles.dropShadow,
-                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                { top: 140, height: 90, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
                 onPress={()=>{Linking.openURL('https://m.uber.com/ul/')}}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Check Uber </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}> Check Uber </Text>
                 </View>
             </TouchableOpacity>
-        </View>
-        <View>
             <TouchableOpacity
                 style={[
                 styles.module,
                 styles.dropShadow,
-                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                { top: 140, height: 90, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
                 onPress={()=>{Linking.openURL('lyft://')}}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Try Lyft </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}> Try Lyft </Text>
                 </View>
             </TouchableOpacity>
-        </View>
-        <View>
             <TouchableOpacity
                 style={[
                 styles.module,
                 styles.dropShadow,
-                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                { top: 140, height: 90, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
                 onPress={()=>{
                     navigation.navigate("Forum")
@@ -68,11 +64,11 @@ const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCat
                 }}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Ask Someone for a Ride in the Message Board </Text>
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 'bold', alignSelf: 'center', textAlign: 'center' }}> Ask Someone for a Ride in the Message Board </Text>
                 </View>
             </TouchableOpacity>
         </View>
-</View>
+    </View>
   );
 }
 
@@ -128,10 +124,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   module: {
-    backgroundColor: "#fff",
+    backgroundColor: "#85B0AE",
     borderWidth: 2,
     borderColor: "#779391",
-    position: 'absolute',
+    position: 'relative',
     width: '90%',
     height: "20%",
     left: 20,
