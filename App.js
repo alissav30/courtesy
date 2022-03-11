@@ -144,12 +144,11 @@ export default function App() {
                     shadowColor: "black",
                     boxShadow: "0px 0px 5px #4F403D",
 
-                  }, styles.dropShadow]} onPress={() => setNavScreen("my plan")}>
+                  }, styles.dropShadow]}>
                     <Ionicons
                         name={focused ? 'bookmark' : 'bookmark-outline'}
                         size={size * 1.5}
                         color={"#779391"}
-                        onPress={() => setNavScreen("my plan")}
                     />
                     <Text style={{ color: '#779391', fontSize: 10 }} onPress={() => setNavScreen("my plan")}>My Plan</Text>
                     </View>
