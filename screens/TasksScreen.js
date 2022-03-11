@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ImageBackground,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
@@ -16,11 +17,13 @@ import TransportationTaskPage from "./TransportationTaskPage";
 import TransportationResourcesPage from './TransportationResourcesPage';
 import MakeAPlan from './MakeAPlan';
 
-
+import {
+    Card,
+  } from 'react-native-elements';
 //import MessageBoardScreen from './screens/MessageBoardScreen';
 
 
-const swoopBackground = require("./Message_Board_Background.png");
+const swoopBackground = require("./tasks_background.png");
 
 const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime,courtLocation, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
@@ -32,30 +35,65 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
   }
   if (currScreen == "tasks") {
     return (
-        <View style={{ flex: 1 }}>
-          <ImageBackground source={swoopBackground} style={{width: '102%', height: '103%', left: -1}}>
-            <Text style={{ top: 65, color: 'white', fontSize: 30, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Tasks </Text>
-            <View style={{ flex: 0.75 }}>
-                <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
-                    <TouchableOpacity style={styles.dailyTasksModule}
-                    onPress={() => setCurrScreen("transportation task")}>
-                        <View style={styles.dailyTasksHeader}>
-                            <Text style={styles.tasksText}> Task of the Day </Text>
-                        </View>
-                        <Text style={styles.subtasksText}> Take some time to consider your transportation options for court. </Text>
-                    </TouchableOpacity>
+    <View style={{ flex: 1, padding: 0 }}>
+        <ImageBackground source={swoopBackground} style={{width: '100%', height: '130%'}}>
+            <Text style={[styles.taskHeader]}>Tasks</Text>
+
+            <ScrollView style={{flex: 1}}>
+                <View style={[styles.container, styles.dropShadow]}>
+                    <View style={[styles.card, styles.dropShadow,]}>
+                            <View style={styles.topHalf}>
+                                <View styles={[styles.cardTitleContainer]}>
+                                        <Text style={[styles.cardTitle]}>TASK OF THE DAY</Text>
+                                </View>
+                            </View>
+                            <View style={styles.bottomHalf}>
+                                <View style={styles.taskCardContentWrapper}>
+                                    <View style={styles.taskCardContent}>
+                                        <View style={[styles.checkbox]}></View>
+                                        {/* <CheckBox /> */}
+                                        <View style={[styles.task]}>
+                                            <Text style={[{color: "#fff"}]}>
+                                                Take some time to explore transportation options
+                                            </Text>
+                                        </View>
+                                    </View>
+                                    <TouchableOpacity style={styles.exploreButton}
+                                    onPress={() => setCurrScreen("transportation task")}>
+                                        <View>
+                                            <Text style={[{ fontSize: 14, fontWeight: 'bold', alignSelf: 'center', color:"#fff" }, styles.underline]}> EXPLORE OPTIONS → </Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                    </View>
                 </View>
-                <View style={{ flex: 1, marginTop: 150, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
-                    <TouchableOpacity style={styles.previousTasksModule}>
-                        <View style={styles.previousTasksHeader}>
-                            <Text style={styles.tasksText}> Previous Tasks </Text>
+
+                <View style={[styles.container, styles.dropShadow]}>
+                    <View style={[styles.card, styles.dropShadow,]}>
+                            <View style={styles.topHalfPast}>
+                                <View styles={[styles.cardTitleContainer]}>
+                                        <Text style={[styles.cardTitle, {color: "#fff"}]}>PAST TASKS</Text>
+                                </View>
+                            </View>
+                            <View style={styles.bottomHalf}>
+                                <View style={styles.taskCardContentWrapper}>
+                                    <View style={styles.taskCardContent}>
+                                        <View style={[styles.checkbox]}></View>
+                                        {/* <CheckBox /> */}
+                                        <View style={[styles.task]}>
+                                            <Text style={[{color: "#fff"}]}>
+                                            Contact the court to confirm court date and location
+                                            </Text>
+                                        </View>
+                                    </View>
+                                </View>
                         </View>
-                        <Text style={styles.subtasksText}> None so far! </Text>
-                    </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-          </ImageBackground>
-        </View>
+            </ScrollView>
+        </ImageBackground>
+      </View>
     );
   }
     else if (currScreen == "transportation task"){
@@ -166,7 +204,95 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
     marginTop: 15
-  }
+  },
+      taskHeader: {
+        fontFamily: 'Helvetica',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: 30,
+        lineHeight: 28,
+        color: '#779391',
+        textAlign: 'center',
+        letterSpacing: 0.4,
+        marginTop: 70,
+        marginBottom: 20,
+    },
+    card: {
+        flex: 1,
+        marginRight: 20,
+        marginLeft: 20,
+        marginBottom: 30,
+        marginTop: 30
+        //padding: 10,
+        //borderRadius: 30,
+        //backgroundColor: '#fff'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    cardInnerStyle: {
+        width: '100%',
+        height: '100%',
+    },
+    cardTitleContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        textAlign: 'center'
+    },
+    cardTitle: {
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        color: "#788E96",
+    },
+    taskCardContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+    },
+    checkbox: {
+        borderWidth: 1,
+        width: 20,
+        height: 20,
+        borderColor: "#fff"
+    },
+    task: {
+        marginLeft: 20,
+    },
+    exploreButton: {
+        marginTop: 20,
+    },
+    bottomHalf: {
+        backgroundColor: "#85B0AE",
+        padding: 20,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30
+    },
+    topHalf: {
+        backgroundColor: '#fff',
+        paddingBottom: 20,
+        paddingTop: 20,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+    },
+    topHalfPast: {
+        backgroundColor: '#939393',
+        paddingBottom: 20,
+        paddingTop: 20,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+    },
+    dropShadow:  {
+        shadowColor: '#171717',
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+      },
 });
 
 export default TasksScreen;
