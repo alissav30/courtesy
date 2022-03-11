@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import {Linking} from 'react-native'
 
 
-const CarForHire = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
+const CarForHire = ({navigation, setCurrScreen, setSelectedCategory, selectedCategory, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   return (
@@ -32,13 +32,43 @@ const CarForHire = ({navigation, setCurrScreen, currScreen, transportationPlan, 
                 style={[
                 styles.module,
                 styles.dropShadow,
-                { top: 100, height: 80, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
                 ]}
                 onPress={()=>{Linking.openURL('https://m.uber.com/ul/')}}
                 >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
-                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> CLICK HERE TO CALL YOUR COURTHOUSE </Text>
-                <Ionicons name={'call'} color={'white'} size={22} styles={{ marginLeft: 18 }}/>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Check Uber </Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+        <View>
+            <TouchableOpacity
+                style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                ]}
+                onPress={()=>{Linking.openURL('lyft://')}}
+                >
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Try Lyft </Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+        <View>
+            <TouchableOpacity
+                style={[
+                styles.module,
+                styles.dropShadow,
+                { top: 100, height: 70, borderRadius: '18px', justifyContent: 'center', padding: 20 }
+                ]}
+                onPress={()=>{
+                    navigation.navigate("Forum")
+                    setSelectedCategory("transportation")
+                }}
+                >
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10}}>
+                <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }}> Ask Someone for a Ride in the Message Board </Text>
                 </View>
             </TouchableOpacity>
         </View>
