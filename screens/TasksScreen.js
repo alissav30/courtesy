@@ -215,6 +215,8 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
         child={child}
         currScreen={currScreen}
         setCurrScreen={setCurrScreen}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
         />
         )
     }
