@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Courtesy",
+    "name": "courtesy",
     "slug": "snack-0150c917-7c62-455a-8990-4d5d86919707",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Untitled-1.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/eep.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#768A89"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
