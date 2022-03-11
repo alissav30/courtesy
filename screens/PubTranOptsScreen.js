@@ -9,7 +9,6 @@ import {
     Dimensions,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
-import TransportationTaskPage from "./TransportationTaskPage";
 import MapView from 'react-native-maps';
 
 
@@ -19,7 +18,7 @@ import MapView from 'react-native-maps';
 //      center: { lat: 51.501904, lng: -0.115871 },
 //    });
 //    const transitLayer = new google.maps.TransitLayer();
-  
+
 //    transitLayer.setMap(map);
 //  }
 
