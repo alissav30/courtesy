@@ -10,8 +10,8 @@ import { TextInputMask } from 'react-native-masked-text'
 import { CheckBox } from 'react-native-elements'
 
 const SettingsScreen = ({ navigation, childCare,
-    courtDate, onChangeCourtDate,
-    courtLocation, onChangeCourtLocation,
+    courtDate, onChangeCourtDate, courtStreet, courtCity, courtState,
+    onChangeCourtStreet, onChangeCourtCity, onChangeCourtState,
     notifSettings, onChangeNotifSettings, firstName,
     courtTime, onChangeCourtTime,
  }) => {
@@ -22,6 +22,8 @@ const SettingsScreen = ({ navigation, childCare,
   const [notifyOnNewTask, setNotifyOnNewTask] = React.useState(false)
   const [notifyWeekBefore, setNotifyWeekBefore] = React.useState(false)
   const [notifyDayBefore, setNotifyDayBefore] = React.useState(false)
+
+  const courtLocation = `${courtStreet}, ${courtCity}, ${courtState}`;
 
   const showConfirmDialog = (toChange, setToChange) => {
     return Alert.alert(
@@ -69,12 +71,28 @@ const SettingsScreen = ({ navigation, childCare,
                         value={courtTime}
                     />
                 </View>
-                <View style={styles.rowLong}>
-                    <Text style={styles.settingsHeader}>edit court location: </Text>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit courthouse street: </Text>
                     <TextInput
-                        style={[styles.locationInput, styles.dropShadow]}
-                        onChangeText={onChangeCourtLocation}
-                        value={courtLocation}
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeCourtStreet}
+                        value={courtStreet}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit courthouse city: </Text>
+                    <TextInput
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeCourtCity}
+                        value={courtCity}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.settingsHeader}>edit courthouse state: </Text>
+                    <TextInput
+                        style={[styles.input, styles.dropShadow]}
+                        onChangeText={onChangeCourtState}
+                        value={courtState}
                     />
                 </View>
                 <View>
@@ -172,7 +190,7 @@ const SettingsScreen = ({ navigation, childCare,
                                     fontWeight: "light"
                                 }}
                             />
-                        </View> 
+                        </View>
                     </View>
 
                 </View>

@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import {Linking} from 'react-native'
 
 
-const CarForHire = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
+const CarForHire = ({navigation, setCurrScreen, currScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   return (
