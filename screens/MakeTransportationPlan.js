@@ -6,9 +6,17 @@ import {
   View,
   Text,
   TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 
 const swoopBackground = require("./tasks_background.png");
+
+const HideKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
@@ -20,6 +28,7 @@ console.log("currScreen", currScreen)
 console.log("navScreen", navScreen)
 
   return (
+    <HideKeyboard>
         <View style={{ flex: 1, padding: 0, backgroundColor: '#85B0AE' }}>
             <View>
                 <TouchableOpacity style={[
@@ -81,6 +90,7 @@ console.log("navScreen", navScreen)
                 </View>
             </View>
         </View>
+      </HideKeyboard>
     );
 };
 
