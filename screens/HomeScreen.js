@@ -35,13 +35,15 @@ class HomeScreen extends React.Component {
   async componentDidMount() {
     Geocode.setApiKey("AIzaSyDzV35DFTwO9PmKmQyqr3TBNqvZ2GNYg6E");
     Geocode.setLocationType("ROOFTOP");
-    const address = `${this.props.courtStreet}, ${this.props.courtCity}, ${this.props.courtState}`;
+    let address = `${this.props.courtStreet}, ${this.props.courtCity}, ${this.props.courtState}`;
+    if (!this.props.courtStreet || !this.props.courtCity || !this.props.courtState) {
+      address = '650 Mayfield Ave, Stanford, CA';
+    }
     const coordinates = await Geocode.fromAddress(address).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         // this.setState({ longitude: lng });
         // this.setState({ latitude: lat });
-        console.log('done w this');
         // console.log(lat, lng);
         return { lng: lng, lat: lat };
       },
@@ -58,9 +60,6 @@ class HomeScreen extends React.Component {
 
     const fakeDataCourtDate = new Date(courtDate);
     const name = firstName;
-
-    console.log('longitude: ', longitude);
-    console.log('latitude: ', latitude);
 
     let moodKey = mood;
     if (moods.indexOf(mood) == -1) {
