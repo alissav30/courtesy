@@ -40,8 +40,7 @@ const ChildCareTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen,
                 </TouchableOpacity>
                 </View>
                 <View>
-                <Text style={{ top: 30, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out how
-                you’ll get child care!</Text>
+                <Text style={{ top: 30, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> let’s figure out your plans for childcare!</Text>
                 </View>
                 <View style={{ flex: 0.8 }}>
                 <View style={{ flex: 1, marginTop: 50, marginBottom: 50, justifyContent: 'space-between', alignItems: 'center' }}>
@@ -49,7 +48,7 @@ const ChildCareTasksScreen = ({ navigation, navScreen, setNavScreen, currScreen,
                         onPress={() => {
                             setNavScreen("childCareResources")}}
                         >
-                        <Text style={styles.categoryText}> access resources to help you get child care.</Text>
+                        <Text style={styles.categoryText}> access resources to help you get childcare.</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.categoryModule}
                             onPress={() => {

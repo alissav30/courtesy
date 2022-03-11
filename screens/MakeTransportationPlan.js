@@ -68,7 +68,7 @@ const MakeTransportationPlan = ({ navigation, foundTransportation, setFoundTrans
                         textAlignVertical={'top'}
                         multiline
                         maxLength = {2000}
-                        placeholder={'Ex. My babysitter\'s number is 123-456-7890'}
+                        placeholder={'Ex. Called Mom and updated her on my plan.'}
                         placeholderTextColor={'#dae8e7'}
                     />
                 </View>

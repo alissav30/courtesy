@@ -4,6 +4,8 @@ import {
     StyleSheet,
     View,
     Text,
+    Alert,
+    Linking
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import LegalTaskPage from "./LegalTaskPage";
@@ -14,11 +16,30 @@ const LegalResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCat
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'info on self-representing', code: '#fff', nextScreen: 'SRL' },
-    { name: 'pro bono (free) legal resources', code: '#fff', nextScreen: 'ProBono' },
-    { name: 'find a lawyer near you', code: '#fff', nextScreen: 'FindLawyer' },
-    { name: 'compare pricing of options', code: '#fff', nextScreen: 'comparePricing' },
+    { name: 'info on self-representing', code: '#fff', url: 'https://www.courts.ca.gov/1076.htm?rdeLocaleAttr=en' },
+    { name: 'pro bono (free) legal resources', code: '#fff', url: 'https://www.americanbar.org/groups/legal_services/flh-home/flh-free-legal-help/' },
+    { name: 'find a lawyer near you', code: '#fff', url: 'https://lawyers.findlaw.com/' },
   ]);
+
+  const showConfirmDialog = (url) => {
+    return Alert.alert(
+      "Courtesy would like to access another app.",
+      `Are you sure you want to navigate away from courtesy?`,
+      [
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+        {
+            text: "Yes",
+            onPress: () => {
+              Linking.openURL(url)
+            },
+        },
+      ]
+    );
+  };
 
   return (
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
@@ -42,7 +63,7 @@ const LegalResourcesPage = ({navigation, navScreen, setNavScreen, setSelectedCat
                 scrollEnabled={false}
                 renderItem={({ item }) => (
                     <TouchableOpacity
-                    //onPress={() => setNavScreen(item.nextScreen)}
+                    onPress={() => showConfirmDialog(item.url)}
                     >
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                     <Text style={styles.itemName}>{item.name}</Text>

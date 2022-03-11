@@ -40,7 +40,7 @@ const MakeChildCarePlan = ({ navigation, navScreen, setNavScreen, foundChildCare
             </View>
             <View style={styles.fullPage}>
                 <View>
-                    <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>child care plan</Text>
+                    <Text style={[styles.makeAPostHeader, {color: '#F8F9FA'}]}>childcare plan</Text>
                 </View>
                 <View>
                     <Text style={styles.header}>Childcare Choice:</Text>

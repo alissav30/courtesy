@@ -4,6 +4,8 @@ import {
     StyleSheet,
     View,
     Text,
+    Alert,
+    Linking
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import LegalTaskPage from "./LegalTaskPage";
@@ -14,9 +16,29 @@ const ChildResourcesScreen = ({navigation, navScreen, setNavScreen, setSelectedC
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
-    { name: 'info on self-representing', code: '#fff', nextScreen: 'SRL' },
-    { name: 'pro bono (free) legal resources', code: '#fff', nextScreen: 'ProBono' },
+    { name: 'see your state\'s resources', code: '#fff', url: 'https://childcare.gov/state-resources-home' },
+    { name: 'find a nearby babysitter', code: '#fff', url: 'https://www.care.com/babysitters' },
   ]);
+
+  const showConfirmDialog = (url) => {
+    return Alert.alert(
+      "Courtesy would like to access another app.",
+      `Are you sure you want to navigate away from courtesy?`,
+      [
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+        {
+            text: "Yes",
+            onPress: () => {
+              Linking.openURL(url)
+            },
+        },
+      ]
+    );
+  };
 
   return (
     <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
@@ -27,7 +49,7 @@ const ChildResourcesScreen = ({navigation, navScreen, setNavScreen, setSelectedC
                     <Text style={{ color: "white", fontSize: 14, fontWeight: 'bold', alignSelf: 'center' }}>  ←  BACK </Text>
                     </View>
             </TouchableOpacity>
-        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> legal representation resources </Text>
+        <Text style={{ top: 65, color: 'white', fontSize: 28, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center', marginRight:20, marginLeft: 20, marginTop: 20 }}> childcare resources </Text>
         <View style={{ flex: 0.75 }}>
         <View style={{ flex: 1, marginTop: 120, justifyContent: 'space-between', alignItems: 'center' }}>
             <FlatGrid
@@ -40,7 +62,9 @@ const ChildResourcesScreen = ({navigation, navScreen, setNavScreen, setSelectedC
                 scrollEnabled={false}
                 renderItem={({ item }) => (
                     <TouchableOpacity
-                    //onPress={() => setNavScreen(item.nextScreen)}
+                    onPress={() => {
+                      showConfirmDialog(item.url)}
+                    }
                     >
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                     <Text style={styles.itemName}>{item.name}</Text>
