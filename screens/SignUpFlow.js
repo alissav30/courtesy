@@ -345,7 +345,7 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   </Text>*/}
                   <Progress.Bar progress={0.8} width={200} color="white" />
                 </View>
-                <View style={styles.questionBox1}>
+                <View style={{ paddingTop: '80%', paddingBottom: '50%' }}>
                   <View style={styles.textContainer}>
                       {/* court date question */}
                       <View>
@@ -633,7 +633,10 @@ const styles = StyleSheet.create({
     errorMessageContainer: {
       backgroundColor: '#A15353',
       width: '80%',
-      marginTop: -180,
+      // marginTop: -180,
+      position: 'relative',
+      marginTop: -52,
+      bottom: 50,
       borderRadius: 50,
       alignSelf: 'center',
     },
@@ -861,13 +864,13 @@ checkboxContainer: {
   },
   normalBackground: {
     flex: 1,
-    paddingTop: 80,
+    paddingTop: 0,
     backgroundColor: "#85B0AE",
-    alignContent:"flex-start"
+    alignContent:"flex-start",
   },
   shiftedBackground: {
     flex: 1,
-    paddingTop: 80,
+    paddingTop: 0,
     backgroundColor: "#85B0AE",
     alignContent:"flex-start",
     top: -120,
