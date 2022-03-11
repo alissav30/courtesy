@@ -96,6 +96,10 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
 
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
+    Keyboard.addListener("keyboardWillHide", () => {
+      setShiftBoxesUp(false);
+    });
+
     if (signUpScreenNumber == 0) {
       return (
         <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
