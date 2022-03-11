@@ -45,11 +45,15 @@ class HomeScreen extends React.Component {
         return { lng: lng, lat: lat };
       },
       (error) => {
-        console.error(error);
+        this.props.setLongitude(-121.9449688);
+        this.props.setLatitude(37.348337);
+        // console.error(error);
       }
     );
-    this.props.setLongitude(coordinates.lng);
-    this.props.setLatitude(coordinates.lat);
+    if (coordinates !== undefined) {
+      this.props.setLongitude(coordinates.lng);
+      this.props.setLatitude(coordinates.lat);
+    }
   }
 
   render() {
