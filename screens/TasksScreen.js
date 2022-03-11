@@ -25,7 +25,7 @@ import {
 
 const swoopBackground = require("./tasks_background.png");
 
-const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime,courtLocation, child }) => {
+const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
 const [currScreen, setCurrScreen] = React.useState("tasks")
 
@@ -98,7 +98,7 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
   }
     else if (currScreen == "transportation task"){
         return (
-        <TransportationTaskPage 
+        <TransportationTaskPage
             navigation={navigation}
             setSelectedCategory={setSelectedCategory}
             selectedCategory={selectedCategory}
@@ -107,11 +107,10 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
             currScreen={currScreen}
             transportationPlan={transportationPlan}
             setTransportationPlan={setTransportationPlan}
-            mood={mood} 
+            mood={mood}
             setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate} 
-            courtTime={courtTime} 
-            courtLocation={courtLocation}
+            courtDate={courtDate}
+            courtTime={courtTime}
             child={child}
             //setNextScreen={setNextScreen}
             />
@@ -126,11 +125,10 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
             //nextScreen={nextScreen}
             transportationPlan={transportationPlan}
             setTransportationPlan={setTransportationPlan}
-            mood={mood} 
+            mood={mood}
             setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate} 
-            courtTime={courtTime} 
-            courtLocation={courtLocation}
+            courtDate={courtDate}
+            courtTime={courtTime}
             currScreen={currScreen}
             setCurrScreen={setCurrScreen}
             child={child}
@@ -144,11 +142,10 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
             navigation={navigation}
             transportationPlan={transportationPlan}
             setTransportationPlan={setTransportationPlan}
-            mood={mood} 
+            mood={mood}
             setIsMoodPicker={setIsMoodPicker}
-            courtDate={courtDate} 
-            courtTime={courtTime} 
-            courtLocation={courtLocation}
+            courtDate={courtDate}
+            courtTime={courtTime}
             child={child}
             />
         )

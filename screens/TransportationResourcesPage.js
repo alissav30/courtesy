@@ -13,7 +13,7 @@ import TransportationTaskPage from "./TransportationTaskPage";
 
 
 
-const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, child, setNextScreen}) => {
+const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrScreen, currScreen, selectedCategory,nextScreen, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, child, setNextScreen}) => {
     //const [backButton, setBackButton] = React.useState(false)
 
   const [items, setItems] = React.useState([
@@ -59,18 +59,17 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
 //else if (backButton == true) {
 //    console.log("getting back true")
 //    return (
-//    <TransportationTaskPage 
+//    <TransportationTaskPage
 //        navigation={navigation}
 //        setSelectedCategory={setSelectedCategory}
 //        selectedCategory={selectedCategory}
 //        nextScreen={nextScreen}
 //        transportationPlan={transportationPlan}
 //        setTransportationPlan={setTransportationPlan}
-//        mood={mood} 
+//        mood={mood}
 //        setIsMoodPicker={setIsMoodPicker}
-//        courtDate={courtDate} 
-//        courtTime={courtTime} 
-//        courtLocation={courtLocation}
+//        courtDate={courtDate}
+//        courtTime={courtTime}
 //        child={child}
 //        setNextScreen={setNextScreen}/>
 //    )

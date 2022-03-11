@@ -20,13 +20,13 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, courtTime, courtLocation, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
     const [foundTransportation, setFoundTransportation] = React.useState('false')
     const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState('false')
     const [foundChildcare, setFoundChildCare] = React.useState('false')
     const [checkTransportation, setCheckTransportation] = React.useState("")
     console.log("transportation plan", transportationPlan)
-
+    const courtLocation = `${courtStreet}, ${courtCity}, ${courtState}`;
 
     let progress = 3;
     let total = 4;
@@ -139,7 +139,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             </View>
                         </View>
                         {
-                            foundTransportation ? 
+                            foundTransportation ?
                                 <View style={styles.bin}>
                                     <TouchableOpacity>
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
@@ -164,7 +164,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             </View>
                         </View>
                         {
-                            foundLegalRepresentation ? 
+                            foundLegalRepresentation ?
                                 <View style={styles.bin}>
                                     <TouchableOpacity>
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
@@ -173,7 +173,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             :
                                 <View></View>
                         }
-                        
+
                     </View>
                     {child ?
                     <View style={[styles.planItemWithBin]}>
@@ -191,7 +191,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             </View>
                         </View>
                         {
-                            foundChildcare ? 
+                            foundChildcare ?
                                 <View style={styles.bin}>
                                     <TouchableOpacity>
                                         <Ionicons name={'trash-bin'} color={'white'} size={22}/>
@@ -200,7 +200,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             :
                                 <View></View>
                         }
-                        
+
                     </View>
                         :
                     <View></View>
@@ -217,11 +217,10 @@ if (checkTransportation == "view") {
         navigation={navigation}
         transportationPlan={transportationPlan}
         setTransportationPlan={setTransportationPlan}
-        mood={mood} 
+        mood={mood}
         setIsMoodPicker={setIsMoodPicker}
-        courtDate={courtDate} 
-        courtTime={courtTime} 
-        courtLocation={courtLocation}
+        courtDate={courtDate}
+        courtTime={courtTime}
         child={child}
         />
     )
@@ -235,11 +234,10 @@ if (checkTransportation == "explore") {
         nextScreen={nextScreen}
         transportationPlan={transportationPlan}
         setTransportationPlan={setTransportationPlan}
-        mood={mood} 
+        mood={mood}
         setIsMoodPicker={setIsMoodPicker}
-        courtDate={courtDate} 
-        courtTime={courtTime} 
-        courtLocation={courtLocation}
+        courtDate={courtDate}
+        courtTime={courtTime}
         child={child}
         setNextScreen={setNextScreen}/>
     )

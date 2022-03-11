@@ -17,7 +17,7 @@ const swoopBackground = require("./tasks_background.png");
 
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other'];
 
-const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime,courtLocation, childCare }) => {
+const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood, setIsMoodPicker, courtDate, courtTime, childCare }) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
   const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
 
@@ -45,7 +45,7 @@ const MakeAPlan = ({ navigation, transportationPlan, setTransportationPlan, mood
                     />
                 </View>
                 <View>
-                    <Text style={[styles.header, styles.descriptionHeader]}>Additional Description 
+                    <Text style={[styles.header, styles.descriptionHeader]}>Additional Description
                     or Notes:</Text>
                     <Text style={[styles.optional]}>(optional)</Text>
                     <TextInput

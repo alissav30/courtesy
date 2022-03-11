@@ -24,14 +24,17 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(false);
+    const [isSignUpFlow, setisSignUpFlow] = useState(true);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
 
     const [firstName, onChangeFirstName] = useState("");
     const [courtDate, onChangeCourtDate] = useState("");
-    const [courtLocation, onChangeCourtLocation] = useState('');
+    // const [courtLocation, onChangeCourtLocation] = useState('');
+    const [courtStreet, onChangeCourtStreet] = useState('');
+    const [courtCity, onChangeCourtCity] = useState('');
+    const [courtState, onChangeCourtState] = useState('');
     const [courtTime, onChangeCourtTime] = useState("");
     const [child, onChangeChild] = useState("");
     const [selectedCategory, setSelectedCategory] = useState('none');
@@ -64,8 +67,14 @@ export default function App() {
             onChangeFirstName={onChangeFirstName}
             courtDate={courtDate}
             onChangeCourtDate={onChangeCourtDate}
-            courtLocation={courtLocation}
-            onChangeCourtLocation={onChangeCourtLocation}
+            // courtLocation={courtLocation}
+            // onChangeCourtLocation={onChangeCourtLocation}
+            courtStreet={courtStreet}
+            onChangeCourtStreet={onChangeCourtStreet}
+            courtCity={courtCity}
+            onChangeCourtCity={onChangeCourtCity}
+            courtState={courtState}
+            onChangeCourtState={onChangeCourtState}
             courtTime={courtTime}
             onChangeCourtTime={onChangeCourtTime}
             setisSignUpFlow={setisSignUpFlow}
@@ -162,7 +171,7 @@ export default function App() {
             })}
         >
             <Tab.Screen name="Home">
-              {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} setIsMoodPicker={setIsMoodPicker } />}
+              {props => <HomeScreen {...props} mood={mood} firstName={firstName} courtDate={courtDate} courtStreet={courtStreet} courtCity={courtCity} courtState={courtState} setIsMoodPicker={setIsMoodPicker } />}
             </Tab.Screen>
             <Tab.Screen name="Tasks" >
             {props => <TaskScreen {...props}
@@ -175,18 +184,19 @@ export default function App() {
               </Tab.Screen>
             <Tab.Screen name=" ">
               {props => <MyPlanScreen {...props} mood={mood} setIsMoodPicker={setIsMoodPicker}
-                        courtDate={courtDate} courtTime={courtTime} courtLocation={courtLocation}
+                        courtDate={courtDate} courtTime={courtTime}
                         child={child} car={car} legalRep={legalRep} transportationPlan={transportationPlan}
                         setTransportationPlan={setTransportationPlan} childCarePlan={childCarePlan}
                         setChildCarePlan={setChildCarePlan} legalRepPlan={legalRepPlan}
-                        setLegalRepPlan={setLegalRepPlan} />}
+                        setLegalRepPlan={setLegalRepPlan}
+                        courtStreet={courtStreet} courtCity={courtCity} courtState={courtState}
+                         />}
             </Tab.Screen>
             <Tab.Screen name="Forum">
               {props => <MessageBoardScreen
                 {...props}
                 firstName={firstName}
                 courtDate={courtDate}
-                courtLocation={courtLocation}
                 courtTime={courtTime}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
@@ -202,7 +212,6 @@ export default function App() {
                   setIsMoodPicker={setIsMoodPicker }
                   courtTime={courtTime}
                   onChangeCourtTime={onChangeCourtTime}
-                  courtLocation={courtLocation}
                   onChangeLocation={onChangeLocation}
                   />}
             </Tab.Screen>

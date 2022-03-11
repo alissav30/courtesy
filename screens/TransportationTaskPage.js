@@ -20,7 +20,7 @@ import TaskScreen from './TasksScreen';
 
 const swoopBackground = require("./Message_Board_Background.png");
 
-const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime,courtLocation, child }) => {
+const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
 
   let moodKey = mood;
   if (moods.indexOf(mood) == -1) {
@@ -80,11 +80,10 @@ const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood
 //        nextScreen={nextScreen}
 //        transportationPlan={transportationPlan}
 //        setTransportationPlan={setTransportationPlan}
-//        mood={mood} 
+//        mood={mood}
 //        setIsMoodPicker={setIsMoodPicker}
-//        courtDate={courtDate} 
-//        courtTime={courtTime} 
-//        courtLocation={courtLocation}
+//        courtDate={courtDate}
+//        courtTime={courtTime}
 //        child={child}/>
 //    )
 //}
@@ -96,18 +95,17 @@ const TransportationTasksScreen = ({ navigation, currScreen, setCurrScreen, mood
 //        navigation={navigation}
 //        transportationPlan={transportationPlan}
 //        setTransportationPlan={setTransportationPlan}
-//        mood={mood} 
+//        mood={mood}
 //        setIsMoodPicker={setIsMoodPicker}
-//        courtDate={courtDate} 
-//        courtTime={courtTime} 
-//        courtLocation={courtLocation}
+//        courtDate={courtDate}
+//        courtTime={courtTime}
 //        child={child}
 //        />
 //    )
 //}
 //else if (nextScreen == "last") {
 //    return (
-//        <TaskScreen 
+//        <TaskScreen
 //                mood={mood}
 //                setSelectedCategory={setSelectedCategory}
 //                selectedCategory={selectedCategory}

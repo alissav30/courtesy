@@ -46,7 +46,7 @@ function isDateFormat(date) {
           <Text>please enter a valid date</Text>
         );
       };
-  } 
+  }
 
   if (month > 12) {
     return (
@@ -70,7 +70,7 @@ function isTimeFormat(time) {
   return time_regex.test(time);
 }
 
-const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtLocation, onChangeCourtLocation, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, child, onChangeChild, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
+const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMood, courtDate, onChangeFirstName, onChangeCourtDate, courtStreet, onChangeCourtStreet, courtCity, onChangeCourtCity, courtState, onChangeCourtState, courtTime, onChangeCourtTime, isMoodPicker, setIsMoodPicker, child, onChangeChild, legalRep, onChangeLegalRep, car, onChangeCar, title}) => {
 
     const [signUpScreenNumber, onChangeSignUpScreenNumber] = React.useState(0)
     //const [childCare, onChangeChildCare] = React.useState(false)
@@ -341,17 +341,39 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                   <View style={styles.textContainer}>
                       {/* court date question */}
                       <View>
-                          <Text style={styles.questionText}>
+                          <Text style={[styles.questionText, { marginTop: -60 }]}>
                             Where is your court appointment?
                           </Text>
-                          <Text style={styles.questionHelperText}>
-                              Format: street name, city, state abbreviation
+                          <Text style={[styles.locationHelperText, { marginTop: 10 }]}>
+                              Street name:
                           </Text>
-                          <View style={styles.answerRow}>
+                          <View style={styles.locationInput}>
                               <TextInput
                                 style={styles.input}
-                                onChangeText={onChangeCourtLocation}
-                                value={courtLocation}
+                                onChangeText={onChangeCourtStreet}
+                                value={courtStreet}
+                                placeholder=""
+                              />
+                          </View>
+                          <Text style={styles.locationHelperText}>
+                              City:
+                          </Text>
+                          <View style={styles.locationInput}>
+                              <TextInput
+                                style={styles.input}
+                                onChangeText={onChangeCourtCity}
+                                value={courtCity}
+                                placeholder=""
+                              />
+                          </View>
+                          <Text style={styles.locationHelperText}>
+                              State:
+                          </Text>
+                          <View style={styles.locationInput}>
+                              <TextInput
+                                style={styles.input}
+                                onChangeText={onChangeCourtState}
+                                value={courtState}
                                 placeholder=""
                               />
                           </View>
@@ -373,9 +395,9 @@ const SignUpFlow = ({navigation, props, setisSignUpFlow, mood, firstName, setMoo
                           </View>
                       </TouchableOpacity>
                       <TouchableOpacity
-                          style={courtLocation.length > 0 ? styles.nextModule : styles.disabledNextModule}
+                          style={(courtStreet.length > 0 && courtCity.length > 0 && courtState.length > 0) ? styles.nextModule : styles.disabledNextModule}
                           onPress={() => {
-                            if (courtLocation.length > 0) {
+                            if (courtStreet.length > 0 && courtCity.length > 0 && courtState.length > 0) {
                               onChangeSignUpScreenNumber(5);
                             }
                           }}>
@@ -538,6 +560,9 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         paddingBottom: 50,
       },
+    locationInput: {
+      marginBottom: 0,
+    },
     input: {
         height: 40,
         margin: 20,
@@ -580,6 +605,13 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#FFFFFF",
         paddingTop: 10,
+    },
+    locationHelperText: {
+      fontFamily: "Avenir",
+      fontSize: 18,
+      textAlign: "center",
+      color: "#FFFFFF",
+      marginBottom: -10,
     },
     errorMessageText: {
       fontFamily: "Avenir",
