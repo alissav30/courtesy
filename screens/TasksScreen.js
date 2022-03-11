@@ -16,6 +16,10 @@ import { getCountdownDays, homeScreenMoods, moods } from '../utils';
 import TransportationTaskPage from "./TransportationTaskPage";
 import TransportationResourcesPage from './TransportationResourcesPage';
 import MakeAPlan from './MakeAPlan';
+import ComparePricing from "./ComparePricingScreen"
+import PubTranOptsScreen from './PubTranOptsScreen';
+import Discounts from './DiscountsScreen';
+import CarForHire from './CarForHireResourcesScreen';
 
 import {
     Card,
@@ -141,11 +145,82 @@ const [currScreen, setCurrScreen] = React.useState("tasks")
             courtDate={courtDate}
             courtTime={courtTime}
             child={child}
+            currScreen={currScreen}
+            setCurrScreen={setCurrScreen}
             />
+        )
+    }
+    else if (currScreen == "compare pricing") {
+        return (
+            <ComparePricing
+            navigation={navigation}
+            transportationPlan={transportationPlan}
+            setTransportationPlan={setTransportationPlan}
+            mood={mood} 
+            setIsMoodPicker={setIsMoodPicker}
+            courtDate={courtDate} 
+            courtTime={courtTime} 
+            courtLocation={courtLocation}
+            child={child}
+            currScreen={currScreen}
+            setCurrScreen={setCurrScreen}
+            />
+        )
+    }
+    else if (currScreen == "public transport options") {
+        return (
+            <PubTranOptsScreen
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood} 
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate} 
+        courtTime={courtTime} 
+        courtLocation={courtLocation}
+        child={child}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        />
+        )
+    }
+    else if (currScreen == "discounts") {
+        return (
+        <Discounts
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood} 
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate} 
+        courtTime={courtTime} 
+        courtLocation={courtLocation}
+        child={child}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        />
+        )
+    }
+    else if (currScreen == "car-for-hire") {
+        return (
+        <CarForHire
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood} 
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate} 
+        courtTime={courtTime} 
+        courtLocation={courtLocation}
+        child={child}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        />
         )
     }
 
 };
+
 
 const styles = StyleSheet.create({
   dailyTasksModule: {

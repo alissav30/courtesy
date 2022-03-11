@@ -212,7 +212,8 @@ export default function App() {
                   setIsMoodPicker={setIsMoodPicker }
                   courtTime={courtTime}
                   onChangeCourtTime={onChangeCourtTime}
-                  onChangeLocation={onChangeLocation}
+                  courtLocation={courtLocation}
+                  onChangeCourtLocation={onChangeCourtLocation}
                   />}
             </Tab.Screen>
         </Tab.Navigator>
