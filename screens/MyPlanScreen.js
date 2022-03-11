@@ -14,19 +14,28 @@ import { Colors } from 'react-native-paper';
 
 const swoopBackground = require("./plan_background.png");
 
-import MakeAPlan from "./MakeAPlan"
+import MakeTransportationPlan from "./MakeTransportationPlan"
 import TransportationTaskPage from "./TransportationTaskPage"
+import MakeLegalPlan from './MakeLegalPlan';
+import LegalTasksScreen from './LegalTaskPage';
+import MakeChildCarePlan from './MakeChildCarePlan';
+import ChildCareTasksScreen from './ChildCareTaskPage';
 import { Ionicons } from '@expo/vector-icons';
 
 
 
-const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
-    const [foundTransportation, setFoundTransportation] = React.useState('false')
-    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState('false')
-    const [foundChildcare, setFoundChildCare] = React.useState('false')
-    const [checkTransportation, setCheckTransportation] = React.useState("")
-    console.log("transportation plan", transportationPlan)
+const MyPlanScreen = ({ navigation, currScreen, setCurrScreen, navScreen, setNavScreen, child, mood, setIsMoodPicker, courtDate, courtTime, courtStreet, courtCity, courtState, car, legalRep, transportationPlan, setTransportationPlan, childCarePlan, setChildCarePlan, legalRepPlan, setLegalRepPlan }) => {
+    const [foundTransportation, setFoundTransportation] = React.useState(false)
+    const [foundLegalRepresentation, setFoundLegalRepresentation] = React.useState(false)
+    const [foundChildcare, setFoundChildCare] = React.useState(false)
+    //const [checkTransportation, setCheckTransportation] = React.useState("")
+    //const [navScreen, setNavScreen] = React.useState("my plan")
     const courtLocation = `${courtStreet}, ${courtCity}, ${courtState}`;
+
+    const [legalPlanDescription, onChangeLegalPlanDescription] = React.useState("")
+    const [transportationPlanDescription, onChangeTransportationPlanDescription] = React.useState("")
+    const [childCarePlanDescription, onChangeChildCarePlanDescription] = React.useState("")
+    const [currLegalScreen, setCurrLegalScreen] = React.useState("legal task")
 
     let progress = 3;
     let total = 4;
@@ -57,8 +66,8 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
     // if (legalRep == true) {
     //    setLegalRepPlan("I know what legal representation I'll use.")
     // }
-    if (checkTransportation == "") {
-  return (
+    if (navScreen == "my plan") {
+    return (
       <View style={{ flex: 1, padding: 0 }}>
         <ImageBackground source={swoopBackground} style={{width: '100%', height: '105%'}}>
             {/* <Text>{childCare? "hi" : "hello"}</Text> */}
@@ -74,7 +83,8 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {courtDate} </Text>
-                                    <TouchableOpacity style={styles.editButton}>
+                                    <TouchableOpacity style={styles.editButton}
+                                    onPress={()=>navigation.navigate("Settings")}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
                                         </View>
@@ -92,7 +102,8 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {courtTime} </Text>
-                                    <TouchableOpacity style={styles.editButton}>
+                                    <TouchableOpacity style={styles.editButton}
+                                    onPress={()=>navigation.navigate("Settings")}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
                                         </View>
@@ -109,8 +120,9 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             <Text style={[styles.planHeader]}> Location </Text>
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
-                                    <Text numberOfLines={1} style={styles.planContentText}> {courtLocation} </Text>
-                                    <TouchableOpacity style={styles.editButton}>
+                                    <Text numberOfLines={1} style={styles.planContentText}> {courtStreet+", "+courtCity+", "+courtState} </Text>
+                                    <TouchableOpacity style={styles.editButton}
+                                    onPress={()=>navigation.navigate("Settings")}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> view / edit </Text>
                                         </View>
@@ -129,7 +141,7 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {transportationPlan} </Text>
                                     <TouchableOpacity style={styles.editButton}
-                                    onPress={()=> {foundTransportation ?  setCheckTransportation("view") : setCheckTransportation("explore")}}
+                                    onPress={()=> {foundTransportation ?  setNavScreen("transportationView") : setNavScreen("transportationExplore")}}
                                     >
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {foundTransportation ? "view / edit" : "explore!"} </Text>
@@ -155,7 +167,17 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {legalRepPlan} </Text>
-                                    <TouchableOpacity style={styles.editButton}>
+                                    <TouchableOpacity style={styles.editButton}
+                                    onPress={()=>{
+                                        if (foundLegalRepresentation) {
+                                            setNavScreen("legalView")
+                                        }
+                                        else {
+                                            setNavScreen("legalExplore")
+                                        }
+                                    }
+                                    }
+                                    >
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}>{foundLegalRepresentation ? "view / edit" : "explore!"} </Text>
                                         </View>
@@ -182,7 +204,17 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
                             <View style={[styles.planContentBox, styles.dropShadow]}>
                                 <View style={styles.planContent}>
                                     <Text numberOfLines={1} style={styles.planContentText}> {childCarePlan} </Text>
-                                    <TouchableOpacity style={styles.editButton}>
+                                    <TouchableOpacity style={styles.editButton}
+                                    onPress={()=>{
+                                        if (foundChildcare) {
+                                            setNavScreen("legalView")
+                                        }
+                                        else {
+                                            setNavScreen("legalExplore")
+                                        }
+                                    }
+                                    }
+                                    >
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 6, paddingRight: 10}}>
                                         <Text style={[{ color: "white", fontSize: 14, fontWeight: 'bold', fontStyle: 'italic', alignSelf: 'center' }, styles.underline]}> {foundChildcare ? "view / edit" : "explore!"} </Text>
                                         </View>
@@ -211,12 +243,74 @@ const MyPlanScreen = ({ navigation, child, mood, setIsMoodPicker, courtDate, cou
       </View>
   );
 }
-if (checkTransportation == "view") {
+
+else if (navScreen == "transportationView") {
     return (
-        <MakeAPlan
+        <MakeTransportationPlan
         navigation={navigation}
         transportationPlan={transportationPlan}
         setTransportationPlan={setTransportationPlan}
+        mood={mood}
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate}
+        courtTime={courtTime}
+        child={child}
+        transportationPlanDescription={transportationPlanDescription}
+        onChangeTransportationPlanDescription={onChangeTransportationPlanDescription}
+        currScreen={currScreen}
+        setCurrScreen={setCurrScreen}
+        navScreen={navScreen}
+        setNavScreen={setNavScreen}
+        />
+    )
+}
+
+else if (navScreen == "transportationExplore") {
+    return (
+        <TransportationTaskPage
+            navigation={navigation}
+            setSelectedCategory={setSelectedCategory}
+            selectedCategory={selectedCategory}
+            setCurrScreen={setCurrScreen}
+            currScreen={"transportation task"}
+            transportationPlan={transportationPlan}
+            setTransportationPlan={setTransportationPlan}
+            mood={mood}
+            setIsMoodPicker={setIsMoodPicker}
+            courtDate={courtDate}
+            courtTime={courtTime}
+            child={child}
+            navScreen={navScreen}
+            setNavScreen={setNavScreen}
+            />
+    )
+}
+else if (navScreen == "legalView") {
+    return (
+        <MakeLegalPlan
+        navigation={navigation}
+        transportationPlan={transportationPlan}
+        setTransportationPlan={setTransportationPlan}
+        mood={mood}
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate}
+        courtTime={courtTime}
+        child={child}
+        legalPlanDescription={legalPlanDescription}
+        onChangeLegalPlanDescription={onChangeLegalPlanDescription}
+        />
+    )
+}
+else if (navScreen == "legalExplore") {
+    return (
+        <LegalTasksScreen
+        navigation={navigation}
+        currScreen={currLegalScreen}
+        setCurrScreen={setCurrLegalScreen}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        legalRepPlan={legalRepPlan}
+        setLegalRepPlan={setLegalRepPlan}
         mood={mood}
         setIsMoodPicker={setIsMoodPicker}
         courtDate={courtDate}
@@ -225,25 +319,42 @@ if (checkTransportation == "view") {
         />
     )
 }
-if (checkTransportation == "explore") {
+else if (navScreen == "childView") {
     return (
-        <TransportationTaskPage
+        <MakeChildCarePlan
         navigation={navigation}
-        setSelectedCategory={setSelectedCategory}
-        selectedCategory={selectedCategory}
-        nextScreen={nextScreen}
-        transportationPlan={transportationPlan}
-        setTransportationPlan={setTransportationPlan}
+        childCarePlan={childCarePlan}
+        setChildCarePlan={setChildCarePlan}
         mood={mood}
         setIsMoodPicker={setIsMoodPicker}
         courtDate={courtDate}
         courtTime={courtTime}
         child={child}
-        setNextScreen={setNextScreen}/>
+        childCarePlanDescription={childCarePlanDescription}
+        onChangeChildCarePlanDescription={onChangeChildCarePlanDescription}
+        />
+    )
+}
+else if (navScreen == "childExplore") {
+    return (
+        <ChildCareTasksScreen
+        navigation={navigation}
+        currScreen={currLegalScreen}
+        setCurrScreen={setCurrLegalScreen}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        childCarePlan={legalRepPlan}
+        setChildCarePlan={setLegalRepPlan}
+        mood={mood}
+        setIsMoodPicker={setIsMoodPicker}
+        courtDate={courtDate}
+        courtTime={courtTime}
+        child={child}
+        />
     )
 }
 
-};
+}
 
 const styles = StyleSheet.create({
     progressBar: {

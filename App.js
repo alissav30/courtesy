@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [isSignUpFlow, setisSignUpFlow] = useState(true);
+    const [isSignUpFlow, setisSignUpFlow] = useState(false);
     const [isMoodPicker, setIsMoodPicker] = useState(false);
 
     const [mood, setMood] = useState('productive');
@@ -36,7 +36,7 @@ export default function App() {
     const [courtCity, onChangeCourtCity] = useState('');
     const [courtState, onChangeCourtState] = useState('');
     const [courtTime, onChangeCourtTime] = useState("");
-    const [child, onChangeChild] = useState("");
+    const [child, onChangeChild] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('none');
 
     const [car, onChangeCar] = React.useState(false)
@@ -47,6 +47,9 @@ export default function App() {
     const [transportationPlan, setTransportationPlan] = React.useState("Start your plan!")
     const [childCarePlan, setChildCarePlan] = React.useState("Start your plan!")
     const [legalRepPlan, setLegalRepPlan] = React.useState("Start your plan!")
+
+    const [navScreen, setNavScreen] = React.useState("my plan")
+    const [currScreen, setCurrScreen] = React.useState("tasks")
 
     //if (car == true) {
     //    setTransportationPlan("Have a car!")
@@ -187,6 +190,10 @@ export default function App() {
                 courtDate={courtDate}
                 courtTime={courtTime}
                 child={child}
+                navScreen={navScreen}
+                setNavScreen={setNavScreen}
+                currScreen={currScreen}
+                setCurrScreen={setCurrScreen}
             />}
               </Tab.Screen>
             <Tab.Screen name=" ">
@@ -197,6 +204,9 @@ export default function App() {
                         setChildCarePlan={setChildCarePlan} legalRepPlan={legalRepPlan}
                         setLegalRepPlan={setLegalRepPlan}
                         courtStreet={courtStreet} courtCity={courtCity} courtState={courtState}
+                        navScreen={navScreen} setNavScreen={setNavScreen}
+                        selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
+                        currScreen={currScreen} setCurrScreen={setCurrScreen}
                          />}
             </Tab.Screen>
             <Tab.Screen name="Forum">
