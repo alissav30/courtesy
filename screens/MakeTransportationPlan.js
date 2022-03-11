@@ -32,7 +32,7 @@ const MakeTransportationPlan = ({ navigation, progress, setProgress, foundTransp
                     { top: 80, left: 20, width: '25%', height: '22%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,}
                 ]}
                 onPress={() => {
-                    navigation.navigate("Tasks")
+                    //navigation.navigate("Tasks")
                     setCurrScreen("resources")
                     setNavScreen("my plan")
                 }}
