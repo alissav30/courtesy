@@ -14,7 +14,6 @@ import MakeAPost from './MakeAPost';
 import { FontAwesome5, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { courtDatePosts, contactCourtPosts, legalHelpPosts, transportationPosts, testimonialPosts, otherPosts, myPosts } from '../utils';
 
-const swoopBackground = require("./Message_Board_Background.png");
 const categories = ['court date information', 'contacting court', 'transportation', 'testimonials', 'legal help', 'other', 'my posts'];
 
 const allPosts = courtDatePosts.concat(contactCourtPosts).concat(legalHelpPosts).concat(transportationPosts).concat(testimonialPosts).concat(otherPosts);
@@ -58,7 +57,7 @@ const onShare = async (title) => {
   }
 };
 
-const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}) => {
+const MessageBoardScreen = ({ navigation, forumBackground, selectedCategory, setSelectedCategory}) => {
 //  const [selectedCategory, setSelectedCategory] = useState('none');
   const [searchTerm, setSearchTerm] = useState('');
   const [postToDisplay, setPostToDisplay] = useState('');
@@ -74,7 +73,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
   if (selectedCategory === 'none' && postToDisplay === '') {
     return (
         <View style={{ flex: 1 }}>
-          <ImageBackground source={swoopBackground} style={{ width: '102%', height: '103%', left: -1 }}>
+          <ImageBackground source={forumBackground} style={{ width: '102%', height: '103%', left: -1 }}>
             <Text style={{ top: 65, color: 'white', fontSize: 26, fontWeight: 'bold', fontFamily: 'Helvetica', textAlign: 'center' }}> Message Board </Text>
             <View style={{ width: '90%', top: 90, height: 40, alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
               <View style={styles.searchBar}>
@@ -144,7 +143,7 @@ const MessageBoardScreen = ({ navigation, selectedCategory, setSelectedCategory}
               onChangeText={setSearchTerm}
               value={searchTerm}
               placeholder={'search'}
-              placeholderTextColor={'#dae8e7'}  
+              placeholderTextColor={'#dae8e7'}
             />
             <MaterialCommunityIcons name={'magnify'} color={'white'} size={20} />
           </View>
