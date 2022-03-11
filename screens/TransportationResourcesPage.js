@@ -24,8 +24,7 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
   ]);
 
   return (
-    <View style={{ flex: 1 }}>
-    <View style={{width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
+    <View style={{flex: 1, width: '102%', height: '103%', left: -1, backgroundColor: "#85B0AE"}}>
         <TouchableOpacity style={[
                     { top: 80, left: 20, width: '25%', height: '6%', borderRadius: '16px', justifyContent: 'center', borderColor: '#FFFFFF',  borderWidth: 1,marginBottom: 25},
                 ]} onPress={() => setCurrScreen("transportation task")}>
@@ -56,28 +55,8 @@ const TransportationResourcesPage = ({navigation, setSelectedCategory, setCurrSc
             </View>
         </View>
     </View>
-    </View>
   );
 }
-//else if (backButton == true) {
-//    console.log("getting back true")
-//    return (
-//    <TransportationTaskPage
-//        navigation={navigation}
-//        setSelectedCategory={setSelectedCategory}
-//        selectedCategory={selectedCategory}
-//        nextScreen={nextScreen}
-//        transportationPlan={transportationPlan}
-//        setTransportationPlan={setTransportationPlan}
-//        mood={mood}
-//        setIsMoodPicker={setIsMoodPicker}
-//        courtDate={courtDate}
-//        courtTime={courtTime}
-//        child={child}
-//        setNextScreen={setNextScreen}/>
-//    )
-//}
-//}
 
 const styles = StyleSheet.create({
   gridView: {

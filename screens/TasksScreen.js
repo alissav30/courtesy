@@ -29,7 +29,7 @@ import {
 
 const swoopBackground = require("./tasks_background.png");
 
-const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtTime, child }) => {
+const TasksScreen = ({ navigation, mood, selectedCategory, setSelectedCategory, transportationPlan, setTransportationPlan, setIsMoodPicker, courtDate, courtLocation, courtTime, child }) => {
 const [isTransportationTask, setIsTransportationTask] = React.useState(false)
 const [currScreen, setCurrScreen] = React.useState("tasks")
 
