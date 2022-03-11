@@ -9,7 +9,6 @@ import {
     Dimensions,
   } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
-import TransportationTaskPage from "./TransportationTaskPage";
 import { BarChart } from 'react-native-chart-kit';
 
 
@@ -42,7 +41,7 @@ const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPl
             yAxisLabel="$"
             gridMin={0}
             contentInset={{ top: 10, bottom: 10 }}
-            chartConfig={{ 
+            chartConfig={{
                 backgroundColor: "transparent",
                 backgroundGradientTo: "white",
                 backgroundGradientFromOpacity: 0,
@@ -50,7 +49,7 @@ const ComparePricing = ({navigation, setCurrScreen, currScreen, transportationPl
                 backgroundGradientToOpacity: 0,
                 color: (opacity = 0.1) => `#FFFFFF`,
                 barPercentage: 0.8,
-                barRadius : 10,  
+                barRadius : 10,
                }}
             verticalLabelRotation={50}
             />
