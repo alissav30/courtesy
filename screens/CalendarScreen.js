@@ -19,12 +19,13 @@ const SignUpFlow = ({ navigation, setisSignUpFlow }) => {
     const [firstName, onChangeFirstName] = React.useState(null);
     const [courtDate, onChangeCourtDate] = React.useState(null);
     const [courtLocation, onChangeCourtLocation] = React.useState(null);
-    
+
   return (
       <View style={{ flex: 1, paddingTop: 80, header: 'Sign Up', backgroundColor: "#85B0AE", alignContent:"flex-start"}}>
           <View style={styles.welcomeTextContainer}>
             <Text style={styles.welcomeText} onPress={() => setisSignUpFlow(false)}>
               {/* title */}
+              {/* new comment */}
               Welcome to Courtesy!
             </Text>
             <Text style={styles.subtitleText}>
